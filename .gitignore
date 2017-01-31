@@ -1,2 +1,4 @@
-./Documentation/Annexes/BDD_docs/DBModel.mwb.bak
-./Sources/TPI_FrontEnd/node_modules/
+Documentation/Annexes/BDD_docs/DBModel.mwb.bak
+Sources/TPI_FrontEnd/node_modules/
+Sources/Site/node_modules/
+.vscode/
