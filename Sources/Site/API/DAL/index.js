@@ -2,7 +2,7 @@
 module.exports = function (dbConfigs) {
     
     var SeqInit = require('sequelize');
-    var store = {models:{},repository:{}};
+    var store = {models:{},repositories:{}};
     var fs = require("fs");
     var path = require("path");
     var sequelize = new SeqInit(dbConfigs.name, dbConfigs.username, dbConfigs.password, {
@@ -15,7 +15,7 @@ module.exports = function (dbConfigs) {
         }
     });
     
-    store.repository = require('./repository')();
+    store.repositories = require('./repository')(store);
     store.models = require('./models')({store:store,sequelize:sequelize,SeqInit:SeqInit});
     
     return store;

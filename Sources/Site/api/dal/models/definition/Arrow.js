@@ -21,6 +21,14 @@ module.exports = function (store, sequelize, SeqInit) {
             validate: {
                 is: /^([1-9]|10)$/
             }
+        },
+        FK_End: {
+            type: SeqInit.INTEGER,
+            allowNull: false,
+            references: {
+                model: store.End,
+                key: 'id_End'
+            }
         }
     });
 }

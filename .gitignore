@@ -3,3 +3,4 @@ Sources/TPI_FrontEnd/node_modules/
 Sources/Site/node_modules/
 .vscode/
 Sources/Site/api/config/configs.json
+Sources/Cli/node_modules/
