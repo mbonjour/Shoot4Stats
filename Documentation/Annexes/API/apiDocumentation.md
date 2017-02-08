@@ -85,4 +85,19 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
         - Description peut être null
         - Location sous forme de 2 strings représentant les coordonnées
 
+## Ends
 
+* POST /api/end
+    * Le POST va être envoyé après chaque add de volée 
+    * Objet Example : 
+    ```json
+    {
+		FK_Shoot : [id_Shoot],
+		Description : “”,
+		Arrows : {
+			arrow1 : { Point : 10},
+			arrow2 : { Point : 10},
+			arrow3 : { Point : 9}
+		}
+	}
+    ```
