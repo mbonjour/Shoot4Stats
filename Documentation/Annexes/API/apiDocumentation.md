@@ -29,9 +29,9 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
         }
     }
     ```
-    Spécificités : 
-     - Finished --> retournera un boolean selon si nb_Ends de la Table shoot est égal au nb_Ends compté par l'api
-     - DateHumanize --> retourne un string d'une date lisible p. ex. "about a day ago"
+    * Spécificités : 
+        - Finished --> retournera un boolean selon si nb_Ends de la Table shoot est égal au nb_Ends compté par l'api
+        - DateHumanize --> retourne un string d'une date lisible p. ex. "about a day ago"
 
 * GET /api/shoots/[idShoot]
     * L'idUser sera récupérer par la session, l'idShoot sera passé en fonction du Shoot sélectionné
@@ -41,7 +41,7 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
         Title: "",
         Description: "",
         Type:"",
-        AverageArrow: "",
+        AverageArrow: 9.2,
         GoldHit: 0.55,
         Total: 540,
         Ends: {
@@ -56,10 +56,14 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
             2: {...}
         }
     }
-
     ```
+    * Spécificités :
+        - Average Arrow : Calculéé par l'API (Total / nb_Ends*nb_ArrowsByEnd)
+        - GoldHit : Pourcentage de flèches dans le jaune (10 et 9)
+        - Total : Points totaux
+        - Ends.1.arrow1 : les données sont triées par l'API --> Arrow1 est toujours plus grand que le reste
 * POST /api/shoots
-    * Le POST va 
+    * Le POST va récupérer idUser dans session, il va créer un nouveau Shoot
     * Objet example :
     ```json
     {
