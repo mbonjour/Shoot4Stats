@@ -43,6 +43,14 @@ module.exports = function (store, sequelize, SeqInit) {
                 model: store.User,
                 key: 'id_User'
             }
+        },
+        FK_Location: {
+            type: SeqInit.INTEGER,
+            allowNull: false,
+            references: {
+                model: store.Location,
+                key: 'id_Location'
+            }
         }
     });
 }
