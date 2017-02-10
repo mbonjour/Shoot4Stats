@@ -1,6 +1,39 @@
-var store = require ('../Site/api/dal')(require('../Site/api/config/configs.json').db)
+var store = require('../Site/api/dal')(require('../Site/api/config/configs.json').db)
 
-console.log(store.repositories.shoots.get({}))
+// store.repositories.shoots.get({
+//     id_User: 1
+// }).then(function (shoots) {
+//     shoots.forEach(function (shoot) {
+//         console.log("First : " + shoot.id_Shoot)
+//     }, this);
+// })
+
+// store.repositories.shoots.get({
+//     id_User: 1,
+//     id_Shoot: 1
+// }).then(function (shoots) {
+//     shoots.forEach(function (shoot) {
+//         console.log("Second : " + shoot.Title)
+//     }, this);
+// })
+
+
+var Shoots = [];
+store.repositories.shoots.get({
+    id_User: 1
+}).then(function (shoots) {
+    shoots.forEach(function (shoot) {
+        store.repositories.ends.get({
+            id_Shoot: shoot.id_Shoot
+        })
+        .then(function(ends){
+            shoot.nb_EndsReal = ends.length
+            Shoots.push(shoot)
+        })
+    }, this);
+}).then(function() {
+    console.log(Shoots)
+})
 
 // store.repositories.shoots.get({FK_User: 123})
 // store.repositories.shoots.get({FK_User: 123, Id_Shoot})

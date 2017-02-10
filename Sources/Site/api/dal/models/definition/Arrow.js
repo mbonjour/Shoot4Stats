@@ -18,9 +18,7 @@ module.exports = function (store, sequelize, SeqInit) {
         Point: {
             type: SeqInit.INTEGER,
             allowNull: false,
-            validate: {
-                is: /^([1-9]|10)$/
-            }
+            validate: {min : 0, max: 10}
         },
         FK_End: {
             type: SeqInit.INTEGER,
