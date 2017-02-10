@@ -6,6 +6,7 @@ var store = require('../dal')(require('../config/configs.json').db)
 router.get('/', function (req, res, next) {
     var Shoots = [];
     store.repositories.shoots.get({
+        //TODO : Mettre variable user de session ?
         id_User: 1
     }).then(function (shoots) {
         shoots.forEach(function (shoot) {
@@ -29,6 +30,15 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:idShoot', function (req, res, next) {
+    store.repositories.shoots.get({
+        //TODO : Mettre variable user session ?
+        id_User: 1,
+        id_Shoot: req.params.idShoot
+    }).then(function (shoots) {
+        shoots.forEach(function (shoot) {
+            console.log("Second : " + shoot.Title)
+        }, this);
+    })
     res.json({
         title: 'Express',
         idUser: req.session.user
