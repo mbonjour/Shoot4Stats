@@ -31,4 +31,6 @@ router.get('/:idShoot', function (req, res, next) {
     })
 });
 
+
+
 module.exports = router;

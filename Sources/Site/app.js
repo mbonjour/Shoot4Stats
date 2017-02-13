@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
 
-var shoots = require(path.join(__dirname, 'api/controllers/shoots.js'));
+var shoots = require(path.join(__dirname, 'api/controllers/shootsController.js'));
 
 var app = express();
 

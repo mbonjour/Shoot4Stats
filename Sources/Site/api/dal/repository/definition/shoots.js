@@ -5,7 +5,6 @@ module.exports = (props) => {
 
     return {
         get: (id_User, callback) => {
-            //On vérifie si on doit séléctionner un Shoot en particulier ou juste quelques infos de tout les Shoots
             props.store.models.Shoot.findAll({
                 where: {
                     FK_User: id_User

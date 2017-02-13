@@ -3,7 +3,6 @@ module.exports = {
         return {
             posx: arrow.PosX,
             posy: arrow.PosY,
-            
             point: arrow.Point
         }
     }
