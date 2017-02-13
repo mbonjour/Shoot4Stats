@@ -1,6 +1,6 @@
 var locationMapper = require('./locationMapper')
 
-var endMapper = require('./endMapper')
+var endMapper = require('./endMapper').mapEndWithArrows
 
 module.exports = {
     map: (shoot) => {
@@ -16,13 +16,12 @@ module.exports = {
     },
     mapWithArrows: (shoot) => {
         return {
-            id: shoot.id,
             title: shoot.title,
             description: shoot.description,
             date: shoot.date,
             location: locationMapper.map(shoot.Location),
             type: shoot.Type.Name,
-            finished: shoot.Ends.length === shoot.totalEnds,
+            ends: shoot.Ends.map(endMapper)
         }
     }
 }

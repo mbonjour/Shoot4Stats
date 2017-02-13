@@ -41,12 +41,12 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
         Title: "",
         Description: "",
         Type:"",
+        Date: "about 1 year ago"
         AverageArrow: 9.2,
         GoldHit: 0.55,
         Total: 540,
         Ends: {
             1:{
-                Description : “”,
                 Arrows : {
                     arrow1 : { Point : 10},
                     arrow2 : { Point : 10},

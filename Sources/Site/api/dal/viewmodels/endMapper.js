@@ -1,13 +1,10 @@
-module.exports = {
-    mapEnd: (end) => {
-        return {
-            id: end.id_End
-        }
+var arrowMapper = require('./arrowMapper').map
 
-    },
+module.exports = {
     mapEndWithArrows: (end) => {
         return {
-            id: end.id_End
+            id: end.id_End,
+            arrows: end.Arrows.map(arrowMapper)//.map(arrowMapper)
         }
     }
 }
