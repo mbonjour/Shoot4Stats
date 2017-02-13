@@ -1,56 +1,75 @@
 'use strict';
-module.exports = function (store, sequelize, SeqInit) {
-    return sequelize.define('Shoot', {
-        id_Shoot: {
+
+module.exports = function (sequelize, SeqInit) {
+    let Shoot = sequelize.define('Shoot', {
+        id: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            field: 'id_Shoot'
         },
-        Date_Shoot: {
+        date: {
             type: SeqInit.DATE,
             defaultValue: SeqInit.NOW,
             allowNull: false,
+            field: 'Date_Shoot'
         },
-        Description: {
+        description: {
             type: SeqInit.TEXT,
-            allowNull: true
+            allowNull: true,
+            field: 'Description'
         },
-        Title: {
+        title: {
             type: SeqInit.STRING(45),
-            allowNull: false
+            allowNull: false,
+            field: 'Title'
         },
-        nb_Ends: {
-            type: SeqInit.INTEGER,
-            allowNull: false
-        },
-        nb_ArrowsByEnd: {
-            type: SeqInit.INTEGER,
-            allowNull: false
-        },
-        FK_Type: {
+        totalEnds: {
             type: SeqInit.INTEGER,
             allowNull: false,
-            references: {
-                model: store.Type,
-                key: 'id_Type'
-            }
+            field: 'nb_Ends'
         },
-        FK_User: {
+        arrowsbyend: {
             type: SeqInit.INTEGER,
             allowNull: false,
-            references: {
-                model: store.User,
-                key: 'id_User'
-            }
+            field: 'nb_ArrowsByEnd'
         },
-        FK_Location: {
+        type: {
             type: SeqInit.INTEGER,
             allowNull: false,
-            references: {
-                model: store.Location,
-                key: 'id_Location'
+            field: 'FK_Type'
+        },
+        user: {
+            type: SeqInit.INTEGER,
+            allowNull: false,
+            field: 'FK_User'
+        },
+        location: {
+            type: SeqInit.INTEGER,
+            allowNull: false,
+            field: 'FK_Location'
+        }
+    }, {
+        classMethods: {
+            associate: function (models) {
+                Shoot.belongsTo(models.Type, {
+                    foreignKey: 'FK_Type'
+                })
+
+                Shoot.belongsTo(models.User, {
+                    foreignKey: 'FK_User'
+                })
+
+                Shoot.belongsTo(models.Location, {
+                    foreignKey: 'FK_Location'
+                })
+
+                Shoot.hasMany(models.End, {
+                    foreignKey: 'FK_Shoot'
+                })
             }
         }
-    });
+    })
+    return Shoot;
 }

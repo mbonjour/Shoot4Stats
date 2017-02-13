@@ -1,6 +1,6 @@
 'use strict';
-module.exports = function (store, sequelize, SeqInit) {
-    return sequelize.define('User', {
+module.exports = function (sequelize, SeqInit) {
+    let User = sequelize.define('User', {
         id_User: {
             type: SeqInit.INTEGER,
             allowNull: false,
@@ -27,5 +27,26 @@ module.exports = function (store, sequelize, SeqInit) {
             type: SeqInit.STRING(75),
             allowNull: true
         }
-    });
+    }, {
+        classMethods: {
+            associate: function (models) {
+                User.belongsToMany(models.User, {
+                    as: 'member',
+                    through: 'has_Group',
+                    foreignKey: 'id_User',
+                    otherKey: 'FK_User'
+                })
+                User.belongsToMany(models.User, {
+                    as: 'coach',
+                    through: 'has_Coach',
+                    foreignKey: 'id_User',
+                    otherKey: 'FK_User'
+                })
+                User.hasMany(models.Shoot, {
+                    foreignKey: 'FK_User'
+                })
+            }
+        }
+    })
+    return User
 }
