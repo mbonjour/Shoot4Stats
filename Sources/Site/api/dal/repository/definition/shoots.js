@@ -10,7 +10,7 @@ module.exports = function (props) {
                     attributes: ['id_Shoot', 'Title', 'Description', 'Date_Shoot', 'FK_Type', 'nb_Ends']
                 })
             } else {
-                return props.store.models.Shoot.findAll({
+                return props.store.models.Shoot.find({
                     where: {
                         id_Shoot: params.id_Shoot
                     }

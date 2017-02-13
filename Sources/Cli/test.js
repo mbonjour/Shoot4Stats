@@ -22,17 +22,23 @@ var Shoots = [];
 store.repositories.shoots.get({
     id_User: 1
 }).then(function (shoots) {
-    shoots.forEach(function (shoot) {
+    var i = 0;
+    shoots.forEach((shoot, index, array) => {
         store.repositories.ends.get({
-            id_Shoot: shoot.id_Shoot
-        })
-        .then(function(ends){
-            shoot.nb_EndsReal = ends.length
-            Shoots.push(shoot)
-        })
-    }, this);
-}).then(function() {
-    console.log(Shoots)
+                id_Shoot: shoot.id_Shoot
+            })
+            .then(function (ends) {
+                shoot.dataValues.nb_EndsReal = ends.length
+                Shoots.push(shoot.dataValues)
+                i++
+                if (i === array.length) {
+                    callback();
+                }
+            })
+    });
+    function callback(){
+        console.log(Shoots)
+    }
 })
 
 // store.repositories.shoots.get({FK_User: 123})

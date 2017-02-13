@@ -7,10 +7,6 @@ module.exports = function (store, sequelize, SeqInit) {
             primaryKey: true,
             autoIncrement:true
         },
-        Description: {
-            type: SeqInit.TEXT,
-            allowNull: true
-        },
         FK_Shoot: {
             type: SeqInit.INTEGER,
             allowNull: false,

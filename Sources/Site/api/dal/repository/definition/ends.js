@@ -5,8 +5,7 @@ module.exports = function (props) {
                 return props.store.models.End.findAll({
                     where: {
                         FK_Shoot: params.id_Shoot
-                    },
-                    attributes: ['id_End']
+                    }
                 })
         },
         add: function (params) {

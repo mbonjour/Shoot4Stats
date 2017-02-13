@@ -6,27 +6,32 @@ var store = require('../dal')(require('../config/configs.json').db)
 router.get('/', function (req, res, next) {
     var Shoots = [];
     store.repositories.shoots.get({
-        //TODO : Mettre variable user de session ?
         id_User: 1
     }).then(function (shoots) {
-        shoots.forEach(function (shoot) {
+        var i = 0;
+        shoots.forEach((shoot, index, array) => {
             store.repositories.ends.get({
                     id_Shoot: shoot.id_Shoot
                 })
                 .then(function (ends) {
-                    shoot.nb_EndsReal = ends.length
-                    Shoots.push(shoot)
+                    if (ends.length == shoot.dataValues.nb_Ends) {
+                        shoot.dataValues.finished = true
+                    } else {
+                        shoot.dataValues.finished = false
+                    }
+                    Shoots.push(shoot.dataValues)
+                    i++
+                    if (i === array.length) {
+                        callback();
+                    }
                 })
-        }, this);
-    }).then(function () {
-        //TODO : Controller Shoots à mettre en forme pour res JSON
-        console.log(Shoots)
+        });
+
+        function callback() {
+            res.send(Shoots)
+        }
     })
     //TODO:On gère tout les shoots en calculant si le nb_Ends correspond au nombre réel de End relié au Shoot !!
-    res.json({
-        title: 'Express',
-        idUser: req.params.idUser
-    });
 });
 
 router.get('/:idShoot', function (req, res, next) {
@@ -34,15 +39,11 @@ router.get('/:idShoot', function (req, res, next) {
         //TODO : Mettre variable user session ?
         id_User: 1,
         id_Shoot: req.params.idShoot
-    }).then(function (shoots) {
-        shoots.forEach(function (shoot) {
-            console.log("Second : " + shoot.Title)
-        }, this);
     })
-    res.json({
-        title: 'Express',
-        idUser: req.session.user
-    });
 });
 
+
+function send(Shoots, res) {
+    res.send(Shoots)
+}
 module.exports = router;
