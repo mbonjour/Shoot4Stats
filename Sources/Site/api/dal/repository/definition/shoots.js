@@ -1,6 +1,7 @@
 'use strict'
 module.exports = (props) => {
-    const mapShoot = require('../../viewmodels/shootMapper').mapWithEnds
+    const mapShoots = require('../../viewmodels/shootMapper').map
+    const mapShoot = require('../../viewmodels/shootMapper').mapWithArrows
 
     return {
         get: (id_User, callback) => {
@@ -11,19 +12,24 @@ module.exports = (props) => {
                 },
                 include: [props.store.models.End, props.store.models.Type, props.store.models.Location]
             }).then((shoots) => {
-                callback(null, shoots.map(mapShoot))
+                callback(null, shoots.map(mapShoots))
             }).catch((err) => {
                 callback(err, null)
             })
         },
-        getById: (id_User, id_Shoot = null) => {
+        getById: (id_User, id_Shoot = null, callback) => {
             props.store.models.Shoot.find({
                 where: {
                     id_Shoot: id_Shoot
                 },
-                include: [props.store.models.End, props.store.models.Arrow, props.store.models.Type, props.store.models.Location]
-            }).then((shoots) => {
-                callback(null, shoots.map(mapShoot))
+                include: [{
+                    model: props.store.models.End,
+                    include: [{
+                        model: props.store.models.Arrow
+                    }]
+                }, props.store.models.Type, props.store.models.Location]
+            }).then((shoot) => {
+                callback(null, mapShoot(shoot))
             }).catch((err) => {
                 callback(err, null)
             })
