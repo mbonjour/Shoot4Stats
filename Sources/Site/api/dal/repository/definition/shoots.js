@@ -9,7 +9,9 @@ module.exports = (props) => {
                 where: {
                     FK_User: id_User
                 },
+                order: '`Shoot`.`Date_Shoot` DESC',
                 include: [props.store.models.End, props.store.models.Type, props.store.models.Location]
+
             }).then((shoots) => {
                 callback(null, shoots.map(mapShoots))
             }).catch((err) => {
@@ -28,7 +30,7 @@ module.exports = (props) => {
                     }]
                 }, props.store.models.Type, props.store.models.Location]
             }).then((shoot) => {
-                calculateSummarySpecifications(shoot,()=>{
+                calculateSummarySpecifications(shoot, () => {
                     callback(null, mapShoot(shoot))
                 })
             }).catch((err) => {
@@ -43,19 +45,28 @@ module.exports = (props) => {
 }
 
 var calculateSummarySpecifications = (shoot, callback) => {
-    var total=0
-    var goldHit=0
+    var total = 0
+    var goldHit = 0
+    var nbNine = 0
+    var nbTen = 0
     shoot.Ends.forEach((end, index, array) => {
         end.Arrows.forEach((arrow, index, array) => {
             total += arrow.Point
-            if (arrow.Point >= 9) {
-                goldHit+=1
+            switch (arrow.Point) {
+                case 9:
+                    goldHit += 1
+                    nbNine += 1
+                case 10:
+                    goldHit += 1
+                    nbTen += 1
             }
         })
-        if (index == array.length-1) {
+        if (index == array.length - 1) {
             shoot.averageArrow = total / (shoot.totalEnds * shoot.arrowsbyend),
-            shoot.total = total,
-            shoot.goldHit = goldHit / (shoot.totalEnds * shoot.arrowsbyend)
+                shoot.total = total,
+                shoot.goldHit = goldHit / (shoot.totalEnds * shoot.arrowsbyend)
+            shoot.Tens = nbTen
+            shoot.Nines = nbNine
         }
     })
     callback()

@@ -13,6 +13,10 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
             Description: “”,
             Type: “”,
             Date: 01.01.1999,
+            Location: {
+                lat: 345, 
+                long: 464
+            },
             Finished: False
         }
     }
@@ -25,6 +29,10 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
             Description: [Description],
             Type: [Type],
             Date:[Date | DateHumanized],
+            Location: {
+                lat: "",
+                long: ""
+            },
             Finished: [Finished]
         }
     }
@@ -41,7 +49,11 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
         Title: "",
         Description: "",
         Type:"",
-        Date: "about 1 year ago"
+        Date: "about 1 year ago",
+        Location:{
+            lat: "",
+            long:""
+        }
         AverageArrow: 9.2,
         GoldHit: 0.55,
         Total: 540,
