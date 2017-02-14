@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (props) => {
-    const mapShoots = require('../../viewmodels/shootMapper').map
-    const mapShoot = require('../../viewmodels/shootMapper').mapWithArrows
+    const mapShoots = require('../../mappers/shootMapper').map
+    const mapShoot = require('../../mappers/shootMapper').mapWithArrows
 
     return {
         get: (id_User, callback) => {
@@ -28,7 +28,7 @@ module.exports = (props) => {
                     }]
                 }, props.store.models.Type, props.store.models.Location]
             }).then((shoot) => {
-                getTotalHit(shoot,()=>{
+                calculateSummarySpecifications(shoot,()=>{
                     callback(null, mapShoot(shoot))
                 })
             }).catch((err) => {
@@ -42,7 +42,7 @@ module.exports = (props) => {
     }
 }
 
-var getTotalHit = (shoot, callback) => {
+var calculateSummarySpecifications = (shoot, callback) => {
     var total=0
     var goldHit=0
     shoot.Ends.forEach((end, index, array) => {
