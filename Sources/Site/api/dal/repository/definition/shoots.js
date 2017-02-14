@@ -28,7 +28,9 @@ module.exports = (props) => {
                     }]
                 }, props.store.models.Type, props.store.models.Location]
             }).then((shoot) => {
-                callback(null, mapShoot(shoot))
+                getTotalHit(shoot,()=>{
+                    callback(null, mapShoot(shoot))
+                })
             }).catch((err) => {
                 callback(err, null)
             })
@@ -38,4 +40,23 @@ module.exports = (props) => {
             return false
         }
     }
+}
+
+var getTotalHit = (shoot, callback) => {
+    var total=0
+    var goldHit=0
+    shoot.Ends.forEach((end, index, array) => {
+        end.Arrows.forEach((arrow, index, array) => {
+            total += arrow.Point
+            if (arrow.Point >= 9) {
+                goldHit+=1
+            }
+        })
+        if (index == array.length-1) {
+            shoot.averageArrow = total / (shoot.totalEnds * shoot.arrowsbyend),
+            shoot.total = total,
+            shoot.goldHit = goldHit / (shoot.totalEnds * shoot.arrowsbyend)
+        }
+    })
+    callback()
 }

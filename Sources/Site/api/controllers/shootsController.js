@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
         if (err) {
             res.status(500)
             res.send({
-                error: err.toString()
+                error: err.toString() //TODO: Prod : attention au message ? Env ?
             })
         } else {
             res.send(shoots)
@@ -30,7 +30,6 @@ router.get('/:idShoot', function (req, res, next) {
         }
     })
 });
-
 
 
 module.exports = router;
