@@ -20,6 +20,8 @@ const mapper = {
             date: moment.utc(shoot.date.toISOString().slice(0, -1) + "+0100").fromNow(),
             location: locationMapper.map(shoot.Location),
             type: shoot.Type.Name,
+            nbEnds: shoot.Ends.length,
+            nbArrowsByEnd: shoot.arrowsbyend,
             finished: shoot.Ends.length === shoot.totalEnds,
         }
     },

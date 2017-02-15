@@ -56,5 +56,4 @@ router.post('/shoots', (req, res) =>{
     })
 })
 
-
 module.exports = router;

@@ -36,7 +36,6 @@ module.exports = (props) => {
             }).catch((err) => {
                 callback(err, null)
             })
-            return false
         },
         add: (params, callback) => {
             props.store.models.findOrCreate({
