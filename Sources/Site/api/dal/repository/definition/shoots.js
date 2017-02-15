@@ -38,33 +38,32 @@ module.exports = (props) => {
             })
             return false
         },
-        add: (params) => {
-            return false
+        add: (params, callback) => {
+            props.store.models.findOrCreate({
+
+            })
         }
     }
 }
 
 var calculateSummarySpecifications = (shoot, callback) => {
     var total = 0
-    var goldHit = 0
     var nbNine = 0
     var nbTen = 0
     shoot.Ends.forEach((end, index, array) => {
         end.Arrows.forEach((arrow, index, array) => {
             total += arrow.Point
-            switch (arrow.Point) {
-                case 9:
-                    goldHit += 1
-                    nbNine += 1
-                case 10:
-                    goldHit += 1
-                    nbTen += 1
+            if (arrow.Point == 9){
+                nbNine++
             }
+            else if (arrow.Point == 10){
+                nbTen++
+            }    
         })
         if (index == array.length - 1) {
-            shoot.averageArrow = total / (shoot.totalEnds * shoot.arrowsbyend),
-                shoot.total = total,
-                shoot.goldHit = goldHit / (shoot.totalEnds * shoot.arrowsbyend)
+            shoot.averageArrow = total / (array.length * shoot.arrowsbyend)
+            shoot.total = total
+            shoot.goldHit = (nbNine+nbTen) / (array.length * shoot.arrowsbyend)
             shoot.Tens = nbTen
             shoot.Nines = nbNine
         }
