@@ -49,6 +49,11 @@ module.exports = function (sequelize, SeqInit) {
             type: SeqInit.INTEGER,
             allowNull: false,
             field: 'FK_Location'
+        },
+        finished: {
+            type: SeqInit.BOOLEAN,
+            allowNull: false,
+            field: 'Finished'
         }
     }, {
         classMethods: {

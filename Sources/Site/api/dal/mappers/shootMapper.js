@@ -21,8 +21,9 @@ const mapper = {
             location: locationMapper.map(shoot.Location),
             type: shoot.Type.Name,
             nbEnds: shoot.Ends.length,
+            nbTotalEnds: shoot.totalEnds,
             nbArrowsByEnd: shoot.arrowsbyend,
-            finished: shoot.Ends.length === shoot.totalEnds,
+            finished: shoot.finished,
         }
     },
     mapWithArrows: (shoot) => {

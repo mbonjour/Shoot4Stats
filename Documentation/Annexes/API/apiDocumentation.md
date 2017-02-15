@@ -109,6 +109,7 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
 			arrow1 : { Point : 10},
 			arrow2 : { Point : 10},
 			arrow3 : { Point : 9}
-		}
+		},
+        ShootFinished: true or false
 	}
     ```
