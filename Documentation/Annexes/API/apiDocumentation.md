@@ -97,6 +97,9 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
         - Description peut être null
         - Location sous forme de 2 strings représentant les coordonnées
 
+* GET /shoots/[idShoot]/finished
+    * set finished à true
+    * Un bouton "Give UP !" enverra ce GET 
 ## Ends
 
 * POST /api/end
@@ -109,7 +112,9 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
 			arrow1 : { Point : 10},
 			arrow2 : { Point : 10},
 			arrow3 : { Point : 9}
-		},
-        ShootFinished: true or false
+		}
 	}
     ```
+    * Lors du POST vérification pour voir si c'est le last END !!!
+        Avant dernière volée changer le bouton pour mettre Finished ?
+        

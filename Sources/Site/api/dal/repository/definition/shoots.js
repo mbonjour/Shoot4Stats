@@ -30,16 +30,21 @@ module.exports = (props) => {
                     }]
                 }, props.store.models.Type, props.store.models.Location]
             }).then((shoot) => {
-                calculateSummarySpecifications(shoot, () => {
-                    callback(null, mapShoot(shoot))
-                })
+                if (shoot) {
+                    calculateSummarySpecifications(shoot, () => { //TODO: Shoot null --> renvoyer 404 ? 
+                        callback(null, mapShoot(shoot))
+                    })
+                }
+                else{
+                    callback({error:"Cannot find Shoot", status: 404}, null)
+                }
             }).catch((err) => {
-                callback(err, null)
+                callback({error:"dbError", status: 500}, null)
             })
         },
         add: (params, callback) => {
             props.store.models.findOrCreate({
-
+                
             })
         }
     }
@@ -49,20 +54,20 @@ var calculateSummarySpecifications = (shoot, callback) => {
     var total = 0
     var nbNine = 0
     var nbTen = 0
+
     shoot.Ends.forEach((end, index, array) => {
         end.Arrows.forEach((arrow, index, array) => {
             total += arrow.Point
-            if (arrow.Point == 9){
+            if (arrow.Point == 9) {
                 nbNine++
-            }
-            else if (arrow.Point == 10){
+            } else if (arrow.Point == 10) {
                 nbTen++
-            }    
+            }
         })
         if (index == array.length - 1) {
             shoot.averageArrow = total / (array.length * shoot.arrowsbyend)
             shoot.total = total
-            shoot.goldHit = (nbNine+nbTen) / (array.length * shoot.arrowsbyend)
+            shoot.goldHit = (nbNine + nbTen) / (array.length * shoot.arrowsbyend)
             shoot.Tens = nbTen
             shoot.Nines = nbNine
         }
