@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var store = require('../dal')(require('../config/configs.json').db)
+var store = require('../dal')(require('../../config/configs.json').db)
 var responseHelper = require('../helpers/responseHelper')
 
 /* GET home page. */

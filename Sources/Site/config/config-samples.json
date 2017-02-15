@@ -1,0 +1,10 @@
+{
+    "db": {
+        "hostname": "",
+        "username": "",
+        "password": "",
+        "name": ""
+    }
+}
+
+//Renommer ce fichier en "configs.json" et enlever ce commentaire
