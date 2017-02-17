@@ -51,7 +51,7 @@ module.exports = (props) => {
         },
 
         finishShoot: (idShoot, callback) => {
-            Shoot.findOne({
+            props.store.models.Shoot.findOne({
                     where: {
                         id_Shoot: idShoot
                     }
@@ -60,7 +60,7 @@ module.exports = (props) => {
                     // Check if record exists in db
                     if (shoot) {
                         shoot.updateAttributes({
-                                Finished: true
+                                finished: true
                             })
                             .then((created) => {
                                 callback(null, created)

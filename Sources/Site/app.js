@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
 
-app.use('/api/shoots', shoots);
+app.use('/', shoots);
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found')
