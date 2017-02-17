@@ -36,8 +36,8 @@ router.post('/', (req, res) => {
     })
 })
 
-router.post('/:idShoot'), (req, res, next) => {
-    store.repositories.shoots.finishShoot(req.params.idShoot, (err, created) => {
+router.post('/finish'), (req, res, next) => { //TODO: Voir pourquoi ça marche pas comme ça ?!? --> return 404 page not found direct ?
+    store.repositories.shoots.finishShoot(req.body.idShoot, (err, created) => {
         responseHelper(res, err, created)
     })
 }
