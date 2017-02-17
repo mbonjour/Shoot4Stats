@@ -20,6 +20,7 @@ app.use('/api/shoots', shoots);
 app.use(function(req, res, next) {
   const err = new Error('Not Found')
   err.status = 404
+  err.type = "Page not found"
   res.json(err)
 });
 

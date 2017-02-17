@@ -4,6 +4,7 @@ module.exports = (props) => {
     const mapShoot = require('../../mappers/shootMapper').mapWithArrows
 
     return {
+
         get: (id_User, callback) => {
             props.store.models.Shoot.findAll({
                 where: {
@@ -18,6 +19,7 @@ module.exports = (props) => {
                 callback(err, null)
             })
         },
+
         getById: (id_User, id_Shoot = null, callback) => {
             props.store.models.Shoot.find({
                 where: {
@@ -34,17 +36,48 @@ module.exports = (props) => {
                     calculateSummarySpecifications(shoot, () => { //TODO: Shoot null --> renvoyer 404 ? 
                         callback(null, mapShoot(shoot))
                     })
-                }
-                else{
-                    callback({error:"Cannot find Shoot", status: 404}, null)
+                } else {
+                    callback({
+                        error: "Cannot find Shoot getById",
+                        status: 404
+                    }, null)
                 }
             }).catch((err) => {
-                callback({error:"dbError", status: 500}, null)
+                callback({
+                    error: "dbError",
+                    status: 500
+                }, null)
             })
         },
+
+        finishShoot: (idShoot, callback) => {
+            Shoot.findOne({
+                    where: {
+                        id_Shoot: idShoot
+                    }
+                })
+                .then((shoot) => {
+                    // Check if record exists in db
+                    if (shoot) {
+                        shoot.updateAttributes({
+                                Finished: true
+                            })
+                            .then((created) => {
+                                callback(null, created)
+                            })
+                    }
+                    else{
+                        callback({
+                            error: "Cannot find Shoot finish Shoot",
+                            status: 404
+                        }, null)
+                    }
+                })
+        },
+
         add: (params, callback) => {
-            props.store.models.findOrCreate({
-                
+            props.store.models.Shoot.findOrCreate({
+
             })
         }
     }

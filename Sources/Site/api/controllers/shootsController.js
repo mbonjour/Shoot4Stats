@@ -9,16 +9,16 @@ router.get('/', (req, res, next) => {
     store.repositories.shoots.get(1, (err, shoots) => {
         responseHelper(res, err, shoots)
     })
-});
+})
 
 router.get('/:idShoot', (req, res, next) => {
     //TODO : Mettre variable user session ?
     store.repositories.shoots.getById(1, req.params.idShoot, (err, shoot) => {
         responseHelper(res, err, shoot)
     })
-});
+})
 
-router.post('/shoots', (req, res) =>{
+router.post('/', (req, res) => {
     var shootObject = {
         Title: req.body.title,
         Description: req.body.description,
@@ -31,9 +31,15 @@ router.post('/shoots', (req, res) =>{
             latitude: req.body.lat
         }
     }
-    store.repositories.shoots.add(shootObject, (err,status)=>{
+    store.repositories.shoots.add(shootObject, (err, status) => {
         responseHelper(res, err, status)
     })
 })
+
+router.post('/:idShoot'), (req, res, next) => {
+    store.repositories.shoots.finishShoot(req.params.idShoot, (err, created) => {
+        responseHelper(res, err, created)
+    })
+}
 
 module.exports = router;
