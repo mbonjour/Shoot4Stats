@@ -1,4 +1,4 @@
-// var store = require('../Site/api/dal')(require('../Site/api/config/configs.json').db)
+var store = require('../Site/api/dal')(require('../Site/config/configs.json').db)
 
 // // store.repositories.shoots.get({
 // //     id_User: 1
@@ -47,7 +47,20 @@
 
 //             // store.repositories.shoots.get({FK_User: 123})
 //             // store.repositories.shoots.get({FK_User: 123, Id_Shoot})
-//             // store.repositories.shoots.add({FK_User: 123, desc: "totto", ...})
+store.repositories.shoots.add({
+    Title: "test",
+    Description: "Le shoot de test",
+    nb_Ends: 20,
+    nb_ArrowsByEnd: 3,
+    Type: "Training",
+    User: 1, //TODO: voir avec auth pour récuperer l'user
+    Location: {
+        longitude: "testLong",
+        latitude: "testLat"
+    }
+}, (created) => {
+    console.log(created)
+})
 //             // optional: store.repositories.shoots.remove({id_Shoot: 123})
 
 //             // store.repositories.end.add({...});

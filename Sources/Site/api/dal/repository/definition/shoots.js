@@ -75,21 +75,33 @@ module.exports = (props) => {
         },
 
         add: (params, callback) => {
-            props.store.models.Shoot
-                .findOrCreate({
+            props.store.models.Type.findOne({
+                where: {
+                    Name: params.Type
+                }
+            }).then((type) => {
+                props.store.models.Shoot.findOrCreate({
                     where: {
-                        username: 'sdepold'
+                        title: params.Title
                     },
                     defaults: {
-                        job: 'Technical Lead JavaScript'
+                        title: params.Title,
+                        description: params.Description,
+                        totalEnds: params.nb_Ends,
+                        arrowsbyend: params.nb_ArrowsByEnd,
+                        type: type.id_Type,
+                        user: params.User //TODO: voir avec auth pour récuperer l'user
+                    }
+                }).then((shoot, created) => {
+                    if(params.Location){
+                        addLocationAndLink(params.Location, shoot.id,(created)=>{
+                            callback(null, created)
+                        })
+                    }else {
+                        callback(null, created)
                     }
                 })
-                .spread(function (user, created) {
-                    console.log(user.get({
-                        plain: true
-                    }))
-                    console.log(created)
-                })
+            })
         }
     }
 }
@@ -117,4 +129,38 @@ var calculateSummarySpecifications = (shoot, callback) => {
         }
     })
     callback()
+}
+
+var addLocationAndLink = (location, idShoot, callback) => {
+    props.store.models.Location.findOrCreate({
+        where: {
+            long: location.longitude,
+            lat: location.latitude
+        },
+        defaults: {
+            long: location.longitude,
+            lat: location.latitude
+        }
+    }).then((lolocation, created) => {
+        locationId = lolocation.idLocation
+        props.store.models.Shoot.findOne({
+            where: {
+                id_Shoot: idShoot
+            }
+        }).then((shoot) => {
+            // Check if record exists in db
+            if (shoot) {
+                shoot.updateAttributes({
+                    location: locationId
+                }).then((created) => {
+                    callback(null, created)
+                })
+            } else {
+                callback({
+                    error: "Cannot find Shoot at addLocation",
+                    status: 404
+                }, null)
+            }
+        })
+    })
 }

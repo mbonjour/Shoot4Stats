@@ -25,7 +25,7 @@ module.exports = function (sequelize, SeqInit) {
         },
         hashPass: {
             type: SeqInit.STRING(75),
-            allowNull: true
+            allowNull: false
         }
     }, {
         classMethods: {
