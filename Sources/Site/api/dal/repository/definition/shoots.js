@@ -65,8 +65,7 @@ module.exports = (props) => {
                             .then((created) => {
                                 callback(null, created)
                             })
-                    }
-                    else{
+                    } else {
                         callback({
                             error: "Cannot find Shoot finish Shoot",
                             status: 404
@@ -76,9 +75,21 @@ module.exports = (props) => {
         },
 
         add: (params, callback) => {
-            props.store.models.Shoot.findOrCreate({
-
-            })
+            props.store.models.Shoot
+                .findOrCreate({
+                    where: {
+                        username: 'sdepold'
+                    },
+                    defaults: {
+                        job: 'Technical Lead JavaScript'
+                    }
+                })
+                .spread(function (user, created) {
+                    console.log(user.get({
+                        plain: true
+                    }))
+                    console.log(created)
+                })
         }
     }
 }

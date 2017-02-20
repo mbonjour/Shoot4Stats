@@ -24,22 +24,22 @@ router.get('/api/shoots/:idShoot/finish', (req, res, next) => {
     })
 })
 
-// router.post('/', (req, res) => {
-//     var shootObject = {
-//         Title: req.body.title,
-//         Description: req.body.description,
-//         nb_Ends: req.body.nbEnds,
-//         nb_ArrowsByEnd: req.body.nbArrowsEnd,
-//         Type: req.body.type,
-//         User: req.body.user, //TODO: voir avec auth pour récuprer l'user
-//         Location: {
-//             longitude: req.body.long,
-//             latitude: req.body.lat
-//         }
-//     }
-//     store.repositories.shoots.add(shootObject, (err, status) => {
-//         responseHelper(res, err, status)
-//     })
-// })
+router.post('/', (req, res) => {
+    var shootObject = {
+        Title: req.body.title,
+        Description: req.body.description,
+        nb_Ends: req.body.nbEnds,
+        nb_ArrowsByEnd: req.body.nbArrowsEnd,
+        Type: req.body.type,
+        User: req.body.user, //TODO: voir avec auth pour récuperer l'user
+        Location: {
+            longitude: req.body.long,
+            latitude: req.body.lat
+        }
+    }
+    store.repositories.shoots.add(shootObject, (err, status) => {
+        responseHelper(res, err, status)
+    })
+})
 
 module.exports = router;

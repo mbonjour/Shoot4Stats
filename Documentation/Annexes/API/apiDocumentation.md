@@ -83,8 +83,8 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
         Description: “”,
         nb_Ends : Set by default by Type or set by User if training,
         nb_ArrowsByEnd : Set by default by Type or set by User if training,
-        FK_Type : “”,
-        FK_User : $id_User
+        Type : “”,
+        User : $id_User
         Location: {
             latitude : "",
             longitude : ""
@@ -117,4 +117,5 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
     ```
     * Lors du POST vérification pour voir si c'est le last END !!!
         Avant dernière volée changer le bouton pour mettre Finished ?
+    * Le POST devrait renvoyer le nbre de volées qui restent ?
         
