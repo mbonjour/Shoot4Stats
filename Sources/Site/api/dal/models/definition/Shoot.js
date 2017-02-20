@@ -47,12 +47,13 @@ module.exports = function (sequelize, SeqInit) {
         },
         location: {
             type: SeqInit.INTEGER,
-            allowNull: false,
+            allowNull: true,
             field: 'FK_Location'
         },
         finished: {
             type: SeqInit.BOOLEAN,
             allowNull: false,
+            defaultValue: false,
             field: 'Finished'
         }
     }, {

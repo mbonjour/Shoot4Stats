@@ -92,12 +92,12 @@ module.exports = (props) => {
                         type: type.id_Type,
                         user: params.User //TODO: voir avec auth pour récuperer l'user
                     }
-                }).then((shoot, created) => {
-                    if(params.Location){
-                        addLocationAndLink(params.Location, shoot.id,(created)=>{
+                }).spread((shoot, created) => {
+                    if (params.Location) {
+                        addLocationAndLink(params.Location, shoot.id, props.store.models, (created) => {
                             callback(null, created)
                         })
-                    }else {
+                    } else {
                         callback(null, created)
                     }
                 })
@@ -131,8 +131,8 @@ var calculateSummarySpecifications = (shoot, callback) => {
     callback()
 }
 
-var addLocationAndLink = (location, idShoot, callback) => {
-    props.store.models.Location.findOrCreate({
+var addLocationAndLink = (location, idShoot, models, callback) => {
+    models.Location.findOrCreate({
         where: {
             long: location.longitude,
             lat: location.latitude
@@ -141,9 +141,9 @@ var addLocationAndLink = (location, idShoot, callback) => {
             long: location.longitude,
             lat: location.latitude
         }
-    }).then((lolocation, created) => {
-        locationId = lolocation.idLocation
-        props.store.models.Shoot.findOne({
+    }).spread((lolocation, created) => {
+        let locationId = lolocation.idLocation
+        models.Shoot.findOne({
             where: {
                 id_Shoot: idShoot
             }
@@ -151,7 +151,7 @@ var addLocationAndLink = (location, idShoot, callback) => {
             // Check if record exists in db
             if (shoot) {
                 shoot.updateAttributes({
-                    location: locationId
+                    FK_Location: locationId
                 }).then((created) => {
                     callback(null, created)
                 })
