@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var http = require('http');
 
 var shoots = require(path.join(__dirname, 'api/controllers/shootsController.js'));
+var ends = require(path.join(__dirname, 'api/controllers/endsController.js'));
 
 var app = express();
 
@@ -16,6 +17,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'static')));
 
 app.use('/api/shoots', shoots);
+app.use('/api/ends', ends);
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found')
