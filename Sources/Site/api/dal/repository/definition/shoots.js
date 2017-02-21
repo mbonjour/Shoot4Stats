@@ -92,10 +92,10 @@ module.exports = (props) => {
                         type: type.id_Type,
                         user: params.User //TODO: voir avec auth pour récuperer l'user
                     }
-                }).spread((shoot, created) => {
+                }).then(([shoot, created]) => {
                     if (params.Location) {
-                        addLocationAndLink(params.Location, shoot.id, props.store.models, (created) => {
-                            callback(null, created)
+                        addLocationAndLink(params.Location, shoot.id, props.store.models, (err, created) => {
+                            callback(err, created)
                         })
                     } else {
                         callback(null, created)
@@ -134,12 +134,12 @@ var calculateSummarySpecifications = (shoot, callback) => {
 var addLocationAndLink = (location, idShoot, models, callback) => {
     models.Location.findOrCreate({
         where: {
-            long: location.longitude,
-            lat: location.latitude
+            long: location.long,
+            lat: location.lat
         },
         defaults: {
-            long: location.longitude,
-            lat: location.latitude
+            long: location.long,
+            lat: location.lat
         }
     }).spread((lolocation, created) => {
         let locationId = lolocation.idLocation

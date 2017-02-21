@@ -10,13 +10,11 @@ module.exports = function (sequelize, SeqInit) {
         },
         lat: {
             type: SeqInit.STRING(45),
-            allowNull: false,
-            field: 'lat'
+            allowNull: false
         },
         long: {
             type: SeqInit.STRING(45),
-            allowNull: false,
-            field: 'long'
+            allowNull: false
         }
     }, {
         classMethods: {
