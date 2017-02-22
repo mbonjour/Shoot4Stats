@@ -9,15 +9,24 @@ Règles de nommage:
 - api endpoint (controllers)
   - plural
   - lowercase
-  - english
+  - language : english
     - get properties
     - post properties
     - results properties
     - comments
-    - language French or English
+        - language French or English
 - Repositories
+    - Tous en min
+    - camelCase
 - Models
+    - Reprend les props des DB
+    - camelCase et lowerCase
 - Mappers
+    - On renvoie les data avec la première lettre maj
+    - Camel Case
+- DB
+    - Lower Case
+    - Camel Case
 
 ## Shoots
 
