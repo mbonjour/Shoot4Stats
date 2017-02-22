@@ -47,19 +47,17 @@ var store = require('../Site/api/dal')(require('../Site/config/configs.json').db
 
 //             // store.repositories.shoots.get({FK_User: 123})
 //             // store.repositories.shoots.get({FK_User: 123, Id_Shoot})
-store.repositories.shoots.add({
-    Title: "ShootAdd",
-    Description: "Le shoot de test d'add pour et link location",
-    nb_Ends: 12,
-    nb_ArrowsByEnd: 6,
-    Type: "Outdoor",
-    User: 1, //TODO: voir avec auth pour récuperer l'user
-    Location: {
-        long: "Lausanne",
-        lat: "Vidy"
-    }
-}, (created) => {
-    console.log(created)
+store.repositories.ends.add({
+    id_shoot: 1,
+    arrows: [{ point: 10 }, { point: 10 }, { point: 9 } ] // TODO: verify Arrows.length!!
+}, (result) => {
+    /**
+     * result = {
+     *  nbRemainingEnds: [nbRemainingEnds],
+     *  
+     * }
+     */
+    
 })
 //             // optional: store.repositories.shoots.remove({id_Shoot: 123})
 

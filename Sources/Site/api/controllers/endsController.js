@@ -7,7 +7,7 @@ router.post('/', (req, res) => {
     var endObj = {
         Arrows: req.body.arrows
     }
-    store.repositories.ends.add(endObj, ()=>{
+    store.repositories.ends.add(endObj, (err, created)=>{
 
     })
 })

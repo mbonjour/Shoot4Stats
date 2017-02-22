@@ -1,6 +1,24 @@
 # API Documentation
 Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posant des maquettes approximatives et simples par rapport à ce [document](./MaquettesBetaAPI.pptx)
 
+## Nommage
+
+Basé Swagger //TODO: --> à définir
+
+Règles de nommage:
+- api endpoint (controllers)
+  - plural
+  - lowercase
+  - english
+    - get properties
+    - post properties
+    - results properties
+    - comments
+    - language French or English
+- Repositories
+- Models
+- Mappers
+
 ## Shoots
 
 * GET /api/shoots/
@@ -99,7 +117,8 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
 
 * GET /shoots/[idShoot]/finished
     * set finished à true
-    * Un bouton "Give UP !" enverra ce GET 
+    * Un bouton "Give UP !" enverra ce GET
+
 ## Ends
 
 * POST /api/end
@@ -115,7 +134,5 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
 		}
 	}
     ```
-    * Lors du POST vérification pour voir si c'est le last END !!!
-        Avant dernière volée changer le bouton pour mettre Finished ?
     * Le POST devrait renvoyer le nbre de volées qui restent ?
         

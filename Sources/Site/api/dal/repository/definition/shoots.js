@@ -80,19 +80,14 @@ module.exports = (props) => {
                     Name: params.Type
                 }
             }).then((type) => {
-                props.store.models.Shoot.findOrCreate({
-                    where: {
-                        title: params.Title
-                    },
-                    defaults: {
-                        title: params.Title,
-                        description: params.Description,
-                        totalEnds: params.nb_Ends,
-                        arrowsbyend: params.nb_ArrowsByEnd,
-                        type: type.id_Type,
-                        user: params.User //TODO: voir avec auth pour récuperer l'user
-                    }
-                }).then(([shoot, created]) => {
+                props.store.models.Shoot.create({
+                    title: params.Title,
+                    description: params.Description,
+                    totalEnds: params.nb_Ends,
+                    arrowsbyend: params.nb_ArrowsByEnd,
+                    type: type.id_Type,
+                    user: params.User //TODO: voir avec auth pour récuperer l'user
+                }).then((shoot) => {
                     if (params.Location) {
                         addLocationAndLink(params.Location, shoot.id, props.store.models, (err, created) => {
                             callback(err, created)
