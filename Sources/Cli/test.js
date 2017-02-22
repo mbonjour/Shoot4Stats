@@ -1,82 +1,102 @@
 var store = require('../Site/api/dal')(require('../Site/config/configs.json').db)
 
-// // store.repositories.shoots.get({
-// //     id_User: 1
-// // }).then(function (shoots) {
-// //     shoots.forEach(function (shoot) {
-// //         console.log("First : " + shoot.id_Shoot)
-// //     }, this);
-// // })
+// store.repositories.shoots.get({
+//     id_User: 1
+// }).then(function (shoots) {
+//     shoots.forEach(function (shoot) {
+//         console.log("First : " + shoot.id_Shoot)
+//     }, this);
+// })
 
-// // store.repositories.shoots.get({
-// //     id_User: 1,
-// //     id_Shoot: 1
-// // }).then(function (shoots) {
-// //     shoots.forEach(function (shoot) {
-// //         console.log("Second : " + shoot.Title)
-// //     }, this);
-// // })
+// store.repositories.shoots.get({
+//     id_User: 1,
+//     id_Shoot: 1
+// }).then(function (shoots) {
+//     shoots.forEach(function (shoot) {
+//         console.log("Second : " + shoot.Title)
+//     }, this);
+// })
+
+// store.repositories.shoots.get({idUser: 123})
+// store.repositories.shoots.get({idUser: 123, idShoot})
 
 
-// var Shoots = [];
-
-// getShoots(Shoots,function(){
-//     console.log(Shoots)
-// }) 
-
-// function getShoots(Shoots, callback) {
-//     store.repositories.shoots.get({
-//             id_User: 1,
-//             id_Shoot: 1
-//         }).then(function (shoots) {
-//                 var i = 0;
-//                 shoots.forEach((shoot, index, array) => {
-//                     store.repositories.ends.get({
-//                             id_Shoot: shoot.id_Shoot
-//                         })
-//                         .then(function (ends) {
-//                             shoot.dataValues.nb_EndsReal = ends.length
-//                             Shoots.push(shoot.dataValues)
-//                             i++
-//                             if (i === array.length) {
-//                                 callback();
-//                             }
-//                         })
-//                 });
-//             });
-
-//             // store.repositories.shoots.get({FK_User: 123})
-//             // store.repositories.shoots.get({FK_User: 123, Id_Shoot})
-store.repositories.ends.add({
-    id_shoot: 1,
-    arrows: [{ point: 10 }, { point: 10 }, { point: 9 } ] // TODO: verify Arrows.length!!
-}, (result) => {
-    /**
-     * result = {
-     *  nbRemainingEnds: [nbRemainingEnds],
-     *  
-     * }
-     */
-    
+store.repositories.shoots.add({
+    title: 'titre bidon',
+    description: 'lorem ipsum',
+    nb_Ends: 10,
+    nb_ArrowsByEnd: 3,
+    type: 'Training',
+    user: 1, //TODO: voir avec auth pour récuperer l'user
+    location: {
+        latitude: '',
+        longitude: ''
+    }
+}, (err, shoot) => {
+    console.log('Shoot id: ', shoot.id)
+    for (i = 0; i < 10; i++) {
+        store.repositories.ends.add({
+            id_shoot: shoot.id,
+            arrows: [{
+                point: 7
+            }, {
+                point: 10
+            }, {
+                point: 9
+            }]
+        }, (err, end) => {
+            console.log('End id: ', end.id)
+            end.arrows.map((arrow) => {
+                console.log('arrow id: ', arrow.id)
+            })
+        })
+    }
 })
-//             // optional: store.repositories.shoots.remove({id_Shoot: 123})
 
-//             // store.repositories.end.add({...});
-//             // store.repositories.end.get({FK_Shoot: 123});
-//             // optional: store.repositories.end.remove({...});
 
-//             // store.repositories.arrow.add({ ...});
-//             // store.repositories.arrow.get({ ...});
-//             // optional: store.repositories.arrow.remove({ ...});
+// store.repositories.ends.add({
+//     id_shoot: 3,
+//     arrows: [{
+//         point: 10
+//     }, {
+//         point: 10
+//     }, {
+//         point: 9
+//     }, {
+//         point: 10
+//     }, {
+//         point: 10
+//     }, {
+//         point: 9
+//     }] // TODO: verify Arrows.length!!
+// }, (result) => {
+//     /**
+//      * result = {
+//      *  nbRemainingEnds: [nbRemainingEnds],
+//      *  
+//      * }
+//      */
+// })
 
-//             // store.repositories.group.add({ ...});
-//             // store.repositories.group.get({ ...});
-//             // optional: store.repositories.group.remove({ ...});
 
-//             // optional: store.repositories.coach.add({ ...});
-//             // optional: store.repositories.coach.get({ ...});
-//             // optional: optional: store.repositories.coach.remove({ ...});
+// optional: store.repositories.shoots.remove({id_Shoot: 123})
 
-//             // optional: store.repositories.groupUser.add({});
-//             // optional: store.repositories.groupUser.remove({});
-//             // optional: store.repositories.groupUser.get({});
+// store.repositories.end.add({...});
+// store.repositories.end.get({FK_Shoot: 123});
+// optional: store.repositories.end.remove({...});
+
+// store.repositories.arrow.add({ ...});
+// store.repositories.arrow.get({ ...});
+// optional: store.repositories.arrow.remove({ ...});
+
+// store.repositories.group.add({ ...});
+// store.repositories.group.get({ ...});
+// optional: store.repositories.group.remove({ ...});
+
+// optional: store.repositories.coach.add({ ...});
+// optional: store.repositories.coach.get({ ...});
+// optional: optional: store.repositories.coach.remove({ ...});
+
+// optional: store.repositories.groupUser.add({});
+// optional: store.repositories.groupUser.remove({});
+// optional: store.repositories.groupUser.get({});
