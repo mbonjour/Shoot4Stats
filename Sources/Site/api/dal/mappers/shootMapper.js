@@ -19,10 +19,10 @@ const mapper = {
             Description: shoot.description,
             Date: moment.utc(shoot.date.toISOString().slice(0, -1) + "+0100").fromNow(),
             Location: locationMapper.map(shoot.Location),
-            Type: shoot.Type.Name,
+            Type: shoot.Type.name,
             NbEnds: shoot.Ends.length,
             NbTotalEnds: shoot.totalEnds,
-            NbArrowsByEnd: shoot.arrowsbyend,
+            NbArrowsByEnd: shoot.arrowsByEnd,
             Finished: shoot.finished,
         }
     },
@@ -31,8 +31,8 @@ const mapper = {
         result.GoldHit = (shoot.goldHit*100)
         result.AverageArrow = shoot.averageArrow
         result.Total = shoot.total
-        result.Tens = shoot.Tens
-        result.Nines = shoot.Nines
+        result.Tens = shoot.tens
+        result.Nines = shoot.nines
         result.Ends = shoot.Ends.map(endMapper)
         return result
         // return {

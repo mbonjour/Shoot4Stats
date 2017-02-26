@@ -3,7 +3,7 @@ var arrowMapper = require('./arrowMapper').map
 module.exports = {
     mapEndWithArrows: (end) => {
         return {
-            Id: end.id_End,
+            Id: end.idEnd,
             Arrows: end.Arrows.map(arrowMapper)
         }
     }

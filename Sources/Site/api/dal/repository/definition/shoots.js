@@ -116,11 +116,11 @@ var calculateSummarySpecifications = (shoot, callback) => {
             }
         })
         if (index == array.length - 1) {
-            shoot.AverageArrow = total / (array.length * shoot.arrowsByEnd)
-            shoot.Total = total
-            shoot.GoldHit = (nbNine + nbTen) / (array.length * shoot.arrowsByEnd)
-            shoot.Tens = nbTen
-            shoot.Nines = nbNine
+            shoot.averageArrow = total / (array.length * shoot.arrowsByEnd)
+            shoot.total = total
+            shoot.goldHit = (nbNine + nbTen) / (array.length * shoot.arrowsByEnd)
+            shoot.tens = nbTen
+            shoot.nines = nbNine
         }
     })
     callback()
