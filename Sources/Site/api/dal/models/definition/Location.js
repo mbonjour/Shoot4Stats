@@ -1,11 +1,12 @@
 'use strict';
 module.exports = function (sequelize, SeqInit) {
     let Location = sequelize.define('Location', {
-        idLocation: {
+        id: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            field: 'idLocation'
         },
         lat: {
             type: SeqInit.STRING(45),

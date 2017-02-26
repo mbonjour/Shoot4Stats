@@ -2,11 +2,12 @@
 
 module.exports = function (sequelize, SeqInit) {
     let Type = sequelize.define('Type', {
-        idType: {
+        id: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            field: 'idType'
         },
         name: {
             type: SeqInit.STRING(45),

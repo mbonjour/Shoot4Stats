@@ -2,11 +2,12 @@
 
 module.exports = function (sequelize, SeqInit) {
     let End = sequelize.define('End', {
-        idEnd: {
+        id: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement:true
+            autoIncrement:true,
+            field: 'idEnd'
         },
         fkShoot: {
             type: SeqInit.INTEGER,

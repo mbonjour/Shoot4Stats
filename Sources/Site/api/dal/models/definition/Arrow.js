@@ -2,11 +2,12 @@
 
 module.exports = function (sequelize, SeqInit) {
     let Arrow = sequelize.define('Arrow', {
-        idArrow: {
+        id: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            field: 'idArrow'
         },
         posX: {
             type: SeqInit.FLOAT,

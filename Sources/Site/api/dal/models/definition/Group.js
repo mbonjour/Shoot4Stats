@@ -2,11 +2,12 @@
 
 module.exports = function (sequelize, SeqInit) {
     let Group = sequelize.define('Group', {
-        idGroup: {
+        id: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
+            autoIncrement: true,
+            field: 'idGroup'
         },
         name: {
             type: SeqInit.STRING(45),
