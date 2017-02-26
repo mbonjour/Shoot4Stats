@@ -12,7 +12,11 @@ Règles de nommage:
   - language : english
     - get properties
     - post properties
+        - première lettre maj
+        - Camel Case
     - results properties
+        - On renvoie les data avec la première lettre maj
+        - Camel Case
     - comments
         - language French or English
 - Repositories

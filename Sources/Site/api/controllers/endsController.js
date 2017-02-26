@@ -5,7 +5,7 @@ var responseHelper = require('../helpers/responseHelper')
 
 router.post('/', (req, res) => {
     var endObj = {
-        arrows: req.body.arrows
+        Arrows: req.body.arrows
     }
     store.repositories.ends.add(endObj, (err, created)=>{
 

@@ -28,8 +28,8 @@ router.post('/', (req, res) => {
     var shootObject = {
         Title: req.body.title,
         Description: req.body.description,
-        nb_Ends: req.body.nbEnds,
-        nb_ArrowsByEnd: req.body.nbArrowsEnd,
+        NbEnds: req.body.nbEnds,
+        NbArrowsByEnd: req.body.nbArrowsEnd,
         Type: req.body.type,
         User: req.body.user, //TODO: voir avec auth pour récuperer l'user
         Location: req.body.Location
