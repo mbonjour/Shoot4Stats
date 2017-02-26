@@ -5,8 +5,7 @@ module.exports = function (sequelize, SeqInit) {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true,
-            field: 'id_Location'
+            autoIncrement: true
         },
         lat: {
             type: SeqInit.STRING(45),
@@ -20,7 +19,7 @@ module.exports = function (sequelize, SeqInit) {
         classMethods: {
             associate: function (models) {
                 Location.hasMany(models.Shoot, {
-                    foreignKey: 'FK_Location'
+                    foreignKey: 'fkLocation'
                 })
             }
         }

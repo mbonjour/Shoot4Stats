@@ -7,72 +7,67 @@ module.exports = function (sequelize, SeqInit) {
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
-            field: 'id_Shoot'
+            field: 'idShoot'
         },
         date: {
             type: SeqInit.DATE,
             defaultValue: SeqInit.NOW,
             allowNull: false,
-            field: 'Date_Shoot'
+            field: 'dateShoot'
         },
         description: {
             type: SeqInit.TEXT,
-            allowNull: true,
-            field: 'Description'
+            allowNull: true
         },
         title: {
             type: SeqInit.STRING(45),
-            allowNull: false,
-            field: 'Title'
+            allowNull: false
         },
-        totalEnds: {
+        nbEnds: {
             type: SeqInit.INTEGER,
-            allowNull: false,
-            field: 'nb_Ends'
+            allowNull: false
         },
-        arrowsbyend: {
+        nbArrowsByEnd: {
             type: SeqInit.INTEGER,
-            allowNull: false,
-            field: 'nb_ArrowsByEnd'
+            allowNull: false
         },
         type: {
             type: SeqInit.INTEGER,
             allowNull: false,
-            field: 'FK_Type'
+            field: 'fkType'
         },
         user: {
             type: SeqInit.INTEGER,
             allowNull: false,
-            field: 'FK_User'
+            field: 'fkUser'
         },
         location: {
             type: SeqInit.INTEGER,
             allowNull: true,
-            field: 'FK_Location'
+            field: 'fkLocation'
         },
         finished: {
             type: SeqInit.BOOLEAN,
             allowNull: false,
-            defaultValue: false,
-            field: 'Finished'
+            defaultValue: false
         }
     }, {
         classMethods: {
             associate: function (models) {
                 Shoot.belongsTo(models.Type, {
-                    foreignKey: 'FK_Type'
+                    foreignKey: 'fkType'
                 })
 
                 Shoot.belongsTo(models.User, {
-                    foreignKey: 'FK_User'
+                    foreignKey: 'fkUser'
                 })
 
                 Shoot.belongsTo(models.Location, {
-                    foreignKey: 'FK_Location'
+                    foreignKey: 'fkLocation'
                 })
 
                 Shoot.hasMany(models.End, {
-                    foreignKey: 'FK_Shoot'
+                    foreignKey: 'fkShoot'
                 })
             }
         }

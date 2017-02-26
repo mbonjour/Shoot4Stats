@@ -2,26 +2,24 @@
 
 module.exports = function (sequelize, SeqInit) {
     let End = sequelize.define('End', {
-        id_End: {
+        idEnd: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement:true,
-            field: 'id_End'
+            autoIncrement:true
         },
-        FK_Shoot: {
+        fkShoot: {
             type: SeqInit.INTEGER,
-            allowNull: false,
-            field: 'FK_Shoot'
+            allowNull: false
         }
     }, {
     classMethods: {
       associate: function (models) {
         End.hasMany(models.Arrow,{
-          foreignKey: 'FK_End'
+          foreignKey: 'fkEnd'
         })
         End.belongsTo(models.Shoot, {
-          foreignKey: 'FK_Shoot'
+          foreignKey: 'fkShoot'
         })
       }
     }

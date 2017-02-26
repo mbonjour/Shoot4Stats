@@ -2,42 +2,37 @@
 
 module.exports = function (sequelize, SeqInit) {
     let Arrow = sequelize.define('Arrow', {
-        id_Arrow: {
+        idArrow: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true,
-            field: 'id_Arrow'
+            autoIncrement: true
         },
-        PosX: {
+        posX: {
             type: SeqInit.FLOAT,
-            allowNull: true,
-            field: 'PosX'
+            allowNull: true
         },
-        PosY: {
+        posY: {
             type: SeqInit.FLOAT,
-            allowNull: true,
-            field: 'PosY'
+            allowNull: true
         },
-        Point: {
+        point: {
             type: SeqInit.INTEGER,
             allowNull: false,
             validate: {
                 min: 0,
                 max: 10
-            },
-            field: 'Point'
+            }
         },
-        FK_End: {
+        fkEnd: {
             type: SeqInit.INTEGER,
-            allowNull: false,
-            field: 'FK_End'
+            allowNull: false
         }
     }, {
         classMethods: {
             associate: function (models) {
                 Arrow.belongsTo(models.End,{
-                    foreignKey: 'FK_End'
+                    foreignKey: 'fkEnd'
                 })
             }
         }

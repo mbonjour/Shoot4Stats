@@ -2,13 +2,13 @@
 
 module.exports = function (sequelize, SeqInit) {
     let Type = sequelize.define('Type', {
-        id_Type: {
+        idType: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        Name: {
+        name: {
             type: SeqInit.STRING(45),
             allowNull: false
         }
@@ -16,7 +16,7 @@ module.exports = function (sequelize, SeqInit) {
         classMethods: {
             associate: function (models) {
                 Type.hasMany(models.Shoot,{
-                    foreignKey: 'FK_Type'
+                    foreignKey: 'fkType'
                 })
             }
         }

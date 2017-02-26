@@ -1,17 +1,17 @@
 'use strict';
 module.exports = function (sequelize, SeqInit) {
     let User = sequelize.define('User', {
-        id_User: {
+        idUser: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        Firstname: {
+        firstname: {
             type: SeqInit.STRING(45),
             allowNull: true
         },
-        Lastname: {
+        lastname: {
             type: SeqInit.STRING(45),
             allowNull: true
         },
@@ -33,17 +33,17 @@ module.exports = function (sequelize, SeqInit) {
                 User.belongsToMany(models.User, {
                     as: 'user',
                     through: 'has_Group',
-                    foreignKey: 'id_User',
-                    otherKey: 'FK_User'
+                    foreignKey: 'idUser',
+                    otherKey: 'fkUser'
                 })
                 User.belongsToMany(models.User, {
                     as: 'coach',
                     through: 'has_Coach',
-                    foreignKey: 'id_User',
-                    otherKey: 'FK_User'
+                    foreignKey: 'idUser',
+                    otherKey: 'fkUser'
                 })
                 User.hasMany(models.Shoot, {
-                    foreignKey: 'FK_User'
+                    foreignKey: 'fkUser'
                 })
             }
         }

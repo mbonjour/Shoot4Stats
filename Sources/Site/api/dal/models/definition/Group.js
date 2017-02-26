@@ -2,17 +2,15 @@
 
 module.exports = function (sequelize, SeqInit) {
     let Group = sequelize.define('Group', {
-        id_Group: {
+        idGroup: {
             type: SeqInit.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true,
-            field: 'id_Group'
+            autoIncrement: true
         },
-        Name: {
+        name: {
             type: SeqInit.STRING(45),
-            allowNull: false,
-            field: 'Name'
+            allowNull: false
         }
     }, {
         classMethods: {
@@ -20,14 +18,14 @@ module.exports = function (sequelize, SeqInit) {
                 Group.belongsToMany(models.User, {
                     as: 'users',
                     through: 'has_Group',
-                    foreignKey: 'id_Group',
-                    otherKey: 'FK_Group'
+                    foreignKey: 'idGroup',
+                    otherKey: 'fkGroup'
                 })
                 Group.belongsToMany(models.User, {
                     as: 'coaches',
                     through: 'has_Coach',
-                    foreignKey: 'id_Group',
-                    otherKey: 'FK_Group'
+                    foreignKey: 'idGroup',
+                    otherKey: 'fkGroup'
                 })
             }
         }
