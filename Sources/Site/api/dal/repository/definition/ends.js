@@ -4,14 +4,14 @@ module.exports = (props) => {
             //On vérifie si on doit séléctionner un Shoot en particulier ou juste quelques infos de tout les Shoots
             return props.store.models.End.findAll({
                 where: {
-                    FK_Shoot: idShoot
+                    fkShoot: idShoot
                 }
             })
         },
         add: (endObj, callback) => {
             props.store.models.Shoot.findOne({
                 where: {
-                    id: endObj.id_shoot
+                    id: endObj.IdShoot
                 },
                 include: [{
                     model: props.store.models.End
@@ -19,16 +19,16 @@ module.exports = (props) => {
             }).then((shoot) => {
                 //addEnd(props, shoot, endObj, callback)
                 if (shoot.Ends.length < shoot.totalEnds) {
-                    if (shoot.arrowsbyend === endObj.arrows.length) {
+                    if (shoot.arrowsByEnd === endObj.Arrows.length) {
                         props.store.models.End.create({
-                            FK_Shoot: shoot.id
+                            fkShoot: shoot.id
                         }).then((end) => {
                             if (shoot.Ends.length + 1 ===  shoot.totalEnds){ //
                                 props.store.repositories.shoots.finishShoot(shoot.id,(err, created)=>{})
                             }
-                            callback(null, endObj.arrows.map(arrow => props.store.models.Arrow.create({
-                                Point: arrow.point,
-                                FK_End: end.id_End
+                            callback(null, endObj.Arrows.map(arrow => props.store.models.Arrow.create({
+                                point: arrow.point,
+                                fkEnd: end.IdEnd
                             })))
                         }).catch((err) => {
                             console.log(err)

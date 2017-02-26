@@ -23,13 +23,15 @@ module.exports = function (sequelize, SeqInit) {
             type: SeqInit.STRING(45),
             allowNull: false
         },
-        nbEnds: {
+        totalEnds: {
             type: SeqInit.INTEGER,
-            allowNull: false
+            allowNull: false,
+            field: 'nbEnds'
         },
-        nbArrowsByEnd: {
+        arrowsByEnd: {
             type: SeqInit.INTEGER,
-            allowNull: false
+            allowNull: false,
+            field:'nbArrowsByEnd'
         },
         type: {
             type: SeqInit.INTEGER,
