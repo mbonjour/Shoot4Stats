@@ -5,6 +5,8 @@ Ces méthodes ne sont pas venues de nulle part, une reflexion a eu lieu en posan
 
 Basé Swagger //TODO: --> à définir
 
+### En gros ce qui va/vient de l'utilisateur première lettre maj et CamelCase le traitement interne et variables interne minuscules et camelCase
+
 Règles de nommage:
 - api endpoint (controllers)
   - plural

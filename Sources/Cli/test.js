@@ -22,27 +22,27 @@ var store = require('../Site/api/dal')(require('../Site/config/configs.json').db
 
 
 store.repositories.shoots.add({
-    title: 'titre bidon',
-    description: 'lorem ipsum',
-    nb_Ends: 10,
-    nb_ArrowsByEnd: 3,
-    type: 'Training',
-    user: 1, //TODO: voir avec auth pour récuperer l'user
-    location: {
-        latitude: '',
-        longitude: ''
+    Title: 'titre bidon',
+    Description: 'lorem ipsum',
+    NbEnds: 10,
+    NbArrowsByEnd: 3,
+    Type: 'Training',
+    User: 1, //TODO: voir avec auth pour récuperer l'user
+    Location: {
+        Latitude: '',
+        Longitude: ''
     }
 }, (err, shoot) => {
     console.log('Shoot id: ', shoot.id)
     for (i = 0; i < 10; i++) {
         store.repositories.ends.add({
-            id_shoot: shoot.id,
-            arrows: [{
-                point: 7
+            IdShoot: shoot.id,
+            Arrows: [{
+                Point: 7
             }, {
-                point: 10
+                Point: 10
             }, {
-                point: 9
+                Point: 9
             }]
         }, (err, end) => {
             console.log('End id: ', end.id)
