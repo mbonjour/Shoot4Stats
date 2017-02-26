@@ -5,12 +5,12 @@ module.exports = (props) => {
 
     return {
 
-        get: (id_User, callback) => {
+        get: (idUser, callback) => {
             props.store.models.Shoot.findAll({
                 where: {
-                    FK_User: id_User
+                    fkUser: idUser
                 },
-                order: '`Shoot`.`Date_Shoot` DESC',
+                order: '`Shoot`.`dateShoot` DESC',
                 include: [props.store.models.End, props.store.models.Type, props.store.models.Location]
 
             }).then((shoots) => {
@@ -20,10 +20,10 @@ module.exports = (props) => {
             })
         },
 
-        getById: (id_User, id_Shoot = null, callback) => {
+        getById: (idUser, idShoot = null, callback) => {
             props.store.models.Shoot.find({
                 where: {
-                    id_Shoot: id_Shoot
+                    idShoot: idShoot
                 },
                 include: [{
                     model: props.store.models.End,
@@ -53,7 +53,7 @@ module.exports = (props) => {
         finishShoot: (idShoot, callback) => {
             props.store.models.Shoot.findOne({
                     where: {
-                        id_Shoot: idShoot
+                        idShoot: idShoot
                     }
                 })
                 .then((shoot) => {
@@ -77,15 +77,15 @@ module.exports = (props) => {
         add: (params, callback) => {
             props.store.models.Type.findOne({
                 where: {
-                    Name: params.Type
+                    name: params.Type
                 }
             }).then((type) => {
                 props.store.models.Shoot.create({
                     title: params.Title,
                     description: params.Description,
-                    totalEnds: params.nb_Ends,
-                    arrowsbyend: params.nb_ArrowsByEnd,
-                    type: type.id_Type,
+                    totalEnds: params.NbEnds,
+                    arrowsByEnd: params.NbArrowsByEnd,
+                    type: type.idType,
                     user: params.User //TODO: voir avec auth pour récuperer l'user
                 }).then((shoot) => {
                     if (params.Location) {
@@ -116,9 +116,9 @@ var calculateSummarySpecifications = (shoot, callback) => {
             }
         })
         if (index == array.length - 1) {
-            shoot.averageArrow = total / (array.length * shoot.arrowsbyend)
-            shoot.total = total
-            shoot.goldHit = (nbNine + nbTen) / (array.length * shoot.arrowsbyend)
+            shoot.AverageArrow = total / (array.length * shoot.arrowsByEnd)
+            shoot.Total = total
+            shoot.GoldHit = (nbNine + nbTen) / (array.length * shoot.arrowsByEnd)
             shoot.Tens = nbTen
             shoot.Nines = nbNine
         }
@@ -129,24 +129,24 @@ var calculateSummarySpecifications = (shoot, callback) => {
 var addLocationAndLink = (location, idShoot, models, callback) => {
     models.Location.findOrCreate({
         where: {
-            long: location.long,
-            lat: location.lat
+            long: location.Longitude,
+            lat: location.Latitude
         },
         defaults: {
-            long: location.long,
-            lat: location.lat
+            long: location.Longitude,
+            lat: location.Latitude
         }
     }).spread((lolocation, created) => {
         let locationId = lolocation.idLocation
         models.Shoot.findOne({
             where: {
-                id_Shoot: idShoot
+                idShoot: idShoot
             }
         }).then((shoot) => {
             // Check if record exists in db
             if (shoot) {
                 shoot.updateAttributes({
-                    FK_Location: locationId
+                    fkLocation: locationId
                 }).then((created) => {
                     callback(null, created)
                 })
