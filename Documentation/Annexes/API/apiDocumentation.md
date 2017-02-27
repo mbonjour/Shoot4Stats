@@ -10,29 +10,23 @@ Basé Swagger //TODO: --> à définir
 Règles de nommage:
 - api endpoint (controllers)
   - plural
-  - lowercase
+  - camelCase
   - language : english
     - get properties
     - post properties
-        - première lettre maj
-        - Camel Case
+        - PascalCase
     - results properties
-        - On renvoie les data avec la première lettre maj
-        - Camel Case
+        - PascalCase
     - comments
         - language French or English
 - Repositories
-    - Tous en min
     - camelCase
 - Models
-    - Reprend les props des DB
     - camelCase et lowerCase
 - Mappers
-    - On renvoie les data avec la première lettre maj
-    - Camel Case
+    - PascalCase
 - DB
-    - Lower Case
-    - Camel Case
+    - camelCase
 
 ## Shoots
 
