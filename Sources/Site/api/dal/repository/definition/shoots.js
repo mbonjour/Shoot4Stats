@@ -77,19 +77,19 @@ module.exports = (props) => {
         add: (params, callback) => {
             props.store.models.Type.findOne({
                 where: {
-                    name: params.Type
+                    name: params.type
                 }
             }).then((type) => {
                 props.store.models.Shoot.create({
-                    title: params.Title,
-                    description: params.Description,
-                    totalEnds: params.NbEnds,
-                    arrowsByEnd: params.NbArrowsByEnd,
+                    title: params.title,
+                    description: params.description,
+                    totalEnds: params.nbEnds,
+                    arrowsByEnd: params.nbArrowsByEnd,
                     type: type.idType,
-                    user: params.User //TODO: voir avec auth pour récuperer l'user
+                    user: params.user //TODO: voir avec auth pour récuperer l'user
                 }).then((shoot) => {
-                    if (params.Location) {
-                        addLocationAndLink(params.Location, shoot.id, props.store.models, (err, created) => {
+                    if (params.location) {
+                        addLocationAndLink(params.location, shoot.id, props.store.models, (err, created) => {
                             callback(err, created)
                         })
                     } else {

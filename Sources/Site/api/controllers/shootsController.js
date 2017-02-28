@@ -11,28 +11,28 @@ router.get('/', (req, res, next) => {
     })
 })
 
-router.get('/:idShoot', (req, res, next) => {
+router.get('/:id_shoot', (req, res, next) => {
     //TODO : Mettre variable user session ?
-    store.repositories.shoots.getById(1, req.params.idShoot, (err, shoot) => {
+    store.repositories.shoots.getById(1, req.params.id_shoot, (err, shoot) => {
         responseHelper(res, err, shoot)
     })
 })
 
-router.get('/:idShoot/finish', (req, res, next) => {
-    store.repositories.shoots.finishShoot(req.params.idShoot, (err, created) => {
+router.get('/:id_shoot/finish', (req, res, next) => {
+    store.repositories.shoots.finishShoot(req.params.id_shoot, (err, created) => {
         responseHelper(res, err, created)
     })
 })
 
 router.post('/', (req, res) => {
     var shootObject = {
-        Title: req.body.title,
-        Description: req.body.description,
-        NbEnds: req.body.nbEnds,
-        NbArrowsByEnd: req.body.nbArrowsEnd,
-        Type: req.body.type,
-        User: req.body.user, //TODO: voir avec auth pour récuperer l'user
-        Location: req.body.Location
+        title: req.body.title,
+        description: req.body.description,
+        nbEnds: req.body.nbEnds,
+        nbArrowsByEnd: req.body.nb_arrows_end,
+        type: req.body.type,
+        user: req.body.user, //TODO: voir avec auth pour récuperer l'user
+        location: req.body.Location
     }
     store.repositories.shoots.add(shootObject, (err, status) => {
         responseHelper(res, err, status)

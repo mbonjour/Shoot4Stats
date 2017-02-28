@@ -16,7 +16,7 @@ Règles de nommage:
             - Les objets en PascalCase
     - post properties
         - snake_case
-        - - Les objets en PascalCase
+        - Les objets en PascalCase
     
     - comments
         - language French or English
