@@ -10,7 +10,7 @@ module.exports = (props) => {
         add: (endObj, callback) => {
             props.store.models.Shoot.findOne({
                 where: {
-                    id: endObj.IdShoot
+                    id: endObj.idShoot
                 },
                 include: [{
                     model: props.store.models.End
@@ -18,23 +18,23 @@ module.exports = (props) => {
             }).then((shoot) => {
                 //addEnd(props, shoot, endObj, callback)
                 if (shoot.Ends.length < shoot.totalEnds) {
-                    if (shoot.arrowsByEnd === endObj.Arrows.length) {
+                    if (shoot.arrowsByEnd === endObj.arrows.length) { //Pourquoi il perd le endObj ?!?
                         props.store.models.End.create({
                             fkShoot: shoot.id
                         }).then((end) => {
-                            if (shoot.Ends.length + 1 ===  shoot.totalEnds){ //
-                                props.store.repositories.shoots.finishShoot(shoot.id,(err, created)=>{})
+                            if (shoot.Ends.length + 1 === shoot.totalEnds) { //
+                                props.store.repositories.shoots.finishShoot(shoot.id, (err, created) => {})
                             }
-                            callback(null, endObj.Arrows.map(arrow => props.store.models.Arrow.create({
+                            callback(null, endObj.arrows.map(arrow => props.store.models.Arrow.create({
                                 point: arrow.point,
                                 fkEnd: end.IdEnd
                             })))
                         }).catch((err) => {
                             console.log(err)
                             callback({
-                            error: "Db error",
-                            status: 500 //TODO: Voir status correct
-                        }, null)
+                                error: "Db error",
+                                status: 500 //TODO: Voir status correct
+                            }, null)
                         })
                     } else {
                         callback({
