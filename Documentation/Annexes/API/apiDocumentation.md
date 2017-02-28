@@ -13,18 +13,21 @@ Règles de nommage:
   - camelCase
   - language : english
     - get properties
+        - results properties
+            - snake_case
+            - Les objets en PascalCase
     - post properties
-        - PascalCase
-    - results properties
-        - PascalCase
+        - snake_case
+        - - Les objets en PascalCase
+    
     - comments
         - language French or English
 - Repositories
     - camelCase
 - Models
-    - camelCase et lowerCase
+    - camelCase
 - Mappers
-    - PascalCase
+    - snake_case
 - DB
     - camelCase
 
