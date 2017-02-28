@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
     var shootObject = {
         title: req.body.title,
         description: req.body.description,
-        nbEnds: req.body.nbEnds,
+        nbEnds: req.body.nb_ends,
         nbArrowsByEnd: req.body.nb_arrows_end,
         type: req.body.type,
         user: req.body.user, //TODO: voir avec auth pour récuperer l'user

@@ -21,16 +21,28 @@ var store = require('../Site/api/dal')(require('../Site/config/configs.json').db
 // store.repositories.shoots.get({idUser: 123, idShoot})
 
 
+// Data Envoyées: {
+//         title: 'titre bidon',
+//         description: 'lorem ipsum',
+//         nb_ends: 10,
+//         nb_arrows_end: 3,
+//         type: 'Training',
+//         user: 1, //TODO: voir avec auth pour récuperer l'user
+//         Location: {
+//             latitude: '',
+//             longitude: ''
+//         }
+
 store.repositories.shoots.add({
     title: 'titre bidon',
     description: 'lorem ipsum',
-    nb_ends: 10,
-    nb_arrows_by_end: 3,
+    nbEnds: 10,
+    nbArrowsByEnd: 3,
     type: 'Training',
     user: 1, //TODO: voir avec auth pour récuperer l'user
-    Location: {
-        latitude: '',
-        longitude: ''
+    location: {
+        latitude: 'lausanneTEST',
+        longitude: 'VDTEST'
     }
 }, (err, shoot) => {
     console.log('Shoot id: ', shoot.id)

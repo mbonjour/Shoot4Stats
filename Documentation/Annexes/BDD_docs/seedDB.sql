@@ -5,27 +5,27 @@ SET time_zone = "+01:00";
 
 
 
-INSERT INTO `user` (`id_User`, `Firstname`, `Lastname`, `email`, `isAdmin`, `hashPass`) VALUES
+INSERT INTO `user` (`idUser`, `Firstname`, `Lastname`, `email`, `isAdmin`, `hashPass`) VALUES
 (1, 'Mickael', 'Bonjour', 'mbonjour@protonmail.ch', 0, 'mic11888');
 
-INSERT INTO `type` (`id_Type`, `Name`) VALUES
+INSERT INTO `type` (`idType`, `Name`) VALUES
 (1, 'Outdoor'),
 (2, 'Indoor'),
 (3, 'Training');
 
 
-INSERT INTO `location` (`id_Location`, `lat`, `long`) VALUES
+INSERT INTO `location` (`idLocation`, `latitude`, `longitude`) VALUES
 (1, '46°27''30.9"N', '6°51''14.0"E');
 
 
-INSERT INTO `shoot` (`id_Shoot`, `Date_Shoot`, `Description`, `Title`, `nb_Ends`, `nb_ArrowsByEnd`, `FK_Type`, `FK_User`, `FK_Location`) VALUES
+INSERT INTO `shoot` (`idShoot`, `DateShoot`, `Description`, `Title`, `nbEnds`, `nbArrowsByEnd`, `FKType`, `FKUser`, `FKLocation`) VALUES
 (1, '2017-02-10 08:35:49', 'Le premier Shoot test !', 'First Shoot', 20, 3, 2, 1, 1),
 (2, '2017-02-13 10:43:57', 'Le deuxième Shoot !!!', 'Shoot2', 20, 3, 1, 1, NULL),
 (3, '2017-02-14 14:04:16', 'Le troisième et dernier Shoot !', 'Shoot3', 24, 6, 2, 1, 1);
 
 
 
-INSERT INTO `end` (`id_End`, `FK_Shoot`) VALUES
+INSERT INTO `end` (`idEnd`, `FKShoot`) VALUES
 (1, 1),
 (2, 1),
 (3, 1),
@@ -59,7 +59,7 @@ INSERT INTO `end` (`id_End`, `FK_Shoot`) VALUES
 (29, 2),
 (30, 2);
 
-INSERT INTO `arrow` (`id_Arrow`, `PosX`, `PosY`, `Point`, `FK_End`) VALUES
+INSERT INTO `arrow` (`idArrow`, `PosX`, `PosY`, `Point`, `FKEnd`) VALUES
 (1, NULL, NULL, 10, 11),
 (2, NULL, NULL, 9, 11),
 (3, NULL, NULL, 8, 11),
