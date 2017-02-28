@@ -129,12 +129,12 @@ var calculateSummarySpecifications = (shoot, callback) => {
 var addLocationAndLink = (location, idShoot, models, callback) => {
     models.Location.findOrCreate({
         where: {
-            long: location.Longitude,
-            lat: location.Latitude
+            longitude: location.Longitude,
+            latitude: location.Latitude
         },
         defaults: {
-            long: location.Longitude,
-            lat: location.Latitude
+            longitude: location.Longitude,
+            latitude: location.Latitude
         }
     }).spread((lolocation, created) => {
         let locationId = lolocation.idLocation

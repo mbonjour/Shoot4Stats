@@ -8,11 +8,11 @@ module.exports = function (sequelize, SeqInit) {
             autoIncrement: true,
             field: 'idLocation'
         },
-        lat: {
+        latitude: {
             type: SeqInit.STRING(45),
             allowNull: false
         },
-        long: {
+        longitude: {
             type: SeqInit.STRING(45),
             allowNull: false
         }

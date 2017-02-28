@@ -2,8 +2,8 @@ module.exports = {
     map: (location) => {
         if (location) {
             return {
-                Latitude: location.lat,
-                Longitude: location.long,
+                latitude: location.latitude,
+                longitude: location.longitude,
             }
         } else {
             return null

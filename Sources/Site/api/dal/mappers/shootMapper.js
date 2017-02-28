@@ -14,26 +14,26 @@ const mapper = {
         
         // return result
         return {
-            Id: shoot.id,
-            Title: shoot.title,
-            Description: shoot.description,
-            Date: moment.utc(shoot.date.toISOString().slice(0, -1) + "+0100").fromNow(),
+            id: shoot.id,
+            title: shoot.title,
+            description: shoot.description,
+            date: moment.utc(shoot.date.toISOString().slice(0, -1) + "+0100").fromNow(),
             Location: locationMapper.map(shoot.Location),
-            Type: shoot.Type.name,
-            NbEnds: shoot.Ends.length,
-            NbTotalEnds: shoot.totalEnds,
-            NbArrowsByEnd: shoot.arrowsByEnd,
-            Finished: shoot.finished,
+            type: shoot.Type.name,
+            nb_ends: shoot.Ends.length,
+            nb_total_ends: shoot.totalEnds,
+            nb_arrows_by_end: shoot.arrowsByEnd,
+            finished: shoot.finished,
         }
     },
     mapWithArrows: (shoot) => {
         let result = mapper.map(shoot)
-        result.GoldHit = (shoot.goldHit*100)
-        result.AverageArrow = shoot.averageArrow
-        result.Total = shoot.total
-        result.Tens = shoot.tens
-        result.Nines = shoot.nines
-        result.Ends = shoot.Ends.map(endMapper)
+        result.gold_hit = (shoot.goldHit*100)
+        result.average_arrow = shoot.averageArrow
+        result.total = shoot.total
+        result.tens = shoot.tens
+        result.nines = shoot.nines
+        result.ends = shoot.Ends.map(endMapper)
         return result
         // return {
         //     title: shoot.title,
