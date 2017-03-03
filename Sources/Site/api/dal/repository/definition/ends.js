@@ -16,8 +16,8 @@ module.exports = (props) => {
                     model: props.store.models.End
                 }]
             }).then((shoot) => {
-                if (shoot.Ends.length < shoot.totalEnds) {
-                    if (shoot.arrowsByEnd === endObj.arrows.length) { //Pourquoi il perd le endObj ?!?
+                if (shoot.Ends.length < shoot.dataValues.totalEnds) {
+                    if (shoot.arrowsByEnd === endObj.arrows.length) {
                         props.store.models.End.create({
                             fkShoot: shoot.id
                         }).then((end) => {
@@ -35,7 +35,7 @@ module.exports = (props) => {
                             }).catch((err) => {
                                 console.log(err)
                                 callback({
-                                    error: "Db error",
+                                    error: "Db error Arrow creation",
                                     status: 500 //TODO: Voir status correct
                                 }, null)
                             })
@@ -44,13 +44,13 @@ module.exports = (props) => {
                         }).catch((err) => {
                             console.log(err)
                             callback({
-                                error: "Db error",
+                                error: "Db error End creation",
                                 status: 500 //TODO: Voir status correct
                             }, null)
                         })
                     } else {
                         callback({
-                            error: "",
+                            error: "False number of arrows",
                             status: 404 //TODO: Voir status correct
                         }, null)
                     }
