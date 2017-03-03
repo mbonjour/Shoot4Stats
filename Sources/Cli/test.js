@@ -56,11 +56,14 @@ store.repositories.shoots.add({
             }, {
                 point: 9
             }]
-        }, (err, end) => {
-            console.log('End id: ', end.id)
-            end.arrows.map((arrow) => {
-                console.log('arrow id: ', arrow.id)
-            })
+        }, (err, arrows) => {
+            if (err) {
+                console.log(err)
+            } else {
+                arrows.map((arrow) => {
+                    console.log('arrow id: ', arrow.id)
+                })
+            }
         })
     }
 })
