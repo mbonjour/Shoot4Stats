@@ -1,8 +1,0 @@
-{
-    "db": {
-        "hostname": "localhost",
-        "username": "user",
-        "password": "pass",
-        "name": "shoot4stats"
-    }
-}

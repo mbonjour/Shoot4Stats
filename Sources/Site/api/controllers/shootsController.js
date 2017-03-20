@@ -5,6 +5,7 @@ var responseHelper = require('../helpers/responseHelper')
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
+    req.session
     //TODO 1 = userID à remplacer
     store.repositories.shoots.get(1, (err, shoots) => {
         responseHelper(res, err, shoots)

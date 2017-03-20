@@ -4,6 +4,11 @@
         "username": "",
         "password": "",
         "name": ""
+    },
+    "passportFacebook": {
+        "clientID": 1,
+        "clientSecret": "secret",
+        "callback": "http://localhost:3000/api/login/facebook/return"
     }
 }
 

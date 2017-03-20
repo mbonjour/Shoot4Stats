@@ -7,21 +7,7 @@ var http = require('http')
 var passport = require('passport')
 var Strategy = require('passport-facebook').Strategy
 
-passport.use(new Strategy({
-  clientID: 1807623519560370,
-  clientSecret: 'f8d8c6a2553716f6b40e9137a27a5619',
-  callbackURL: 'http://localhost:3000/api/login/facebook/return'
-},
-function (accessToken, refreshToken, profile, cb) {
-  return cb(null, profile)
-}))
-passport.serializeUser(function (user, cb) {
-  cb(null, user)
-})
-
-passport.deserializeUser(function (obj, cb) {
-  cb(null, obj)
-})
+var passportInit = require('./api/middlewares/passport.js')(passport, Strategy)
 
 var shoots = require(path.join(__dirname, 'api/controllers/shootsController.js'))
 var ends = require(path.join(__dirname, 'api/controllers/endsController.js'))
@@ -39,6 +25,7 @@ app.use(require('express-session')({
   saveUninitialized: true
 }))
 app.use(express.static(path.join(__dirname, 'static')))
+
 app.use(passport.initialize())
 app.use(passport.session())
 
