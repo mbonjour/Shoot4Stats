@@ -8,8 +8,8 @@ var passport = require('passport')
 var Strategy = require('passport-facebook').Strategy
 
 passport.use(new Strategy({
-  clientID: 'clientID',
-  clientSecret: 'clientSecret',
+  clientID: 1807623519560370,
+  clientSecret: 'f8d8c6a2553716f6b40e9137a27a5619',
   callbackURL: 'http://localhost:3000/api/login/facebook/return'
 },
 function (accessToken, refreshToken, profile, cb) {
@@ -33,6 +33,11 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
+app.use(require('express-session')({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true
+}))
 app.use(express.static(path.join(__dirname, 'static')))
 app.use(passport.initialize())
 app.use(passport.session())
@@ -41,13 +46,13 @@ app.use('/api/shoots', shoots)
 app.use('/api/ends', ends)
 app.use('/api/login', auth)
 
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   const err = new Error('Not Found')
   err.status = 404
   err.type = "Page not found"
   res.json(err)
 })
 
-app.listen(3000, function () {
+app.listen(3000, () => {
   console.log('Listening on port 3000!')
 })
