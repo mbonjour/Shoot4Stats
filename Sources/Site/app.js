@@ -10,7 +10,7 @@ var Strategy = require('passport-facebook').Strategy
 passport.use(new Strategy({
   clientID: 'clientID',
   clientSecret: 'clientSecret',
-  callbackURL: 'http://localhost:3000/login/facebook/return'
+  callbackURL: 'http://localhost:3000/api/login/facebook/return'
 },
 function (accessToken, refreshToken, profile, cb) {
   return cb(null, profile)
@@ -39,7 +39,7 @@ app.use(passport.session())
 
 app.use('/api/shoots', shoots)
 app.use('/api/ends', ends)
-app.use('/login', auth)
+app.use('/api/login', auth)
 
 app.use(function(req, res, next) {
   const err = new Error('Not Found')
