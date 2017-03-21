@@ -39,7 +39,7 @@ module.exports = function (sequelize, SeqInit) {
             field: 'fkType'
         },
         user: {
-            type: SeqInit.INTEGER,
+            type: SeqInit.STRING(45),
             allowNull: false,
             field: 'fkUser'
         },

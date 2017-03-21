@@ -2,10 +2,9 @@
 module.exports = function (sequelize, SeqInit) {
     let User = sequelize.define('User', {
         id: {
-            type: SeqInit.INTEGER,
+            type: SeqInit.STRING(45),
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true,
             field: 'idUser'
         },
         firstname: {

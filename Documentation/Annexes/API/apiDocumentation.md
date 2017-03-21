@@ -102,6 +102,7 @@ Règles de nommage:
         - GoldHit : Pourcentage de flèches dans le jaune (10 et 9)
         - Total : Points totaux
         - Ends.1.arrow1 : les données sont triées par l'API --> Arrow1 est toujours plus grand que le reste
+        
 * POST /api/shoots
     * Le POST va récupérer idUser dans session, il va créer un nouveau Shoot
     * Objet example :

@@ -16,15 +16,14 @@ module.exports = (props) => {
                     model: props.store.models.End
                 }]
             }).then((shoot) => {
-                if (shoot.Ends.length < shoot.dataValues.totalEnds) {
+                if (shoot.Ends.length < shoot.totalEnds) {
                     if (shoot.arrowsByEnd === endObj.arrows.length) {
                         props.store.models.End.create({
                             fkShoot: shoot.id
                         }).then((end) => {
-                            if (shoot.Ends.length + 1 === shoot.totalEnds) { //
+                            if (shoot.Ends.length + 1 === shoot.totalEnds) {
                                 props.store.repositories.shoots.finishShoot(shoot.id, (err, created) => {})
                             }
-
                             Promise.all(endObj.arrows.map((arrow) => {
                                 return props.store.models.Arrow.create({
                                     point: arrow.point,
@@ -39,7 +38,6 @@ module.exports = (props) => {
                                     status: 500 //TODO: Voir status correct
                                 }, null)
                             })
-
                             //callback(null, )
                         }).catch((err) => {
                             console.log(err)
@@ -55,6 +53,7 @@ module.exports = (props) => {
                         }, null)
                     }
                 } else {
+                    props.store.repositories.shoots.finishShoot(shoot.id, (err, created) => {})                    
                     callback({
                         error: "Too much ends, Shoot finished",
                         status: 404 //TODO: Voir status correct

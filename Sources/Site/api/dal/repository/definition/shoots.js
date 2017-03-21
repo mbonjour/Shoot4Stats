@@ -108,17 +108,17 @@ var calculateSummarySpecifications = (shoot, callback) => {
 
     shoot.Ends.forEach((end, index, array) => {
         end.Arrows.forEach((arrow, index, array) => {
-            total += arrow.Point
-            if (arrow.Point == 9) {
+            total += arrow.dataValues.point
+            if (arrow.dataValues.point == 9) {
                 nbNine++
-            } else if (arrow.Point == 10) {
+            } else if (arrow.dataValues.point == 10) {
                 nbTen++
             }
         })
         if (index == array.length - 1) {
-            shoot.averageArrow = total / (array.length * shoot.arrowsByEnd)
+            shoot.averageArrow = total / (array.length * shoot.dataValues.arrowsByEnd)
             shoot.total = total
-            shoot.goldHit = (nbNine + nbTen) / (array.length * shoot.arrowsByEnd)
+            shoot.goldHit = (nbNine + nbTen) / (array.length * shoot.dataValues.arrowsByEnd)
             shoot.tens = nbTen
             shoot.nines = nbNine
         }

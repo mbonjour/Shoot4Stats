@@ -1,6 +1,7 @@
 var config = require('../../config/configs.json').passportFacebook
+var store = require('../dal')(require('../../config/configs.json').db)
 
-module.exports = (passport, Strategy) => {
+module.exports = (passport, Strategy, store) => {
     passport.use(new Strategy({
             clientID: config.clientID,
             clientSecret: config.clientSecret,
