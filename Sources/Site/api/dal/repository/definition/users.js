@@ -12,8 +12,8 @@ module.exports = (props) => {
                     email: user.emails[0].value,
                     firstname: user.first_name
                 }
-            }).spread((user, created) => {
-                callback(null, user)
+            }).spread((findUser, created) => {
+                callback(null, findUser)
             })
             .catch((err) => {
                 callback(err, null)
