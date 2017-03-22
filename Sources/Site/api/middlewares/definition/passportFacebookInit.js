@@ -7,7 +7,8 @@ module.exports = () => {
     passport.use(new FacebookStrategy({
             clientID: config.passportFacebook.clientID,
             clientSecret: config.passportFacebook.clientSecret,
-            callbackURL: config.passportFacebook.callback
+            callbackURL: config.passportFacebook.callback,
+            profileFields: ['id', 'first_name', 'last_name', 'photos', 'email']
         },
         function (accessToken, refreshToken, profile, cb) {
             store.repositories.users.getOrCreate(profile, (err, user) => {

@@ -7,7 +7,7 @@ var responseHelper = require('../helpers/responseHelper')
 router.get('/facebook',(req, res, next) => {
   req.session.url = req.query.url
   next()
-}, passport.authenticate('facebook'))
+}, passport.authenticate('facebook', {scope: ['email']}))
 
 router.get('/facebook/return', passport.authenticate(
   'facebook', {
