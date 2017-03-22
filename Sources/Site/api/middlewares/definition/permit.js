@@ -4,17 +4,17 @@ module.exports = () => {
         return (req, res, next) => {
             next()
 
-            if(req.user.shoots.indexOf(currShootId) === -1){
-                store.repositories.shoots.getLight()
-                //reload shoots de la db dans la session
-                if(req.user.shoots.indexOf(currShootId) === -1){
-                    //error
-                } else {
-                    next()
-                }
-            } else {
-                next()
-            }
+            // if(req.user.shoots.indexOf(currShootId) === -1){
+            //     store.repositories.shoots.getLight()
+            //     //reload shoots de la db dans la session
+            //     if(req.user.shoots.indexOf(currShootId) === -1){
+            //         //error
+            //     } else {
+            //         next()
+            //     }
+            // } else {
+            //     next()
+            // }
 
 
 

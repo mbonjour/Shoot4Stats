@@ -9,8 +9,14 @@ module.exports = (props) => {
                     id: user.provider + '_' + user.id,
                     isAdmin: false,
                     lastname: user.displayName.split(' ')[1],
+                    email: null,
                     firstname: user.displayName.split(' ')[0]
                 }
+            }).spread((user, created) => {
+                callback(null, user)
+            })
+            .catch((err) => {
+                callback(err, null)
             })
         }
     }

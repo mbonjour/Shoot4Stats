@@ -26,13 +26,13 @@ module.exports = function (sequelize, SeqInit) {
     }, {
         classMethods: {
             associate: function (models) {
-                User.belongsToMany(models.User, {
+                User.belongsToMany(models.Group, {
                     as: 'user',
                     through: 'has_Group',
                     foreignKey: 'idUser',
                     otherKey: 'fkUser'
                 })
-                User.belongsToMany(models.User, {
+                User.belongsToMany(models.Group, {
                     as: 'coach',
                     through: 'has_Coach',
                     foreignKey: 'idUser',

@@ -10,19 +10,15 @@ module.exports = () => {
             callbackURL: config.passportFacebook.callback
         },
         function (accessToken, refreshToken, profile, cb) {
-            // store.repositories.users.getOrCreate(profile, (err, user) => {
-            return cb(null, profile)
-            // })
+            store.repositories.users.getOrCreate(profile, (err, user) => {
+                return cb(err, user)
+            })
         }))
-
     passport.serializeUser(function (user, cb) {
-        // store.repositories.users.getOrCreate(user.user, (err, created) => {
         cb(null, user)
     })
-
     passport.deserializeUser(function (user, cb) {
         cb(null, user)
     })
-
     return passport
 }
