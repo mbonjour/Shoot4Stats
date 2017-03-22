@@ -17,14 +17,10 @@ module.exports = function (sequelize, SeqInit) {
         },
         email: {
             type: SeqInit.STRING(45),
-            allowNull: false
+            allowNull: true
         },
         isAdmin: {
             type: SeqInit.BOOLEAN,
-            allowNull: false
-        },
-        hashPass: {
-            type: SeqInit.STRING(75),
             allowNull: false
         }
     }, {

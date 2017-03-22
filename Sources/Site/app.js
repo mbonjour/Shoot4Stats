@@ -4,10 +4,7 @@ var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var http = require('http')
-var passport = require('passport')
-var Strategy = require('passport-facebook').Strategy
-
-var passportInit = require('./api/middlewares/passport.js')(passport, Strategy)
+var middlewares = require('./api/middlewares')()
 
 var shoots = require(path.join(__dirname, 'api/controllers/shootsController.js'))
 var ends = require(path.join(__dirname, 'api/controllers/endsController.js'))
@@ -26,8 +23,8 @@ app.use(require('express-session')({
 }))
 app.use(express.static(path.join(__dirname, 'static')))
 
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(middlewares.passportFacebook.initialize())
+app.use(middlewares.passportFacebook.session())
 
 app.use('/api/shoots', shoots)
 app.use('/api/ends', ends)
