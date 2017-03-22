@@ -12,7 +12,10 @@ module.exports = () => {
         },
         function (accessToken, refreshToken, profile, cb) {
             store.repositories.users.getOrCreate(profile, (err, user) => {
-                return cb(err, user)
+                store.repositories.shoots.getLight(user.id, (err, arrayOfIds) => {
+                    user.have_shoots = arrayOfIds
+                    return cb(err, user)
+                })
             })
         }))
     passport.serializeUser(function (user, cb) {

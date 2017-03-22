@@ -4,7 +4,6 @@ module.exports = (props) => {
     const mapShoot = require('../../mappers/shootMapper').mapWithArrows
 
     return {
-
         get: (idUser, callback) => {
             props.store.models.Shoot.findAll({
                 where: {
@@ -27,7 +26,9 @@ module.exports = (props) => {
                 },
                 attributes: ['id']
             }).then((shootIds) => {
-                callback(null, shootIds)
+                var result=[]
+                shootIds.map((id)=>(result.push(id.id)))
+                callback(null, result)
             }).catch((err) => {
                 callback(err, null)
             })
@@ -103,10 +104,10 @@ module.exports = (props) => {
                 }).then((shoot) => {
                     if (params.location) {
                         addLocationAndLink(params.location, shoot.id, props.store.models, (err, created) => {
-                            callback(err, created)
+                            callback(err, created) // TODO:Mapper
                         })
                     } else {
-                        callback(null, shoot)
+                        callback(null, shoot) // TODO:Mapper
                     }
                 })
             })

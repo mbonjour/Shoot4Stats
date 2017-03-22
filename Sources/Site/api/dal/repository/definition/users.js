@@ -1,4 +1,6 @@
 module.exports = (props) => {
+    const mapUser = require('../../mappers/userMapper').map
+
     return {
         getOrCreate: (user, callback) => {
             props.store.models.User.findOrCreate({
@@ -13,7 +15,7 @@ module.exports = (props) => {
                     firstname: user.first_name
                 }
             }).spread((findUser, created) => {
-                callback(null, findUser)
+                callback(null, mapUser(findUser))
             })
             .catch((err) => {
                 callback(err, null)
