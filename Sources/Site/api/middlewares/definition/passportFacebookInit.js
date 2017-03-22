@@ -13,7 +13,7 @@ module.exports = () => {
         function (accessToken, refreshToken, profile, cb) {
             store.repositories.users.getOrCreate(profile, (err, user) => {
                 store.repositories.shoots.getLight(user.id, (err, arrayOfIds) => {
-                    user.have_shoots = arrayOfIds
+                    user.shootList = arrayOfIds
                     return cb(err, user)
                 })
             })

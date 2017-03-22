@@ -33,7 +33,7 @@ router.post('/', (req, res) => {
         nbEnds: req.body.nb_ends,
         nbArrowsByEnd: req.body.nb_arrows_end,
         type: req.body.type,
-        user: req.body.user, //TODO: voir avec auth pour récuperer l'user
+        user: req.user.id, //TODO: voir avec auth pour récuperer l'user
         location: req.body.Location
     }
     store.repositories.shoots.add(shootObject, (err, status) => {
