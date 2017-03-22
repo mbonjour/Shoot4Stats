@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var store = require('../dal')(require('../../config/configs.json').db)
 var responseHelper = require('../helpers/responseHelper')
+var middlewares = require('../middlewares')()
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -12,7 +13,7 @@ router.get('/', (req, res, next) => {
     })
 })
 
-router.get('/:id_shoot', (req, res, next) => {
+router.get('/:id_shoot', middlewares.permit.ensureMyShootByParams(), (req, res, next) => {
     //TODO : Mettre variable user session ?
     store.repositories.shoots.getById(1, req.params.id_shoot, (err, shoot) => {
         responseHelper(res, err, shoot)

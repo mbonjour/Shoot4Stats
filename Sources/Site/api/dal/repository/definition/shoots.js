@@ -20,6 +20,19 @@ module.exports = (props) => {
             })
         },
 
+        getLight: (idUser, callback) => {
+            props.store.models.Shoot.findAll({
+                where: {
+                    fkUser: idUser
+                },
+                attributes: ['id']
+            }).then((shootIds) => {
+                callback(null, shootIds)
+            }).catch((err) => {
+                callback(err, null)
+            })
+        },
+
         getById: (idUser, idShoot = null, callback) => {
             props.store.models.Shoot.find({
                 where: {
