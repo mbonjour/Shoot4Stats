@@ -54,5 +54,5 @@ router.get('/facebook/return', passport.authenticate(
 
 Ce sont les 2 routes qui permettent de s'authentifier, en effet, cela se passe comme ceci : 
 
-// TODO: Schéma tapper dans facebook
+![Modèle de la DB](./Shemes/authFaceSheme.png)
 

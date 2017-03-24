@@ -6,16 +6,13 @@ var middlewares = require('../middlewares')()
 
 /* GET home page. */
 router.get('/', middlewares.permit.ensureAuthenticated(),(req, res, next) => {
-    req.session
-    //TODO 1 = userID à remplacer
-    store.repositories.shoots.get(req.user.id, (err, shoots) => { // TODO : vérif si authentifié
+    store.repositories.shoots.get(req.user.id, (err, shoots) => {
         responseHelper(res, err, shoots)
     })
 })
 
 router.get('/:id_shoot', middlewares.permit.ensureMyShootByParams(), (req, res, next) => {
-    //TODO : Mettre variable user session ?
-    store.repositories.shoots.getById(1, req.params.id_shoot, (err, shoot) => {
+    store.repositories.shoots.getById(req.params.id_shoot, (err, shoot) => {
         responseHelper(res, err, shoot)
     })
 })
@@ -33,7 +30,7 @@ router.post('/', middlewares.permit.ensureAuthenticated(), (req, res) => {
         nbEnds: req.body.nb_ends,
         nbArrowsByEnd: req.body.nb_arrows_end,
         type: req.body.type,
-        user: req.user.id, //TODO: voir avec auth pour récuperer l'user
+        user: req.user.id,
         location: req.body.Location
     }
     store.repositories.shoots.add(shootObject, (err, status) => {

@@ -33,22 +33,8 @@ var store = require('../Site/api/dal')(require('../Site/config/configs.json').db
 //             longitude: ''
 //         }
 
-store.repositories.shoots.add({
-    title: 'titre bidon',
-    description: 'lorem ipsum',
-    nbEnds: 10,
-    nbArrowsByEnd: 3,
-    type: 'Training',
-    user: 1, //TODO: voir avec auth pour récuperer l'user
-    location: {
-        latitude: 'lausanneTEST',
-        longitude: 'VDTEST'
-    }
-}, (err, shoot) => {
-    console.log('Shoot id: ', shoot.id)
-    for (i = 0; i < 10; i++) {
         store.repositories.ends.add({
-            idShoot: shoot.id,
+            idShoot: 4,
             arrows: [{
                 point: 7
             }, {
@@ -65,8 +51,6 @@ store.repositories.shoots.add({
                 })
             }
         })
-    }
-})
 
 
 // store.repositories.ends.add({

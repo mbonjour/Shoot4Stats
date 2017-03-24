@@ -34,7 +34,7 @@ module.exports = (props) => {
             })
         },
 
-        getById: (idUser, idShoot = null, callback) => {
+        getById: (idShoot = null, callback) => {
             props.store.models.Shoot.find({
                 where: {
                     idShoot: idShoot
@@ -47,7 +47,7 @@ module.exports = (props) => {
                 }, props.store.models.Type, props.store.models.Location]
             }).then((shoot) => {
                 if (shoot) {
-                    calculateSummarySpecifications(shoot, () => { //TODO: Shoot null --> renvoyer 404 ? 
+                    calculateSummarySpecifications(shoot, () => {
                         callback(null, mapShoot(shoot))
                     })
                 } else {
@@ -77,11 +77,11 @@ module.exports = (props) => {
                                 finished: true
                             })
                             .then((created) => {
-                                callback(null, created)
+                                callback(null, created) // TODO: mappers ?
                             })
                     } else {
                         callback({
-                            error: "Cannot find Shoot finish Shoot",
+                            error: "Cannot find Shoot to finish",
                             status: 404
                         }, null)
                     }
