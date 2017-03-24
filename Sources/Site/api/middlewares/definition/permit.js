@@ -40,7 +40,7 @@ module.exports = () => {
                         if (shootList.indexOf(req.body.id_shoot) === -1) {
                             //error UnAuthorized
                             responseHelper(res, {
-                                error: "THIS SHOOT IS NOT YOURS YOU PIECE OF SHIT",
+                                error: "THIS SHOOT IS NOT YOURS, YOU PIECE OF SHIT",
                                 status: 403
                             }, null)
                         } else {

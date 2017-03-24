@@ -8,7 +8,7 @@ module.exports = function (dbConfigs) {
     var sequelize = new SeqInit(dbConfigs.name, dbConfigs.username, dbConfigs.password, {
         host: dbConfigs.hostname,
         dialect: 'mysql',
-        logging: console.log,
+        logging: false,
         define: {
             timestamps: false,
             freezeTableName: true

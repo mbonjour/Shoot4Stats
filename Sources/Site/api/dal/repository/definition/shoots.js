@@ -13,7 +13,7 @@ module.exports = (props) => {
                 include: [props.store.models.End, props.store.models.Type, props.store.models.Location]
 
             }).then((shoots) => {
-                callback(null, shoots.map(mapShoots))
+                callback(null, mapShoots(mapShoots)) // TODO: A voir map shoots !!!
             }).catch((err) => {
                 callback(err, null)
             })
@@ -26,9 +26,7 @@ module.exports = (props) => {
                 },
                 attributes: ['id']
             }).then((shootIds) => {
-                var result=[]
-                shootIds.map((id)=>(result.push(id.id)))
-                callback(null, result)
+                callback(null, shootIds.map((shoot) => {shoot.id}))
             }).catch((err) => {
                 callback(err, null)
             })
