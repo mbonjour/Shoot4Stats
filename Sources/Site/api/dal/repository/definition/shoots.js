@@ -11,9 +11,8 @@ module.exports = (props) => {
                 },
                 order: '`Shoot`.`dateShoot` DESC',
                 include: [props.store.models.End, props.store.models.Type, props.store.models.Location]
-
             }).then((shoots) => {
-                callback(null, mapShoots(mapShoots)) // TODO: A voir map shoots !!!
+                callback(null, shoots.map(mapShoots)) // TODO: A voir map shoots !!!
             }).catch((err) => {
                 callback(err, null)
             })
