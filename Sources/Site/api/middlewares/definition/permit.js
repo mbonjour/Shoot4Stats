@@ -1,34 +1,74 @@
 module.exports = () => {
     var self = {}
-    self.ensureMyShootByParams = (store) => {
+    var store = require('../../dal')(require('../../../config/configs.json').db)
+    var responseHelper = require('../../helpers/responseHelper')
+
+    self.ensureMyShootByParams = () => {
         return (req, res, next) => {
             if (req.user) {
                 if (req.user.shootList.indexOf(parseInt(req.params.id_shoot)) === -1 || req.user.isAdmin) {
+                    //reload shoots de la db dans la session
                     store.repositories.shoots.getLight(req.user.id, (err, shootList) => {
                         if (shootList.indexOf(req.params.id_shoot) === -1) {
                             //error
-                            res.redirect('/#/403')
+                            responseHelper(res, {
+                                error: "THIS SHOOT IS NOT YOURS YOU PIECE OF SHIT",
+                                status: 403
+                            }, null)
                         } else {
                             next()
                         }
                     })
-                    //reload shoots de la db dans la session
                 } else {
                     next()
                 }
             } else {
-                res.redirect('/#/403')
+                // no authenticated user
+                responseHelper(res, {
+                    error: "Authentication required",
+                    status: 401
+                }, null)
             }
-
-
-            // //Logique de vérification d'accès (user looged + shoot respectif)
-            // if (matchShoot(user, shootId) || user.isAdmin) {
-            //     next()
-            //     return 0
-            // } else {
-            //     res.sendStatus(403)
-            //     res.json({status: 403, error: 'aaarrgghhhh'})
-            // }
+        }
+    }
+    self.ensureMyShootByBody = () => { // A tester
+        return (req, res, next) => {
+            if (req.user || req.body.id_shoot) {
+                if (req.user.shootList.indexOf(parseInt(req.body.id_shoot)) === -1 || req.user.isAdmin) {
+                    //reload shoots de la db dans la session
+                    store.repositories.shoots.getLight(req.user.id, (err, shootList) => {
+                        if (shootList.indexOf(req.body.id_shoot) === -1) {
+                            //error UnAuthorized
+                            responseHelper(res, {
+                                error: "THIS SHOOT IS NOT YOURS YOU PIECE OF SHIT",
+                                status: 403
+                            }, null)
+                        } else {
+                            next()
+                        }
+                    })
+                } else {
+                    next()
+                }
+            } else {
+                // no authenticated user
+                responseHelper(res, {
+                    error: "Authentication required",
+                    status: 401
+                }, null)
+            }
+        }
+    }
+    self.ensureAuthenticated = () => {
+        return (req, res, next) => {
+            if (req.user) {
+                next()
+            } else {
+                responseHelper(res, {
+                    error: "Authentication required",
+                    status: 401
+                }, null)
+            }
         }
     }
     return self;
