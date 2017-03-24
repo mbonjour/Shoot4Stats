@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
     })
 })
 
-router.get('/:id_shoot', middlewares.permit.ensureMyShootByParams(), (req, res, next) => {
+router.get('/:id_shoot', middlewares.permit.ensureMyShootByParams(store), (req, res, next) => {
     //TODO : Mettre variable user session ?
     store.repositories.shoots.getById(1, req.params.id_shoot, (err, shoot) => {
         responseHelper(res, err, shoot)
