@@ -12,7 +12,7 @@ module.exports = (props) => {
                 order: '`Shoot`.`dateShoot` DESC',
                 include: [props.store.models.End, props.store.models.Type, props.store.models.Location]
             }).then((shoots) => {
-                callback(null, shoots.map(mapShoots)) // TODO: A voir map shoots !!!
+                callback(null, shoots.map(mapShoots))
             }).catch((err) => {
                 callback(err, null)
             })
@@ -25,7 +25,9 @@ module.exports = (props) => {
                 },
                 attributes: ['id']
             }).then((shootIds) => {
-                callback(null, shootIds.map((shoot) => {shoot.id}))
+                let result = []
+                shootIds.map((shoot) => {result.push(shoot.id)})
+                callback(null, result)
             }).catch((err) => {
                 callback(err, null)
             })
@@ -69,6 +71,7 @@ module.exports = (props) => {
                 })
                 .then((shoot) => {
                     // Check if record exists in db
+                    // TODO 
                     if (shoot) {
                         shoot.updateAttributes({
                                 finished: true
