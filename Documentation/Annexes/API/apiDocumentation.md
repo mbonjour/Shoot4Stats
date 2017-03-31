@@ -74,26 +74,32 @@ Règles de nommage:
     * Objet example :
     ```json
     {
-        Title: "",
-        Description: "",
-        Type:"",
-        Date: "about 1 year ago",
-        Location:{
-            lat: "",
-            long:""
-        }
-        AverageArrow: 9.2,
-        GoldHit: 0.55,
-        Total: 540,
-        Ends: {
-            1:{
-                Arrows : {
-                    arrow1 : { Point : 10},
-                    arrow2 : { Point : 10},
-                    arrow3 : { Point : 9}
+    "Title": "",
+    "Description": "",
+    "Type": "",
+    "Date": "about 1 year ago",
+    "Location": {
+        "lat": "",
+        "long": ""
+    }
+    "AverageArrow": 9.2,
+    "GoldHit": 0.55,
+    "Total": 540,
+    "Ends": {
+        "1": {
+            "Arrows": {
+                "arrow1": {
+                    "Point": 10
+                },
+                "arrow2": {
+                    "Point": 10
+                },
+                "arrow3": {
+                    "Point": 9
                 }
-            },
-            2: {...}
+            }
+        },
+        "2": {}
         }
     }
     ```
@@ -108,15 +114,15 @@ Règles de nommage:
     * Objet example :
     ```json
     {
-        Title : “”,
-        Description: “”,
-        nb_Ends : Set by default by Type or set by User if training,
-        nb_ArrowsByEnd : Set by default by Type or set by User if training,
-        Type : “”,
-        User : $id_User
-        Location: {
-            latitude : "",
-            longitude : ""
+        "Title" : "",
+        "Description": "",
+        "nb_Ends" : "Set by default by Type or set by User if training",
+        "nb_ArrowsByEnd" : "Set by default by Type or set by User if training",
+        "Type" : "",
+        "User" : "$id_User",
+        "Location": {
+            "latitude" : "",
+            "longitude" : ""
         }
     }
     ```
@@ -137,11 +143,11 @@ Règles de nommage:
     * Objet Example : 
     ```json
     {
-		FK_Shoot : [id_Shoot],
-		Arrows : {
-			arrow1 : { Point : 10},
-			arrow2 : { Point : 10},
-			arrow3 : { Point : 9}
+		"FK_Shoot" : [id_Shoot],
+		"Arrows" : {
+			"arrow1" : { "Point" : 10},
+			"arrow2" : { "Point" : 10},
+			"arrow3" : { "Point" : 9}
 		}
 	}
     ```

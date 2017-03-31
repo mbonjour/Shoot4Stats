@@ -54,11 +54,11 @@ router.get('/facebook/return', passport.authenticate(
 
 Ce sont les 2 routes qui permettent de s'authentifier, en effet, cela se passe comme ceci : 
 
-![Schéma déroulement de l'authentification](./Shemas/authFaceSheme.png)
+![Schéma déroulement de l'authentification](./Shemas/authFaceSheme.PNG)
 
 Ce qui me permet de faire cela aussi grâce à la récupération de l'url que vous pouvez voir 
 ```js
     req.session.url = req.query.url
 ```
 Cela permet de rediriger l'utilisateur où il voulait aller sans authentification même après l'authentification
-![Schéma déroulement de l'authentification avec récup url](./Shemas/authFaceUrlScheme.png)
+![Schéma déroulement de l'authentification avec récup url](./Shemas/authFaceUrlScheme.PNG)
