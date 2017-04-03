@@ -4,7 +4,7 @@ module.exports = {
     mapEndWithArrows: (end) => {
         return {
             id: end.idEnd,
-            Arrows: end.Arrows.map(arrowMapper)
+            arrows: end.Arrows.map(arrowMapper)
         }
     }
 }

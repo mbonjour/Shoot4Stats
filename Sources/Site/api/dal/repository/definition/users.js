@@ -10,9 +10,9 @@ module.exports = (props) => {
                 defaults: {
                     id: user.provider + '_' + user.id,
                     isAdmin: false,
-                    lastname: user.last_name,
+                    lastname: user.name.familyName,
                     email: user.emails[0].value,
-                    firstname: user.first_name
+                    firstname: user.name.givenName
                 }
             }).spread((findUser, created) => {
                 callback(null, mapUser(findUser))

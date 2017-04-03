@@ -21,7 +21,7 @@ app.use(require('express-session')({
   resave: true,
   saveUninitialized: true
 }))
-app.use(express.static(path.join(__dirname, 'static')))
+app.use(express.static(path.join(__dirname, 'client')))
 
 app.use(middlewares.passportFacebook.initialize())
 app.use(middlewares.passportFacebook.session())

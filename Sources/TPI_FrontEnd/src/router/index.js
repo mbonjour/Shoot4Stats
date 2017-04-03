@@ -10,7 +10,6 @@ let router = new Router(routes)
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     loggedIn((logged) => {
-      console.log(to)
       if (!logged) {
         window.location.replace('/api/login/facebook?url=' + to.fullPath)
       } else {
