@@ -31,7 +31,7 @@
 <script>
 export default {
   name: 'app',
-  created () {
+  mounted () {
     /* eslint-disable */
     console.log(this)
     $('.button-collapse').sideNav()

@@ -1,11 +1,23 @@
 <template>
-  <div class="shootItem" :style="borderColor">
-    <button @click="toggleDetails"></button>
-    <p>{{ shoot.title }}</p>
-    <div v-if="detailVisibility">
-      <!-- Mettre une vue consacrée aux Stats -->
-      {{ this.$store.getters.currentShoot.nb_ends }}
+  <div class="shootItem">
+    <div class="card horizontal">
+      <div class="card-image">
+        <img :src="borderColor">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          
+          <p>{{ shoot.title }}</p>
+          <i class="material-icons" @click="toggleDetails" style="padding: 5px; text-align: right;">info</i>
+          <div v-if="detailVisibility">
+            <!-- Mettre une vue consacrée aux Stats -->
+            {{ this.$store.getters.currentShoot.nb_ends }}
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  
   </div>
 </template>
 
@@ -30,16 +42,8 @@ export default {
   },
   computed: {
     borderColor () {
-      let color = this.shoot.finished ? '#0f0' : '#f00'
-      return 'border-color: ' + color + ';'
+      return this.shoot.finished ? 'https://dummyimage.com/10x100/69f054/fff.png&text=+' : 'https://dummyimage.com/10x100/e34245/0011ff.png&text=+'
     }
   }
 }
 </script>
-
-<style scoped>
-div {
-  border-style: dashed;
-  border: 2px solid;
-}
-</style>

@@ -1,6 +1,7 @@
 import Home from '@/views/Home/home'
 import Dashboard from '@/views/Dashboard/dashboard'
 import editShoot from '@/views/EditShoot/editShoot'
+import createShoot from '@/views/CreateShoot/createShoot'
 
 export default {
   routes: [
@@ -20,6 +21,12 @@ export default {
       path: '/editShoot',
       name: 'editShoot',
       component: editShoot,
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/createShoot',
+      name: 'createShoot',
+      component: createShoot,
       meta: {requiresAuth: true}
     }
   ]
