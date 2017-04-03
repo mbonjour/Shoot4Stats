@@ -6,12 +6,13 @@
       </div>
       <div class="card-stacked">
         <div class="card-content">
-          
+          <div class="tout-dedans">
           <p>{{ shoot.title }}</p>
-          <i class="material-icons" @click="toggleDetails" style="padding: 5px; text-align: right;">info</i>
+          <i class="material-icons" @click="toggleDetails">info</i>
           <div v-if="detailVisibility">
-            <!-- Mettre une vue consacrée aux Stats -->
+            <!-- Mettre un composant consacrée aux Stats -->
             {{ this.$store.getters.currentShoot.nb_ends }}
+          </div>
           </div>
         </div>
       </div>
@@ -47,3 +48,11 @@ export default {
   }
 }
 </script>
+
+<style>
+#tout-dedans.i {
+  position: absolute;
+  right: 0px;
+  padding: 3px;
+}
+</style>

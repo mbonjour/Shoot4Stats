@@ -9,7 +9,7 @@ module.exports = () => {
                 if (req.user.shootList.indexOf(parseInt(req.params.id_shoot)) === -1 || req.user.isAdmin) {
                     //reload shoots de la db dans la session
                     store.repositories.shoots.getLight(req.user.id, (err, shootList) => {
-                        if (shootList.indexOf(req.params.id_shoot) === -1) {
+                        if (shootList.indexOf(parseInt(req.params.id_shoot)) === -1) {
                             //error
                             responseHelper(res, {
                                 error: "THIS SHOOT IS NOT YOURS YOU PIECE OF SHIT",
