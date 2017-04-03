@@ -10,7 +10,6 @@ export default new Vuex.Store({
       axios.get('/api/shoots/' + shoot).then((response) => {
         state.currentShoot = response.data
       })
-      // state.currentShoot = shoot
     }
   },
 

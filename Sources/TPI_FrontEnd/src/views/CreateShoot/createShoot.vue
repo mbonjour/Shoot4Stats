@@ -45,6 +45,9 @@
           </div>
         </div>
       </form>
+      <button @click="validateSend()" class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+      </button>
     </div>
   </div>
 </template>
@@ -52,13 +55,13 @@
 <script>
 // Gestion du Shoot côté API :
 // var shootObject = {
-//         title: req.body.title,
-//         description: req.body.description,
-//         nbEnds: req.body.nb_ends,
-//         nbArrowsByEnd: req.body.nb_arrows_end,
-//         type: req.body.type,
+//         title: this.title,
+//         description: this.description,
+//         nbEnds: this.nb_ends,
+//         nbArrowsByEnd: this.nb_arrows_end,
+//         type: this.type,
 //         user: req.user.id,
-//         location: req.body.Location
+//         location: this.Location
 //     }
 export default {
   name: 'createShoot',
@@ -80,17 +83,7 @@ export default {
   },
   mounted () {
     /* eslint-disable */
-    $(document).ready(function() {
-      $('select').material_select();
-    })
     $('#description').trigger('autoresize')
-    if (this.type === 'indoor') {
-      this.nb_Ends = 20
-      this.nb_ArrowsByEnd = 3
-    } else if (this.type === 'outdoor') {
-      this.nb_Ends = 12
-      this.nb_ArrowsByEnd = 6
-    }
     /* eslint-enable */
   },
   watch: {
@@ -102,6 +95,26 @@ export default {
         this.nb_Ends = 12
         this.nb_ArrowsByEnd = 6
       }
+    }
+  },
+  methods: {
+    validateSend () {
+      this.$http.post('/api/shoots', {
+        title: this.title,
+        description: this.description,
+        nbEnds: this.nb_Ends,
+        nbArrowsByEnd: this.nb_ArrowsByEnd,
+        type: this.type,
+        location: this.location
+      })
+      .then((response) => {
+        console.log(response)
+        this.$store.dispatch('setShoot', response.data.id)
+        this.$router.push({ path: '/editShoot' })
+      })
+      .catch((err) => {
+        console.log(err)
+      })
     }
   }
 }
