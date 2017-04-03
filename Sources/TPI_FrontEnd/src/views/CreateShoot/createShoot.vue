@@ -1,12 +1,5 @@
 <template>
   <div class="createShoot">
-    <p>{{ title }}</p>
-    <p>{{ description }}</p>
-    <p>{{ location.latitude }}</p>
-    <p>{{ location.longitude }}</p>
-    <p>{{ type }}</p>
-    <p>{{ nb_Ends }}</p>
-    <p>{{ nb_ArrowsByEnd }}</p>
     <div class="row">
       <form class="col s12">
         <div class="row">
@@ -33,15 +26,13 @@
             <label for="street">Street</label>
           </div>
         </div>
-        <div class="input-field col s12">
-          <select v-model="type" class="browser-default">
-            <option disabled value="">Choose your option</option>
-            <option>training</option>
-            <option>outdoor</option>
-            <option>indoor</option>
-          </select>
-          <label>Type</label>
-        </div>
+        <label>Type</label>
+        <select v-model="type" class="browser-default">
+          <option disabled value="">Choose your option</option>
+          <option>training</option>
+          <option>outdoor</option>
+          <option>indoor</option>
+        </select>
         <div class="row">
           <!-- Materialize fais chier quand on rempli avec V-model -->
           <div class="input-field col s6">
@@ -111,7 +102,6 @@ export default {
         this.nb_Ends = 12
         this.nb_ArrowsByEnd = 6
       }
-      console.log(this)
     }
   }
 }
