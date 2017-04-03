@@ -8,10 +8,12 @@
         <ul class="right hide-on-med-and-down">
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/dashboard">Dashboard</router-link></li>
+          <li><router-link to="/createShoot">Create A Shoot !</router-link></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/dashboard">Dashboard</router-link></li>
+          <li><router-link to="/createShoot">Create A Shoot !</router-link></li>
         </ul>
       </div>
     </nav>
@@ -34,7 +36,3 @@ export default {
   }
 }
 </script>
-
-<style>
-
-</style>
