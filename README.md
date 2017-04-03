@@ -1,8 +1,16 @@
 # Shoot4Stats
 Project for the end of my apprenticeship - WebApp stats for Archery
 
+## Pour débuter
+* Installer Node JS v7.4.0
+* Aller dans Sources --> TPI_Frontend
+    * npm i
+    * npm run build
+* Aller dans Sources --> Site
+    * npm i
+    * node app.js
 
-Directory explanation :
+## Directory explanation :
 
 * Documentation
     * Annexes
