@@ -10,6 +10,7 @@
       <li class="waves-effect waves-light"><router-link to="/createShoot/training">training</router-link><li>
       <li class="waves-effect waves-light"><router-link to="/createShoot/indoor">indoor</router-link></li>
       <li class="waves-effect waves-light"><router-link to="/createShoot/outdoor">outdoor</router-link></li>
+      <li class="waves-effect waves-light"><router-link to="/dashboard">cancel</router-link></li>
     </ul>
   </div>
   </div>

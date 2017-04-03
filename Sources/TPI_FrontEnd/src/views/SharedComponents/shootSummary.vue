@@ -1,5 +1,5 @@
 <template>
-  <div class="shootItem">
+  <div class="shootSummary">
     <div class="card horizontal">
       <div class="card-image">
         <img :src="borderColor">
@@ -7,24 +7,21 @@
       <div class="card-stacked">
         <div class="card-content">
           <div class="tout-dedans">
-          <p>{{ shoot.title }}</p>
-          <i class="material-icons" @click="toggleDetails">info</i>
-          <div v-if="detailVisibility">
-            <!-- Mettre un composant consacrée aux Stats -->
-            {{ this.$store.getters.currentShoot.nb_ends }}
+            <p>{{ shoot.title }}</p>
+            <i class="material-icons" @click="toggleDetails">info</i>
           </div>
-          </div>
+            <shootDetails v-if="detailVisibility"></shootDetails>
         </div>
       </div>
     </div>
   </div>
-  
-  </div>
 </template>
 
 <script>
+import shootDetails from './shootDetails'
 export default {
-  name: 'shootItem',
+  name: 'shootSummary',
+  components: { shootDetails },
   props: ['shoot'],
   methods: {
     toggleDetails () {
