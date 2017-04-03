@@ -24,7 +24,7 @@ export default {
       meta: {requiresAuth: true}
     },
     {
-      path: '/createShoot',
+      path: '/createShoot/:type',
       name: 'createShoot',
       component: createShoot,
       meta: {requiresAuth: true}

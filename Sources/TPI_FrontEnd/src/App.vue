@@ -3,7 +3,7 @@
   <div id="app">
     <nav>
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
+        <a href="#" class="brand-logo">Shoot4Stats</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li><router-link to="/">Home</router-link></li>
@@ -13,7 +13,7 @@
         <ul class="side-nav" id="mobile-demo">
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/dashboard">Dashboard</router-link></li>
-          <li><router-link to="/createShoot">Create A Shoot !</router-link></li>
+          <li><router-link to="/createShoot/training">Create A Shoot !</router-link></li>
         </ul>
       </div>
     </nav>

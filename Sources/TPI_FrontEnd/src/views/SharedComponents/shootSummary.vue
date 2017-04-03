@@ -44,7 +44,7 @@ export default {
   computed: {
     borderColor () {
       // Mettre images en local
-      return this.shoot.finished ? 'https://dummyimage.com/10x100/69f054/fff.png&text=+' : 'https://dummyimage.com/10x100/e34245/0011ff.png&text=+' 
+      return this.shoot.finished ? 'https://dummyimage.com/10x100/69f054/fff.png&text=+' : 'https://dummyimage.com/10x100/e34245/0011ff.png&text=+'
     }
   }
 }
