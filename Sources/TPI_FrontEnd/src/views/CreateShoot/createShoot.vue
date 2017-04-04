@@ -19,7 +19,7 @@
             <input v-model="location.latitude" id="city" type="text" class="validate">
             <label for="city">City</label>
           </div>
-        </div>
+        </div>  
         <div class="row">
           <div class="input-field col s12">
             <input v-model="location.longitude" id="street" type="text" class="validate">
@@ -45,6 +45,7 @@
           </div>
         </div>
       </form>
+      <!-- TODO: Boutton désactivé si pas tous les champs sont remplis -->
       <button @click="validateSend()" class="btn waves-effect waves-light" type="submit" name="action">Submit
         <i class="material-icons right">send</i>
       </button>
@@ -79,7 +80,8 @@ export default {
     }
   },
   created () {
-    this.type = this.$route.params.type
+    console.log(this.$route)
+    this.type = this.$route.params.type || 'training'
   },
   mounted () {
     /* eslint-disable */

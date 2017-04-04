@@ -21,10 +21,10 @@ export default {
       path: '/editShoot',
       name: 'editShoot',
       component: editShoot,
-      meta: {requiresAuth: true}
+      meta: {requiresAuth: false}
     },
     {
-      path: '/createShoot/:type',
+      path: '/createShoot/:type?',
       name: 'createShoot',
       component: createShoot,
       meta: {requiresAuth: true}

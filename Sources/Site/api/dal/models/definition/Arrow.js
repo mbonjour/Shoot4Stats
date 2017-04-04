@@ -22,7 +22,7 @@ module.exports = function (sequelize, SeqInit) {
             allowNull: false,
             validate: {
                 min: 0,
-                max: 10
+                max: 11
             }
         },
         fkEnd: {

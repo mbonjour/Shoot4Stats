@@ -122,13 +122,15 @@ var calculateSummarySpecifications = (shoot, callback) => {
 
     shoot.Ends.forEach((end, index, array) => {
         end.Arrows.forEach((arrow, index, array) => {
-            total += arrow.dataValues.point
-            if (arrow.dataValues.point == 9) {
+          var currentArrowValue = arrow.dataValues.point > 10 ? 10 : arrow.dataValues.point
+            total += currentArrowValue
+            if (currentArrowValue == 9) {
                 nbNine++
-            } else if (arrow.dataValues.point == 10) {
+            } else if (currentArrowValue == 10) {
                 nbTen++
             }
         })
+
         if (index == array.length - 1) {
             shoot.averageArrow = total / (array.length * shoot.dataValues.arrowsByEnd)
             shoot.total = total

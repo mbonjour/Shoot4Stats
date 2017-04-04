@@ -9,7 +9,7 @@
           <div><strong>{{ this.shoot.title }}</strong>        {{ this.shoot.date }}</div>
           <div>{{ this.shoot.description }}</div>
           <div>Nbre flèches : {{ this.shoot.nb_ends*this.shoot.nb_arrows_by_end }}/{{ this.shoot.nb_total_ends*this.shoot.nb_arrows_by_end }}</div>
-          <div class="i-details"><i class="material-icons" @click="toggleDetails">{{ iconToShow }}</i>
+          <div class="i-details"><i class="material-icons" @click="toggleDetails">{{ iconToShow }}</i></div>
           <shootDetails v-if="detailVisibility"></shootDetails>
         </div>
       </div>

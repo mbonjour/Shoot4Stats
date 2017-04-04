@@ -13,11 +13,10 @@
         <ul class="side-nav" id="mobile-demo">
           <li><router-link to="/">Home</router-link></li>
           <li><router-link to="/dashboard">Dashboard</router-link></li>
-          <li><router-link to="/createShoot/training">Create A Shoot !</router-link></li>
+          <li><router-link to="/createShoot">Create A Shoot !</router-link></li>
         </ul>
       </div>
     </nav>
-    <!-- Mettre ici Layout sympa, gèrer ici les menus -> bonne idée ? -->
     <router-view></router-view>
   </div>
 </template>
