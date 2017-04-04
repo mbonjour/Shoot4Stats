@@ -102,10 +102,10 @@ export default {
       this.$http.post('/api/shoots', {
         title: this.title,
         description: this.description,
-        nbEnds: this.nb_Ends,
-        nbArrowsByEnd: this.nb_ArrowsByEnd,
+        nb_ends: this.nb_Ends,
+        nb_arrows_end: this.nb_ArrowsByEnd,
         type: this.type,
-        location: this.location
+        Location: this.location
       })
       .then((response) => {
         console.log(response)
