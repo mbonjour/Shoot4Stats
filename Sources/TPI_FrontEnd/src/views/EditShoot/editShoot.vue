@@ -2,12 +2,21 @@
 <div class="editShoot">
   <table>
     <tr v-for="(end, index) in this.$store.getters.currentShoot.ends">
-      <td class="nbEnd">{{ index }}</td>
+      <td class="nbEnd">End {{ index }}</td>
       <td v-for="arrow in end.arrows"><arrowItem :pointValue="arrow.point"></arrowItem></td>
     </tr>
   </table>
-   <input type="text">
-  <button class="validateButton" @click="validateSend()">Add End</button>
+  <div>
+    <arrowItem v-for="arrow in arrows" :pointValue="arrow.point"></arrowItem>
+  </div>
+  <select v-model="currentArrow" class="browser-default">
+    <option disabled value="">Choose your score</option>
+    <option value="11">X</option>
+    <option v-for="i in 11">{{ i }}</option>
+    <option value="0">M</option>
+  </select>
+  <button v-if="!arrowComplete" class="validateButton" @click="addArrow()">Select her and hit add</button>
+  <button v-else class="validateButton" @click="validateSend()">Add End</button>
 </div>
 </template>
 
@@ -19,10 +28,9 @@ export default {
   data () {
     return {
       shoot: null,
-      // Les points doivent être des chiffres, je ne gère pas les Xs
-      arrow1: null,
-      arrow2: null,
-      arrow3: null
+      arrows: [],
+      arrowComplete: false,
+      currentArrow: null
     }
   },
   created () {
@@ -30,20 +38,19 @@ export default {
   },
   methods: {
     validateSend () {
-      this.$http.post('/api/ends', {
+      this.$store.dispatch('addEnd', {
         id_shoot: this.$store.getters.currentShoot.id,
-        arrows: [
-          {
-            point: this.arrow1
-          },
-          {
-            point: this.arrow2
-          },
-          {
-            point: this.arrow3
-          }
-        ]
+        arrows: this.arrows
       })
+      this.arrows = []
+      this.arrowComplete = false
+    },
+    addArrow () {
+      console.log(this.currentArrow)
+      this.arrows.push({point: parseInt(this.currentArrow)})
+      if (this.arrows.length === this.$store.getters.currentShoot.nb_arrows_by_end) {
+        this.arrowComplete = true
+      }
     }
   }
 }

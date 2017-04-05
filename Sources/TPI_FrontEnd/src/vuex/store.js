@@ -12,6 +12,7 @@ export default new Vuex.Store({
       })
     },
     ADD_END_CURRENT_SHOOT (state, end) {
+      let temp = state.currentShoot
       state.currentShoot.ends.push(end)
       axios.post('/api/ends', end)
       .then((response) => {
@@ -19,6 +20,7 @@ export default new Vuex.Store({
       })
       .catch((err) => {
         // Toast de l'err ?
+        state.currentShoot = temp
         console.log(err)
       })
     }
