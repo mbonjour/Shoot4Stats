@@ -1,6 +1,6 @@
 <template>
 <div class="editShoot">
-  <button v-if="this.$store.getters.currentShoot.finished" class="finishButton" @click="this.$route.push({path:'/dashboard'})">Go to Dashboard (Shoot Finished)</button>
+  <button v-if="this.$store.getters.currentShoot.finished" class="finishButton" @click="redirect()">Go to Dashboard (Shoot Finished)</button>
   <table>
     <tr v-for="(end, index) in this.$store.getters.currentShoot.ends">
       <td class="nbEnd">End {{ index }}</td>
@@ -49,6 +49,9 @@ export default {
       if (this.arrows.length === this.$store.getters.currentShoot.nb_arrows_by_end) {
         this.arrowComplete = true
       }
+    },
+    redirect () {
+      this.$router.push({path: '/dashboard'})
     }
   },
   created () {

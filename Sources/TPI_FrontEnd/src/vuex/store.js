@@ -10,6 +10,10 @@ export default new Vuex.Store({
       axios.get('/api/shoots/' + shootID).then((response) => {
         state.currentShoot = response.data
       })
+      .catch((err) => {
+        // Toast de l'err
+        console.log(err)
+      })
     },
     ADD_END_CURRENT_SHOOT (state, end) {
       let temp = state.currentShoot
