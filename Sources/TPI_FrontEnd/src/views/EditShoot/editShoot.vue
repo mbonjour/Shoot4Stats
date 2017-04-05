@@ -1,11 +1,9 @@
 <template>
 <div class="editShoot">
-   
-
   <table>
     <tr v-for="(end, index) in this.$store.getters.currentShoot.ends">
       <td class="nbEnd">{{ index }}</td>
-      <td v-for="arrow in end.arrows">{{ arrow.point }}</td>
+      <td v-for="arrow in end.arrows"><arrowItem :pointValue="arrow.point"></arrowItem></td>
     </tr>
   </table>
    <input type="text">
@@ -14,8 +12,10 @@
 </template>
 
 <script>
+import arrowItem from '../SharedComponents/arrowItem'
 export default {
   name: 'editShoot',
+  components: {arrowItem},
   data () {
     return {
       shoot: null,
@@ -53,8 +53,9 @@ export default {
 table {
   width: 100%;
   border: 1px solid gray;
+  text-align: center;
 }
-td, th {
+td, tr {
   text-align: center;
   border: 1px solid gray;
 }
