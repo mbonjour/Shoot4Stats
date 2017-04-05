@@ -101,7 +101,6 @@ export default {
   methods: {
     validateSend () {
       let valide = true
-      console.log(this)
       if (this.nb_Ends && this.nb_ArrowsByEnd && this.description && this.title) {
         valide = true
       } else {
@@ -118,7 +117,7 @@ export default {
         })
         .then((response) => {
           this.$store.dispatch('setShoot', response.data.id)
-          this.$router.push({ path: '/editShoot' })
+          this.$router.push({path: '/editShoot/' + response.data.id})
         })
         .catch((err) => {
           // Toast de l'erreur ?

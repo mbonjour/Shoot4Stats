@@ -3,7 +3,7 @@
   <button v-if="this.$store.getters.currentShoot.finished" class="finishButton" @click="redirect()">Go to Dashboard (Shoot Finished)</button>
   <table>
     <tr v-for="(end, index) in this.$store.getters.currentShoot.ends">
-      <td class="nbEnd">End {{ index }}</td>
+      <td class="nbEnd">End {{ index + 1 }}</td>
       <td v-for="arrow in end.arrows"><arrowItem :pointValue="arrow.point"></arrowItem></td>
     </tr>
     <tr>
@@ -48,7 +48,6 @@ export default {
       this.arrowComplete = false
     },
     addArrow () {
-      // TODO: Ordonner arrows (slice ?)
       this.arrows.push({point: parseInt(this.currentArrow)})
       this.arrows = this.arrows.sort((a, b) => {
         return b.point - a.point

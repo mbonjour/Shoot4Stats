@@ -1,6 +1,10 @@
 <template>
   <div class="dashboard">
     <!-- <span v-if="shoots">Go create a Shoot !</span>  Vérifier qu'il y aie des Shoots  -->
+    <div v-if="this.shoots.length === 0">
+      <p>You don't have any Shoots yet !</p>
+      <p>Please go to <router-link to="/createShoot">Create a Shoot</router-link> or click the "plus" button to begin !!!</p>
+    </div>
     <shootSummary v-for="currentShoot in shoots" :key="currentShoot.id" :shoot="currentShoot"></shootSummary>
     <div class="fixed-action-btn toolbar">
       <a class="btn-floating btn-large red">

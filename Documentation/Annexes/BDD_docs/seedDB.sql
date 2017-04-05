@@ -5,8 +5,8 @@ SET time_zone = "+01:00";
 
 
 
-INSERT INTO `user` (`idUser`, `Firstname`, `Lastname`, `email`, `isAdmin`, `hashPass`) VALUES
-(1, 'Mickael', 'Bonjour', 'mbonjour@protonmail.ch', 0, 'mic11888');
+INSERT INTO `user` (`idUser`, `Firstname`, `Lastname`, `email`, `isAdmin`) VALUES
+(1, 'Mickael', 'Bonjour', 'mbonjour@protonmail.ch', 0);
 
 INSERT INTO `type` (`idType`, `Name`) VALUES
 (1, 'Outdoor'),
@@ -120,9 +120,3 @@ INSERT INTO `arrow` (`idArrow`, `PosX`, `PosY`, `Point`, `FKEnd`) VALUES
 (58, NULL, NULL, 10, 30),
 (59, NULL, NULL, 10, 30),
 (60, NULL, NULL, 10, 30);
-
-
-
-
-
-
