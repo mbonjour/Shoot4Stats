@@ -1,6 +1,6 @@
 <template>
-  <div class="arrowItem">
-    <div class="pastillePoint" :style="color">{{ pointView }}</div>
+  <div class="arrowItem":style="color">
+    {{ pointView }}
   </div>
 </template>
 
@@ -11,6 +11,7 @@ export default {
   computed: {
     color () {
       switch (this.pointValue) {
+        // TODO : Modif classe au lieu de style
         case 11:
         case 10:
         case 9:
@@ -57,7 +58,7 @@ p {
   margin: 0px;
   padding:1px;
 }
-.pastillePoint {
+.arrowItem {
   border-radius:50%;
   width:30px;
   height:30px;

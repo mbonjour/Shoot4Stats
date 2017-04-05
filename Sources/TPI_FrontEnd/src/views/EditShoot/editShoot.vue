@@ -6,9 +6,13 @@
       <td class="nbEnd">End {{ index }}</td>
       <td v-for="arrow in end.arrows"><arrowItem :pointValue="arrow.point"></arrowItem></td>
     </tr>
+    <tr>
+      <td class="nbEnd">Current End</td>
+      <td v-for="arrow in arrows"><arrowItem :pointValue="arrow.point"></arrowItem></td>
+    </tr>
   </table>
   <div>
-    <span><arrowItem v-for="arrow in arrows" :pointValue="arrow.point"></arrowItem></span>
+    
   </div>
   <select v-model="currentArrow" class="browser-default">
     <option disabled value="">Select her and hit add</option>
@@ -44,8 +48,11 @@ export default {
       this.arrowComplete = false
     },
     addArrow () {
-      console.log(this.currentArrow)
+      // TODO: Ordonner arrows (slice ?)
       this.arrows.push({point: parseInt(this.currentArrow)})
+      this.arrows = this.arrows.sort((a, b) => {
+        return b.point - a.point
+      })
       if (this.arrows.length === this.$store.getters.currentShoot.nb_arrows_by_end) {
         this.arrowComplete = true
       }
