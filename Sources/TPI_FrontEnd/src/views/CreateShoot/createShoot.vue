@@ -36,11 +36,11 @@
         <div class="row">
           <!-- Materialize fais chier quand on rempli avec V-model -->
           <div class="input-field col s6">
-            <input v-model="nb_Ends" id="nb_Ends" type="text" class="validate">
+            <input v-model="nb_Ends" id="nb_Ends" type="number" class="validate">
             <label for="nb_Ends">nb_Ends</label>
           </div>
           <div class="input-field col s6">
-            <input v-model="nb_ArrowsByEnd" id="nb_ArrowsByEnd" type="text" class="validate">
+            <input v-model="nb_ArrowsByEnd" id="nb_ArrowsByEnd" type="number" class="validate">
             <label for="nb_ArrowsByEnd">nb_ArrowsByEnd</label>
           </div>
         </div>
@@ -68,19 +68,18 @@ export default {
   name: 'createShoot',
   data () {
     return {
-      description: '',
-      title: '',
+      description: null,
+      title: null,
       location: {
-        latitude: '',
-        longitude: ''
+        latitude: null,
+        longitude: null
       },
-      type: '',
+      type: null,
       nb_ArrowsByEnd: null,
       nb_Ends: null
     }
   },
   created () {
-    console.log(this.$route)
     this.type = this.$route.params.type || 'training'
   },
   mounted () {
@@ -101,22 +100,31 @@ export default {
   },
   methods: {
     validateSend () {
-      this.$http.post('/api/shoots', {
-        title: this.title,
-        description: this.description,
-        nb_ends: this.nb_Ends,
-        nb_arrows_end: this.nb_ArrowsByEnd,
-        type: this.type,
-        Location: this.location
-      })
-      .then((response) => {
-        console.log(response)
-        this.$store.dispatch('setShoot', response.data.id)
-        this.$router.push({ path: '/editShoot' })
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      let valide = true
+      console.log(this)
+      if (this.nb_Ends && this.nb_ArrowsByEnd && this.description && this.title) {
+        valide = true
+      } else {
+        valide = false
+      }
+      if (valide) {
+        this.$http.post('/api/shoots', {
+          title: this.title,
+          description: this.description,
+          nb_ends: this.nb_Ends,
+          nb_arrows_end: this.nb_ArrowsByEnd,
+          type: this.type,
+          Location: this.location
+        })
+        .then((response) => {
+          this.$store.dispatch('setShoot', response.data.id)
+          this.$router.push({ path: '/editShoot' })
+        })
+        .catch((err) => {
+          // Toast de l'erreur ?
+          console.log(err)
+        })
+      }
     }
   }
 }

@@ -6,16 +6,30 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   mutations: {
-    SET_CURRENT_SHOOT (state, shoot) {
-      axios.get('/api/shoots/' + shoot).then((response) => {
+    SET_CURRENT_SHOOT (state, shootID) {
+      axios.get('/api/shoots/' + shootID).then((response) => {
         state.currentShoot = response.data
+      })
+    },
+    ADD_END_CURRENT_SHOOT (state, end) {
+      state.currentShoot.ends.push(end)
+      axios.post('/api/ends', end)
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((err) => {
+        // Toast de l'err ?
+        console.log(err)
       })
     }
   },
 
   actions: {
-    setShoot ({ commit }, shoot) {
-      commit('SET_CURRENT_SHOOT', shoot)
+    setShoot ({ commit }, shootID) {
+      commit('SET_CURRENT_SHOOT', shootID)
+    },
+    addEnd ({ commit }, end) {
+      commit('ADD_END_CURRENT_SHOOT', end)
     }
   },
 

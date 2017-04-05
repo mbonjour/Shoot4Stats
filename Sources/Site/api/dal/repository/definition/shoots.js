@@ -102,12 +102,12 @@ module.exports = (props) => {
                     type: type.id,
                     user: params.user //TODO: voir avec auth pour récuperer l'user
                 }).then((shoot) => {
-                    if (params.location) {
-                        addLocationAndLink(params.location, shoot.id, props.store.models, (err, created) => {
-                            callback(err, created) // TODO:Mapper
+                    if (params.location.latitude !== null && params.location.longitude !== null) {
+                        addLocationAndLink(params.location, shoot.id, props.store.models, (err, shoot) => {
+                            callback(err, shoot) // TODO:Mapper
                         })
                     } else {
-                        callback(null, shoot) // TODO:Mapper
+                        callback(null, shoot.dataValues) // TODO:Mapper
                     }
                 })
             })
