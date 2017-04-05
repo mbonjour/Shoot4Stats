@@ -18,7 +18,7 @@ export default {
       meta: {requiresAuth: true}
     },
     {
-      path: '/editShoot',
+      path: '/editShoot/:shootId?',
       name: 'editShoot',
       component: editShoot,
       meta: {requiresAuth: false}

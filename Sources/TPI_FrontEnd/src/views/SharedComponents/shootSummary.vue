@@ -25,11 +25,11 @@ export default {
   props: ['shoot'],
   methods: {
     toggleDetails () {
-      this.$store.dispatch('setShoot', this.shoot.id)
       if (this.shoot.finished) {
+        this.$store.dispatch('setShoot', this.shoot.id)
         this.detailVisibility = !this.detailVisibility
       } else {
-        this.$router.push({ path: '/editShoot' })
+        this.$router.push({ path: '/editShoot/' + this.shoot.id })
       }
     }
   },

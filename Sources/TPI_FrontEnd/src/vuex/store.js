@@ -14,6 +14,10 @@ export default new Vuex.Store({
     ADD_END_CURRENT_SHOOT (state, end) {
       let temp = state.currentShoot
       state.currentShoot.ends.push(end)
+      state.currentShoot.nb_ends += 1
+      if (state.currentShoot.nb_ends === state.currentShoot.nb_total_ends) {
+        state.currentShoot.finished = true
+      }
       axios.post('/api/ends', end)
       .then((response) => {
         console.log(response)

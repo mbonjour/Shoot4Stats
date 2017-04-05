@@ -1,5 +1,6 @@
 <template>
 <div class="editShoot">
+  <button v-if="this.$store.getters.currentShoot.finished" class="finishButton" @click="this.$route.push({path:'/dashboard'})">Go to Dashboard (Shoot Finished)</button>
   <table>
     <tr v-for="(end, index) in this.$store.getters.currentShoot.ends">
       <td class="nbEnd">End {{ index }}</td>
@@ -7,15 +8,15 @@
     </tr>
   </table>
   <div>
-    <arrowItem v-for="arrow in arrows" :pointValue="arrow.point"></arrowItem>
+    <span><arrowItem v-for="arrow in arrows" :pointValue="arrow.point"></arrowItem></span>
   </div>
   <select v-model="currentArrow" class="browser-default">
-    <option disabled value="">Choose your score</option>
-    <option value="11">X</option>
-    <option v-for="i in 11">{{ i }}</option>
+    <option disabled value="">Select her and hit add</option>
     <option value="0">M</option>
+    <option v-for="i in 10">{{ i }}</option>
+    <option value="11">X</option>
   </select>
-  <button v-if="!arrowComplete" class="validateButton" @click="addArrow()">Select her and hit add</button>
+  <button v-if="!arrowComplete" class="validateButton" @click="addArrow()">Add Arrow</button>
   <button v-else class="validateButton" @click="validateSend()">Add End</button>
 </div>
 </template>
@@ -33,9 +34,6 @@ export default {
       currentArrow: null
     }
   },
-  created () {
-    this.shoot = this.$store.getters.currentShoot
-  },
   methods: {
     validateSend () {
       this.$store.dispatch('addEnd', {
@@ -51,6 +49,11 @@ export default {
       if (this.arrows.length === this.$store.getters.currentShoot.nb_arrows_by_end) {
         this.arrowComplete = true
       }
+    }
+  },
+  created () {
+    if (this.$route.params.shootId) {
+      this.$store.dispatch('setShoot', this.$route.params.shootId)
     }
   }
 }
@@ -70,6 +73,11 @@ td, tr {
   width: 100%;
   position: fixed;
   bottom: 0px;
+}
+.finishButton {
+  width: 100%;
+  position: fixed;
+  top: 0px;
 }
 .nbEnd {
   border-right: 1px solid gray;

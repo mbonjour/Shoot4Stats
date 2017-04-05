@@ -1,6 +1,6 @@
 <template>
   <div class="arrowItem">
-    <div class="pastillePoint" :style="color"><span>{{ pointView }}</span></div>
+    <div class="pastillePoint" :style="color">{{ pointView }}</div>
   </div>
 </template>
 
@@ -51,6 +51,7 @@ export default {
 div {
   margin: auto;
   padding: 2px;
+  text-align: center;
 }
 p {
   margin: 0px;
