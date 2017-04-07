@@ -1,7 +1,7 @@
 /* eslint-disable */
 <template>
   <div id="app">
-    <nav class="green accent-2">
+    <nav style="background-color: #41B883;">
       <div class="nav-wrapper">
         <a href="#" class="brand-logo">Shoot4Stats</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>

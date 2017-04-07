@@ -46,7 +46,7 @@
         </div>
       </form>
       <!-- TODO: Boutton désactivé si pas tous les champs sont remplis -->
-      <button @click="validateSend()" class="btn waves-effect waves-light teal darken-4" type="submit" name="action">
+      <button @click="validateSend()" class="btn waves-effect waves-light" style="background-color: #35495E;" type="submit" name="action">
         Submit
         <i class="material-icons right">send</i>
       </button>
