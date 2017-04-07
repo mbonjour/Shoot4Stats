@@ -40,6 +40,12 @@ export default {
   },
   methods: {
     validateSend () {
+      // Voir pour éviter redondance
+      // this.arrows.push({point: parseInt(this.currentArrow)})
+      // this.arrows = this.arrows.sort((a, b) => {
+      //   return b.point - a.point
+      // })
+      this.addArrow()
       this.$store.dispatch('addEnd', {
         id_shoot: this.$store.getters.currentShoot.id,
         arrows: this.arrows
@@ -52,7 +58,7 @@ export default {
       this.arrows = this.arrows.sort((a, b) => {
         return b.point - a.point
       })
-      if (this.arrows.length === this.$store.getters.currentShoot.nb_arrows_by_end) {
+      if (this.arrows.length >= this.$store.getters.currentShoot.nb_arrows_by_end - 1) {
         this.arrowComplete = true
       }
     },
