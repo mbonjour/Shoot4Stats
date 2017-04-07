@@ -9,6 +9,9 @@ Project for the end of my apprenticeship - WebApp stats for Archery
 * Aller dans Sources --> Site
     * npm i
     * node app.js
+* Puis enfin dans Sources --> Site --> config
+  * renommer le fichier _config-samples.json_ en _configs.json_
+  * Enlever le commentaire dans ce fichier et mettez vos informations personelles
 
 ## Directory explanation :
 

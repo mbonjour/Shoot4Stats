@@ -8,7 +8,7 @@ const mapper = {
             id: shoot.id,
             title: shoot.title,
             description: shoot.description,
-            date: moment.utc(shoot.date.toISOString().slice(0, -1) + "+0100").fromNow(),
+            date: moment.utc(shoot.date.toISOString().slice(0, -1)).fromNow(),
             Location: locationMapper.map(shoot.Location),
             type: shoot.Type.name,
             nb_ends: shoot.Ends.length,
