@@ -7,7 +7,7 @@
     </div>
     <shootSummary v-for="currentShoot in shoots" :key="currentShoot.id" :shoot="currentShoot"></shootSummary>
     <div class="fixed-action-btn toolbar">
-      <a class="btn-floating btn-large" style="background-color: #35495E;">
+      <a class="btn-floating btn-large" style="background-color: #41B883;">
         <i class="large material-icons">add</i>
       </a>
       <ul>
