@@ -20,10 +20,10 @@
     <option value="11">X</option>
   </select>
   <p>You're at : {{ this.$store.getters.currentShoot.nb_ends }}/{{ this.$store.getters.currentShoot.nb_total_ends }} ends</p>
-  <div><button @click="finishShoot()" v-if="!this.$store.getters.currentShoot.finished">Give UP !</button></div>
-  <div><button v-if="!arrowComplete" class="validateButton" @click="addArrow()">Add Arrow</button>
+  <div><button @click="finishShoot()" v-if="!this.$store.getters.currentShoot.finished" class="finishButton"><strong> UP !</strong></button></div>
+  <div><button v-if="!arrowComplete" class="validateButton" @click="addArrow()"><strong>Add Arrow</strong></button>
   <button v-else class="validateButton" @click="validateSend()">Add End</button>
-  <button v-if="this.$store.getters.currentShoot.finished" class="finishButton" @click="redirect()">Go to Dashboard (Shoot Finished)</button></div>
+  <button v-if="this.$store.getters.currentShoot.finished" class="redirectButton" @click="redirect()">Go to Dashboard (Shoot Finished)</button></div>
 </div>
 </template>
 
@@ -93,15 +93,30 @@ td, tr {
 }
 .validateButton {
   width: 100%;
+  height: 50px;
   position: fixed;
   bottom: 0px;
+  color: #35495E;
+  background-color: #41B883;
+  border: none;
 }
-.finishButton {
+.redirectButton {
   width: 100%;
+  height: 50px;
   position: fixed;
   bottom: 0px;
+  color: #35495E;
+  background-color: #41B883;
+  border: none;
 }
 .nbEnd {
   border-right: 1px solid gray;
+}
+.finishButton {
+  width: 100px;
+  height: 40px;
+  color: #35495E;
+  background-color: #41B883;
+  border: none;
 }
 </style>
