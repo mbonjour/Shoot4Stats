@@ -7,13 +7,13 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/dashboard">Dashboard</router-link></li>
-          <li><router-link to="/createShoot">Create A Shoot !</router-link></li>
+          <li v-if="logged"><router-link to="/dashboard">Dashboard</router-link></li>
+          <li v-if="logged"><router-link to="/createShoot">Create A Shoot !</router-link></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/dashboard">Dashboard</router-link></li>
-          <li><router-link to="/createShoot">Create A Shoot !</router-link></li>
+          <li v-if="logged"><router-link to="/dashboard">Dashboard</router-link></li>
+          <li v-if="logged"><router-link to="/createShoot">Create A Shoot !</router-link></li>
         </ul>
       </div>
     </nav>
@@ -24,7 +24,16 @@
 <script>
 export default {
   name: 'app',
+  data () {
+    return {
+      logged: false
+    }
+  },
   mounted () {
+    this.$http.get('/api/login/me')
+    .then((response) => {
+      this.logged = response.data.logged
+    })
     /* eslint-disable */
     $('.button-collapse').sideNav({
       menuWidth: 200, // Default is 300
