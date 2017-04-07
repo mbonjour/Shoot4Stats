@@ -10,17 +10,16 @@
       <td v-for="arrow in arrows"><arrowItem :pointValue="arrow.point"></arrowItem></td>
     </tr>
   </table>
-  <div>
-    
-  </div>
-  <select v-model="currentArrow" class="browser-default" v-if="!this.$store.getters.currentShoot.finished">
+  <div class="select">
+    <select v-model="currentArrow" class="browser-default" v-if="!this.$store.getters.currentShoot.finished">
     <option disabled value="">Select here and hit add !</option>
     <option value="0">M</option>
     <option v-for="i in 10">{{ i }}</option>
     <option value="11">X</option>
   </select>
+  </div>
   <p>You're at : {{ this.$store.getters.currentShoot.nb_ends }}/{{ this.$store.getters.currentShoot.nb_total_ends }} ends</p>
-  <div><button @click="finishShoot()" v-if="!this.$store.getters.currentShoot.finished" class="finishButton"><strong> UP !</strong></button></div>
+  <div><button @click="finishShoot()" v-if="!this.$store.getters.currentShoot.finished" class="finishButton"><strong>Give UP !</strong></button></div>
   <div><button v-if="!arrowComplete" class="validateButton" @click="addArrow()"><strong>Add Arrow</strong></button>
   <button v-else class="validateButton" @click="validateSend()">Add End</button>
   <button v-if="this.$store.getters.currentShoot.finished" class="redirectButton" @click="redirect()">Go to Dashboard (Shoot Finished)</button></div>
@@ -82,6 +81,9 @@ export default {
 </script>
 
 <style>
+tr:nth-child(odd) {
+   background-color: #ccc;
+}
 table {
   width: 100%;
   border: 1px solid gray;
@@ -89,7 +91,8 @@ table {
 }
 td, tr {
   text-align: center;
-  border: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
 }
 .validateButton {
   width: 100%;
@@ -118,5 +121,8 @@ td, tr {
   color: #35495E;
   background-color: #41B883;
   border: none;
+}
+.select {
+  padding: 10px;
 }
 </style>
