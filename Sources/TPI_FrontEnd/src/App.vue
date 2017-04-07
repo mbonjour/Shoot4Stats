@@ -17,7 +17,9 @@
         </ul>
       </div>
     </nav>
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -44,3 +46,7 @@ export default {
   }
 }
 </script>
+
+<style>
+/*Description transition à faire*/
+</style>

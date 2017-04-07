@@ -1,12 +1,11 @@
 <template>
 <div class="editShoot">
-  <button v-if="this.$store.getters.currentShoot.finished" class="finishButton" @click="redirect()">Go to Dashboard (Shoot Finished)</button>
   <table>
     <tr v-for="(end, index) in this.$store.getters.currentShoot.ends">
       <td class="nbEnd">End {{ index + 1 }}</td>
       <td v-for="arrow in end.arrows"><arrowItem :pointValue="arrow.point"></arrowItem></td>
     </tr>
-    <tr>
+    <tr v-if="!this.$store.getters.currentShoot.finished">
       <td class="nbEnd">Current End</td>
       <td v-for="arrow in arrows"><arrowItem :pointValue="arrow.point"></arrowItem></td>
     </tr>
@@ -14,14 +13,17 @@
   <div>
     
   </div>
-  <select v-model="currentArrow" class="browser-default">
-    <option disabled value="">Select her and hit add</option>
+  <select v-model="currentArrow" class="browser-default" v-if="!this.$store.getters.currentShoot.finished">
+    <option disabled value="">Select here and hit add !</option>
     <option value="0">M</option>
     <option v-for="i in 10">{{ i }}</option>
     <option value="11">X</option>
   </select>
-  <button v-if="!arrowComplete" class="validateButton" @click="addArrow()">Add Arrow</button>
+  <p>You're at : {{ this.$store.getters.currentShoot.nb_ends }}/{{ this.$store.getters.currentShoot.nb_total_ends }} ends</p>
+  <div><button @click="finishShoot()" v-if="!this.$store.getters.currentShoot.finished">Give UP !</button></div>
+  <div><button v-if="!arrowComplete" class="validateButton" @click="addArrow()">Add Arrow</button>
   <button v-else class="validateButton" @click="validateSend()">Add End</button>
+  <button v-if="this.$store.getters.currentShoot.finished" class="finishButton" @click="redirect()">Go to Dashboard (Shoot Finished)</button></div>
 </div>
 </template>
 
@@ -35,7 +37,7 @@ export default {
       shoot: null,
       arrows: [],
       arrowComplete: false,
-      currentArrow: null
+      currentArrow: ''
     }
   },
   methods: {
@@ -63,6 +65,11 @@ export default {
       }
     },
     redirect () {
+      this.$router.push({path: '/dashboard'})
+    },
+    finishShoot () {
+      // fenêtre modale pour demander confirmation à faire
+      this.$http.get('/api/shoots/' + this.$store.getters.currentShoot.id + '/finish')
       this.$router.push({path: '/dashboard'})
     }
   },
@@ -92,7 +99,7 @@ td, tr {
 .finishButton {
   width: 100%;
   position: fixed;
-  top: 0px;
+  bottom: 0px;
 }
 .nbEnd {
   border-right: 1px solid gray;
