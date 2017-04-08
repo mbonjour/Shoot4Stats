@@ -9,11 +9,13 @@
           <li><router-link to="/">Home</router-link></li>
           <li v-if="logged"><router-link to="/dashboard">Dashboard</router-link></li>
           <li v-if="logged"><router-link to="/createShoot">Create A Shoot !</router-link></li>
+          <li v-if="admin"><router-link to="/administration">Users (admins only)</router-link></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <li><router-link to="/">Home</router-link></li>
           <li v-if="logged"><router-link to="/dashboard">Dashboard</router-link></li>
           <li v-if="logged"><router-link to="/createShoot">Create A Shoot !</router-link></li>
+          <li v-if="admin"><router-link to="/administration">Users (admins only)</router-link></li>
         </ul>
       </div>
     </nav>
@@ -30,7 +32,8 @@ export default {
   name: 'app',
   data () {
     return {
-      logged: false
+      logged: false,
+      admin: false
     }
   },
   mounted () {
@@ -42,6 +45,8 @@ export default {
     this.$http.get('/api/login/me')
     .then((response) => {
       this.logged = response.data.logged
+      console.log(response.data.user.is_admin)
+      this.admin = response.data.user.is_admin
     })
     /* eslint-disable */
     $('.button-collapse').sideNav({
