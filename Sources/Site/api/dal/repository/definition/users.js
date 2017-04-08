@@ -20,6 +20,15 @@ module.exports = (props) => {
             .catch((err) => {
                 callback(err, null)
             })
+        },
+        getAll: (callback) => {
+          props.store.models.User.findAll()
+          .then((users) => {
+            callback(null, users.map(mapUser))
+          })
+          .catch((err) => {
+            callback(err, null)
+          })
         }
     }
 }

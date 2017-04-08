@@ -9,6 +9,7 @@ var middlewares = require('./api/middlewares')()
 var shoots = require(path.join(__dirname, 'api/controllers/shootsController.js'))
 var ends = require(path.join(__dirname, 'api/controllers/endsController.js'))
 var auth = require(path.join(__dirname, 'api/controllers/authController.js'))
+var users = require(path.join(__dirname, 'api/controllers/usersController.js'))
 
 var app = express()
 
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'client')))
 app.use(middlewares.passportFacebook.initialize())
 app.use(middlewares.passportFacebook.session())
 
+app.use('/api/users', users)
 app.use('/api/shoots', shoots)
 app.use('/api/ends', ends)
 app.use('/api/login', auth)
