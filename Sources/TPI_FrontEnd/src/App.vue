@@ -45,7 +45,6 @@ export default {
     this.$http.get('/api/login/me')
     .then((response) => {
       this.logged = response.data.logged
-      console.log(response.data.user.is_admin)
       this.admin = response.data.user.is_admin
     })
     /* eslint-disable */

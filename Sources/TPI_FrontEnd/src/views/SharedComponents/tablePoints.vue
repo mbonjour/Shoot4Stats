@@ -6,6 +6,9 @@
         <td v-for="arrow in end.arrows">
           <arrowItem :pointValue="arrow.point"></arrowItem>
         </td>
+        <td>
+          {{ total(end.arrows) }}
+        </td>
       </tr>
       <tr v-if="!this.$store.getters.currentShoot.finished">
         <td class="nbEnd">Current End</td>
@@ -22,7 +25,19 @@ import arrowItem from '../SharedComponents/arrowItem'
 export default {
   name: 'pointsTable',
   components: { arrowItem },
-  props: ['arrows']
+  props: ['arrows'],
+  methods: {
+    total (arrowsArray) {
+      let result = 0
+      console.dir(arrowsArray)
+      arrowsArray.map((arrow) => {
+        console.dir(arrow)
+        result += arrow.point
+      })
+      console.log(result)
+      return result
+    }
+  }
 }
 </script>
 
