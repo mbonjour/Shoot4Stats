@@ -35,7 +35,9 @@ export default {
   },
   mounted () {
     EventBus.$on('toast', (message) => {
-      Materialize.toast(message, 4000)
+      /*eslint-disable*/
+      Materialize.toast(message, 5000)
+      /*eslint-enable*/
     })
     this.$http.get('/api/login/me')
     .then((response) => {

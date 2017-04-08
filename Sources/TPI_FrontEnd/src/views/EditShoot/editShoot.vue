@@ -1,5 +1,6 @@
 <template>
 <div class="editShoot">
+  
   <table>
     <tr v-for="(end, index) in this.$store.getters.currentShoot.ends">
       <td class="nbEnd">End {{ index + 1 }}</td>
@@ -19,6 +20,9 @@
   </select>
   </div>
   <p>You're at : {{ this.$store.getters.currentShoot.nb_ends }}/{{ this.$store.getters.currentShoot.nb_total_ends }} ends</p>
+  <div class="progress">
+    <div class="determinate" :style="styleEndsIndication"></div>
+  </div>
   <div><button @click="finishShoot()" v-if="!this.$store.getters.currentShoot.finished" class="finishButton"><strong>Give UP !</strong></button></div>
   <div><button v-if="!arrowComplete" class="validateButton" @click="addArrow()"><strong>Add Arrow</strong></button>
   <button v-else class="validateButton" @click="validateSend()">Add End</button>
@@ -76,13 +80,18 @@ export default {
     if (this.$route.params.shootId) {
       this.$store.dispatch('setShoot', this.$route.params.shootId)
     }
+  },
+  computed: {
+    styleEndsIndication () {
+      return 'width: ' + (this.$store.getters.currentShoot.nb_ends / this.$store.getters.currentShoot.nb_total_ends) * 100 + '%'
+    }
   }
 }
 </script>
 
 <style>
 tr:nth-child(odd) {
-   background-color: #ccc;
+  background-color: #ccc;
 }
 table {
   width: 100%;

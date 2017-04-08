@@ -20,6 +20,8 @@
 
 <script>
 import shootDetails from './shootDetails'
+import { EventBus } from '../../helpers/event-bus.js'
+
 export default {
   name: 'shootSummary',
   components: { shootDetails },
@@ -29,6 +31,7 @@ export default {
       if (this.shoot.finished) {
         if (!this.detailVisibility) {
           this.$store.dispatch('setShoot', this.shoot.id)
+          EventBus.$emit('anotherDetails', this.shoot.id)
         }
         this.detailVisibility = !this.detailVisibility
       } else {
@@ -44,11 +47,18 @@ export default {
   computed: {
     borderColor () {
       // Mettre images en local
-      return this.shoot.finished ? 'https://dummyimage.com/10x150/69f054/fff.png&text=+' : 'https://dummyimage.com/10x150/e34245/0011ff.png&text=+'
+      return this.shoot.finished ? 'https://dummyimage.com/10x190/69f054/fff.png&text=+' : 'https://dummyimage.com/10x190/e34245/0011ff.png&text=+'
     },
     iconToShow () {
       return this.shoot.finished ? 'info' : 'mode_edit'
     }
+  },
+  mounted () {
+    EventBus.$on('anotherDetails', (shootId) => {
+      if (shootId !== this.shoot.id) {
+        this.detailVisibility = false
+      }
+    })
   }
 }
 </script>
