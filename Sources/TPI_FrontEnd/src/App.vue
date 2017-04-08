@@ -24,6 +24,8 @@
 </template>
 
 <script>
+import { EventBus } from './helpers/event-bus.js'
+
 export default {
   name: 'app',
   data () {
@@ -32,6 +34,9 @@ export default {
     }
   },
   mounted () {
+    EventBus.$on('toast', (message) => {
+      Materialize.toast(message, 4000)
+    })
     this.$http.get('/api/login/me')
     .then((response) => {
       this.logged = response.data.logged
