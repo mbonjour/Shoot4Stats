@@ -1,11 +1,15 @@
 <template>
-  <div class="admiistration">
-    <p v-for="user in users">{{ user.id }}, {{ user.first_name }}, {{ user.last_name }}, {{ user.email }}</p>
+  <div class="administration">
+    <div v-for="user in users">
+      <userItem :user="user"></userItem>
+    </div>
   </div>
 </template>
 
 <script>
+import userItem from './userItem'
 export default {
+  components: { userItem },
   data () {
     return {
       users: []

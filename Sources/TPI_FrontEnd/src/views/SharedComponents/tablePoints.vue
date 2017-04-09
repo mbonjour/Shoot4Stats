@@ -58,4 +58,7 @@ tr {
   border-bottom: 1px solid gray;
   border-top: 1px solid gray;
 }
+.nbEnd {
+  width: 7%;
+}
 </style>
