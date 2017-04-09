@@ -10,14 +10,14 @@
           <li v-if="logged"><router-link to="/dashboard">Dashboard</router-link></li>
           <li v-if="logged"><router-link to="/createShoot">Create A Shoot !</router-link></li>
           <li v-if="admin"><router-link to="/administration">Users (admins only)</router-link></li>
-          <li v-if="logged"><a href="/api/login/logout">logout</a></li>
+          <li v-if="logged"><a href="/api/login/logout">Logout</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <li><router-link to="/">Home</router-link></li>
           <li v-if="logged"><router-link to="/dashboard">Dashboard</router-link></li>
           <li v-if="logged"><router-link to="/createShoot">Create A Shoot !</router-link></li>
           <li v-if="admin"><router-link to="/administration">Users (admins only)</router-link></li>
-          <li v-if="logged"><a href="/api/login/logout">logout</a></li>
+          <li v-if="logged"><a href="/api/login/logout">Logout</a></li>
         </ul>
       </div>
     </nav>
