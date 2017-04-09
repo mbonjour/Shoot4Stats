@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import { EventBus } from './helpers/event-bus.js'
-
 export default {
   name: 'app',
   data () {
@@ -39,7 +37,7 @@ export default {
     }
   },
   mounted () {
-    EventBus.$on('toast', (message) => {
+    this.$events.$on('toast', (message) => {
       /*eslint-disable*/
       Materialize.toast(message, 5000)
       /*eslint-enable*/

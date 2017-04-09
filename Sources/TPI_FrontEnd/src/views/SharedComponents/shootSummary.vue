@@ -20,7 +20,6 @@
 
 <script>
 import shootDetails from './shootDetails'
-import { EventBus } from '../../helpers/event-bus.js'
 
 export default {
   name: 'shootSummary',
@@ -31,7 +30,7 @@ export default {
       if (this.shoot.finished) {
         if (!this.detailVisibility) {
           this.$store.dispatch('setShoot', this.shoot.id)
-          EventBus.$emit('anotherDetails', this.shoot.id)
+          this.$events.$emit('anotherDetails', this.shoot.id)
         }
         this.detailVisibility = !this.detailVisibility
       } else {
@@ -54,7 +53,7 @@ export default {
     }
   },
   mounted () {
-    EventBus.$on('anotherDetails', (shootId) => {
+    this.$events.$on('anotherDetails', (shootId) => {
       if (shootId !== this.shoot.id) {
         this.detailVisibility = false
       }

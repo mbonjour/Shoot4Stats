@@ -6,8 +6,10 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import store from './vuex/store'
+import { EventBus } from './helpers/event-bus.js'
 
 Vue.prototype.$http = axios
+Vue.prototype.$events = EventBus
 Vue.config.productionTip = false
 
 Vue.use(Vuex)
