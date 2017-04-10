@@ -38,7 +38,6 @@ export default {
         }
         result += currentArrow
       })
-      console.log(result)
       return result
     }
   }

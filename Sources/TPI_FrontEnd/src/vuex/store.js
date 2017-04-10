@@ -12,16 +12,17 @@ export default new Vuex.Store({
         state.currentDetailsShoot = response.data
       })
       .catch((err) => {
-        // Toast de l'err
+        EventBus.$emit('toast', 'si l\'erreur réapparaît veuillez contacter le webmaster')
         console.log(err)
       })
     },
     SET_CURRENT_EDITING_SHOOT (state, shootID) {
+      state.currentEditingShoot = null
       axios.get('/api/shoots/' + shootID).then((response) => {
         state.currentEditingShoot = response.data
       })
       .catch((err) => {
-        // Toast de l'err
+        EventBus.$emit('toast', 'si l\'erreur réapparaît veuillez contacter le webmaster')
         console.log(err)
       })
     },
@@ -43,6 +44,12 @@ export default new Vuex.Store({
         state.currentEditingShoot = temp
         console.log(err)
       })
+    },
+    FINISH_EDITING_SHOOT (state) {
+      axios.get('/api/shoots/' + state.currentEditingShoot.id + '/finish')
+      .then((response) => {
+        state.currentEditingShoot.finished = true
+      })
     }
   },
 
@@ -55,6 +62,9 @@ export default new Vuex.Store({
     },
     addEnd ({ commit }, end) {
       commit('ADD_END_CURRENT_EDITING_SHOOT', end)
+    },
+    finishCurrentEditingShoot ({commit}) {
+      commit('FINISH_EDITING_SHOOT')
     }
   },
 
@@ -65,6 +75,7 @@ export default new Vuex.Store({
 
   state: {
     currentDetailsShoot: {},
-    currentEditingShoot: {}
+    currentEditingShoot: {},
+    shoots: []
   }
 })

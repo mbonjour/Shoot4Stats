@@ -74,7 +74,7 @@ export default {
     },
     finishShoot () {
       // fenêtre modale pour demander confirmation à faire
-      this.$http.get('/api/shoots/' + this.$store.getters.currentEditingShoot.id + '/finish')
+      this.$store.dispatch('finishCurrentEditingShoot')
       this.$router.push({ path: '/dashboard' })
     }
   },
