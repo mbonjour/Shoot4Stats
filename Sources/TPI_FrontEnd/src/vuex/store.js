@@ -49,6 +49,12 @@ export default new Vuex.Store({
       .then((response) => {
         state.currentEditingShoot.finished = true
       })
+    },
+    SET_SHOOTS (state) {
+      axios.get('/api/shoots/')
+      .then((response) => {
+        state.shoots = response.data
+      })
     }
   },
 
@@ -64,12 +70,16 @@ export default new Vuex.Store({
     },
     finishCurrentEditingShoot ({commit}) {
       commit('FINISH_EDITING_SHOOT')
+    },
+    setShoots ({commit}) {
+      commit('SET_SHOOTS')
     }
   },
 
   getters: {
     currentDetailsShoot: state => state.currentDetailsShoot,
-    currentEditingShoot: state => state.currentEditingShoot
+    currentEditingShoot: state => state.currentEditingShoot,
+    shoots: state => state.shoots
   },
 
   state: {

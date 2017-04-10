@@ -1,11 +1,11 @@
 <template>
   <div class="dashboard">
     <!-- <span v-if="shoots">Go create a Shoot !</span>  Vérifier qu'il y aie des Shoots  -->
-    <div v-if="this.shoots.length === 0">
+    <div v-if="this.$store.getters.shoots.length === 0">
       <p>You don't have any Shoots yet !</p>
       <p>Please go to <router-link to="/createShoot">Create a Shoot</router-link> or click the "plus" button to begin !!!</p>
     </div>
-    <shootItem v-for="currentShoot in shoots" :key="currentShoot.id" :shoot="currentShoot"></shootItem>
+    <shootItem v-for="currentShoot in this.$store.getters.shoots" :key="currentShoot.id" :shoot="currentShoot"></shootItem>
     <div class="fixed-action-btn toolbar">
       <a class="btn-floating btn-large" style="background-color: #41B883;">
         <i class="large material-icons">add</i>
@@ -30,9 +30,7 @@ export default {
     }
   },
   created () {
-    this.$http.get('/api/shoots').then((response) => {
-      this.shoots = response.data
-    })
+    this.$store.dispatch('setShoots')
   }
 }
 </script>
