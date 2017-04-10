@@ -1,7 +1,7 @@
 <template>
   <div class="pointsTable">
     <table>
-      <tr v-for="(end, index) in this.$store.getters.currentShoot.ends">
+      <tr v-for="(end, index) in this.$store.getters.currentEditingShoot.ends">
         <td class="nbEnd">{{ index + 1 }}</td>
         <td v-for="arrow in end.arrows">
           <arrowItem :pointValue="arrow.point"></arrowItem>
@@ -10,7 +10,7 @@
           {{ total(end.arrows) }}
         </td>
       </tr>
-      <tr v-if="!this.$store.getters.currentShoot.finished">
+      <tr v-if="!this.$store.getters.currentEditingShoot.finished">
         <td class="nbEnd">Current End</td>
         <td v-for="arrow in arrows">
           <arrowItem :pointValue="arrow.point"></arrowItem>

@@ -7,21 +7,30 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   mutations: {
-    SET_CURRENT_SHOOT (state, shootID) {
+    SET_CURRENT_DETAILS_SHOOT (state, shootID) {
       axios.get('/api/shoots/' + shootID).then((response) => {
-        state.currentShoot = response.data
+        state.currentDetailsShoot = response.data
       })
       .catch((err) => {
         // Toast de l'err
         console.log(err)
       })
     },
-    ADD_END_CURRENT_SHOOT (state, end) {
-      let temp = state.currentShoot
-      state.currentShoot.ends.push(end)
-      state.currentShoot.nb_ends += 1
-      if (state.currentShoot.nb_ends === state.currentShoot.nb_total_ends) {
-        state.currentShoot.finished = true
+    SET_CURRENT_EDITING_SHOOT (state, shootID) {
+      axios.get('/api/shoots/' + shootID).then((response) => {
+        state.currentEditingShoot = response.data
+      })
+      .catch((err) => {
+        // Toast de l'err
+        console.log(err)
+      })
+    },
+    ADD_END_CURRENT_EDITING_SHOOT (state, end) {
+      let temp = state.currentEditingShoot
+      state.currentEditingShoot.ends.push(end)
+      state.currentEditingShoot.nb_ends += 1
+      if (state.currentEditingShoot.nb_ends === state.currentEditingShoot.nb_total_ends) {
+        state.currentEditingShoot.finished = true
       }
       axios.post('/api/ends', end)
       .then((response) => {
@@ -31,26 +40,31 @@ export default new Vuex.Store({
       .catch((err) => {
         // Toast de l'err ?
         EventBus.$emit('toast', err)
-        state.currentShoot = temp
+        state.currentEditingShoot = temp
         console.log(err)
       })
     }
   },
 
   actions: {
-    setShoot ({ commit }, shootID) {
-      commit('SET_CURRENT_SHOOT', shootID)
+    setDetailsShoot ({ commit }, shootID) {
+      commit('SET_CURRENT_DETAILS_SHOOT', shootID)
+    },
+    setEditingShoot ({ commit }, shootID) {
+      commit('SET_CURRENT_EDITING_SHOOT', shootID)
     },
     addEnd ({ commit }, end) {
-      commit('ADD_END_CURRENT_SHOOT', end)
+      commit('ADD_END_CURRENT_EDITING_SHOOT', end)
     }
   },
 
   getters: {
-    currentShoot: state => state.currentShoot
+    currentDetailsShoot: state => state.currentDetailsShoot,
+    currentEditingShoot: state => state.currentEditingShoot
   },
 
   state: {
-    currentShoot: {}
+    currentDetailsShoot: {},
+    currentEditingShoot: {}
   }
 })

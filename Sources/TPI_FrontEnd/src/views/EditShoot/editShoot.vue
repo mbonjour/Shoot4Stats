@@ -4,7 +4,7 @@
     <div class="select">
       <select v-model="currentArrow"
               class="browser-default"
-              v-if="!this.$store.getters.currentShoot.finished">
+              v-if="!this.$store.getters.currentEditingShoot.finished">
         <option disabled
                 value="">Select here and hit add !</option>
         <option value="0">M</option>
@@ -12,14 +12,14 @@
         <option value="11">X</option>
       </select>
     </div>
-    <p>You're at : {{ this.$store.getters.currentShoot.nb_ends }}/{{ this.$store.getters.currentShoot.nb_total_ends }} ends</p>
+    <p>You're at : {{ this.$store.getters.currentEditingShoot.nb_ends }}/{{ this.$store.getters.currentEditingShoot.nb_total_ends }} ends</p>
     <div class="progress">
       <div class="determinate"
           :style="styleEndsIndication"></div>
     </div>
     <div>
       <button @click="finishShoot()"
-              v-if="!this.$store.getters.currentShoot.finished"
+              v-if="!this.$store.getters.currentEditingShoot.finished"
               data-target="modal1"
               class="finishButton"><strong>Give UP !</strong></button>
     </div>
@@ -30,7 +30,7 @@
       <button v-else
               class="validateButton"
               @click="validateSend()">Add End</button>
-      <button v-if="this.$store.getters.currentShoot.finished"
+      <button v-if="this.$store.getters.currentEditingShoot.finished"
               class="redirectButton"
               @click="redirect()">Go to Dashboard (Shoot Finished)</button>
     </div>
@@ -54,7 +54,7 @@ export default {
     validateSend () {
       this.addArrow()
       this.$store.dispatch('addEnd', {
-        id_shoot: this.$store.getters.currentShoot.id,
+        id_shoot: this.$store.getters.currentEditingShoot.id,
         arrows: this.arrows
       })
       this.arrows = []
@@ -65,7 +65,7 @@ export default {
       this.arrows = this.arrows.sort((a, b) => {
         return b.point - a.point
       })
-      if (this.arrows.length >= this.$store.getters.currentShoot.nb_arrows_by_end - 1) {
+      if (this.arrows.length >= this.$store.getters.currentEditingShoot.nb_arrows_by_end - 1) {
         this.arrowComplete = true
       }
     },
@@ -74,18 +74,18 @@ export default {
     },
     finishShoot () {
       // fenêtre modale pour demander confirmation à faire
-      this.$http.get('/api/shoots/' + this.$store.getters.currentShoot.id + '/finish')
+      this.$http.get('/api/shoots/' + this.$store.getters.currentEditingShoot.id + '/finish')
       this.$router.push({ path: '/dashboard' })
     }
   },
   created () {
     if (this.$route.params.shootId) {
-      this.$store.dispatch('setShoot', this.$route.params.shootId)
+      this.$store.dispatch('setEditingShoot', this.$route.params.shootId)
     }
   },
   computed: {
     styleEndsIndication () {
-      return 'width: ' + (this.$store.getters.currentShoot.nb_ends / this.$store.getters.currentShoot.nb_total_ends) * 100 + '%'
+      return 'width: ' + (this.$store.getters.currentEditingShoot.nb_ends / this.$store.getters.currentEditingShoot.nb_total_ends) * 100 + '%'
     }
   }
 }
