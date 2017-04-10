@@ -2,7 +2,7 @@
   <div class="pointsTable">
     <table>
       <tr v-for="(end, index) in this.$store.getters.currentShoot.ends">
-        <td class="nbEnd">End {{ index + 1 }}</td>
+        <td class="nbEnd">{{ index + 1 }}</td>
         <td v-for="arrow in end.arrows">
           <arrowItem :pointValue="arrow.point"></arrowItem>
         </td>
@@ -29,10 +29,14 @@ export default {
   methods: {
     total (arrowsArray) {
       let result = 0
-      console.dir(arrowsArray)
       arrowsArray.map((arrow) => {
-        console.dir(arrow)
-        result += arrow.point
+        let currentArrow = 0
+        if (arrow.point === 11) {
+          currentArrow = 10
+        } else {
+          currentArrow = arrow.point
+        }
+        result += currentArrow
       })
       console.log(result)
       return result
@@ -59,6 +63,6 @@ tr {
   border-top: 1px solid gray;
 }
 .nbEnd {
-  width: 7%;
+  width: 5%;
 }
 </style>

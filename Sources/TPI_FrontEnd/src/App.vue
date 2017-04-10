@@ -3,21 +3,20 @@
   <div id="app">
     <nav style="background-color: #35495E;">
       <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Shoot4Stats</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a class="brand-logo">Shoot4Stats</a>
+        <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-          <li><router-link to="/">Home</router-link></li>
-          <li v-if="logged"><router-link to="/dashboard">Dashboard</router-link></li>
-          <li v-if="logged"><router-link to="/createShoot">Create A Shoot !</router-link></li>
+          <li v-if="!logged"><router-link to="/">Home</router-link></li>
+          <li v-if="logged"><router-link to="/dashboard">Home</router-link></li>
           <li v-if="admin"><router-link to="/administration">Users (admins only)</router-link></li>
-          <li v-if="logged"><a href="/api/login/logout">Logout</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li><router-link to="/">Home</router-link></li>
-          <li v-if="logged"><router-link to="/dashboard">Dashboard</router-link></li>
-          <li v-if="logged"><router-link to="/createShoot">Create A Shoot !</router-link></li>
+          <li v-if="!logged"><router-link to="/">Home</router-link></li>
+          <li v-if="logged"><router-link to="/dashboard">Home</router-link></li>
           <li v-if="admin"><router-link to="/administration">Users (admins only)</router-link></li>
-          <li v-if="logged"><a href="/api/login/logout">Logout</a></li>
+        </ul>
+        <ul class="right">
+          <li v-if="logged"><a href="/api/login/logout"><i class="material-icons">power_settings_new</i></a></li>
         </ul>
       </div>
     </nav>
