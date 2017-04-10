@@ -9,11 +9,15 @@
           <li><router-link to="/">Home</router-link></li>
           <li v-if="logged"><router-link to="/dashboard">Dashboard</router-link></li>
           <li v-if="logged"><router-link to="/createShoot">Create A Shoot !</router-link></li>
+          <li v-if="admin"><router-link to="/administration">Users (admins only)</router-link></li>
+          <li v-if="logged"><a href="/api/login/logout">Logout</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <li><router-link to="/">Home</router-link></li>
           <li v-if="logged"><router-link to="/dashboard">Dashboard</router-link></li>
           <li v-if="logged"><router-link to="/createShoot">Create A Shoot !</router-link></li>
+          <li v-if="admin"><router-link to="/administration">Users (admins only)</router-link></li>
+          <li v-if="logged"><a href="/api/login/logout">Logout</a></li>
         </ul>
       </div>
     </nav>
@@ -28,13 +32,22 @@ export default {
   name: 'app',
   data () {
     return {
-      logged: false
+      logged: false,
+      admin: false
     }
   },
   mounted () {
+    this.$events.$on('toast', (message) => {
+      /*eslint-disable*/
+      Materialize.toast(message, 5000)
+      /*eslint-enable*/
+    })
     this.$http.get('/api/login/me')
     .then((response) => {
       this.logged = response.data.logged
+      if (this.logged) {
+        this.admin = response.data.user.is_admin
+      }
     })
     /* eslint-disable */
     $('.button-collapse').sideNav({

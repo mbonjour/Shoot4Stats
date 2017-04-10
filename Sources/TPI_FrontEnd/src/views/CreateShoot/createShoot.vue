@@ -55,16 +55,6 @@
 </template>
 
 <script>
-// Gestion du Shoot côté API :
-// var shootObject = {
-//         title: this.title,
-//         description: this.description,
-//         nbEnds: this.nb_ends,
-//         nbArrowsByEnd: this.nb_arrows_end,
-//         type: this.type,
-//         user: req.user.id,
-//         location: this.Location
-//     }
 export default {
   name: 'createShoot',
   data () {
@@ -102,9 +92,11 @@ export default {
   methods: {
     validateSend () {
       let valide = true
-      if (this.nb_Ends && this.nb_ArrowsByEnd && this.description && this.title) {
+      if (this.nb_Ends > 0 && this.nb_ArrowsByEnd > 0 && this.description && this.title) {
         valide = true
       } else {
+        // Toast en fct de l'erreur
+        this.$events.$emit('toast', 'Une information est mal rentrée dans le formulaire')
         valide = false
       }
       if (valide) {

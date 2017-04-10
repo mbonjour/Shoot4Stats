@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { EventBus } from '../helpers/event-bus.js'
 
 Vue.use(Vuex)
 
@@ -24,10 +25,12 @@ export default new Vuex.Store({
       }
       axios.post('/api/ends', end)
       .then((response) => {
+        EventBus.$emit('toast', 'end added')
         console.log(response)
       })
       .catch((err) => {
         // Toast de l'err ?
+        EventBus.$emit('toast', err)
         state.currentShoot = temp
         console.log(err)
       })

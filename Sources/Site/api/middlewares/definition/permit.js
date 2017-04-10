@@ -71,5 +71,17 @@ module.exports = () => {
             }
         }
     }
+    self.ensureAdmin = () => {
+        return (req, res, next) => {
+            if (req.user.is_admin) {
+                next()
+            } else {
+                responseHelper(res, {
+                    error: "You're not able to see this page",
+                    status: 403
+                }, null)
+            }
+        }
+    }
     return self;
 }
