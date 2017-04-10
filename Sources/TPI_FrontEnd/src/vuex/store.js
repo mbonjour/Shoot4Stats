@@ -12,7 +12,7 @@ export default new Vuex.Store({
         state.currentDetailsShoot = response.data
       })
       .catch((err) => {
-        EventBus.$emit('toast', 'si l\'erreur réapparaît veuillez contacter le webmaster')
+        EventBus.$emit('toast', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
         console.log(err)
       })
     },
@@ -22,7 +22,7 @@ export default new Vuex.Store({
         state.currentEditingShoot = response.data
       })
       .catch((err) => {
-        EventBus.$emit('toast', 'si l\'erreur réapparaît veuillez contacter le webmaster')
+        EventBus.$emit('toast', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
         console.log(err)
       })
     },
@@ -39,7 +39,6 @@ export default new Vuex.Store({
         console.log(response)
       })
       .catch((err) => {
-        // Toast de l'err ?
         EventBus.$emit('toast', err)
         state.currentEditingShoot = temp
         console.log(err)

@@ -15,20 +15,20 @@ export default {
         case 11:
         case 10:
         case 9:
-          return 'border: 1px solid yellow; background-color: yellow;'
+          return 'border: 1px solid #ffee58; background-color: #ffee58;'
         case 8:
         case 7:
-          return 'border: 1px solid red; background-color: red; color: white;'
+          return 'border: 1px solid #ef5350; background-color: #ef5350; color: #fafafa;'
         case 6:
         case 5:
-          return 'border: 1px solid blue; color: white; background-color: blue;'
+          return 'border: 1px solid #2196f3; color: #fafafa; background-color: #2196f3;'
         case 4:
         case 3:
-          return 'border: 1px solid black; color: white; background-color: black;'
+          return 'border: 1px solid #212121; color: #fafafa; background-color: #212121;'
         case 2:
         case 1:
         case 0:
-          return 'border: 1px solid white; background-color: white;'
+          return 'border: 1px solid gray; background-color: #fafafa;'
         default:
           return 'border: 1px solid green'
       }
@@ -49,18 +49,12 @@ export default {
 </script>
 
 <style scoped>
-div {
-  margin: auto;
-  padding: 2px;
-  text-align: center;
-}
-p {
-  margin: 0px;
-  padding:1px;
-}
 .arrowItem {
-  border-radius:50%;
-  width:30px;
-  height:30px;
+  line-height: 30px;
+  margin: auto;
+  text-align: center;
+  border-radius: 3px;
+  width: 30px;
+  height: 30px;
 }
 </style>

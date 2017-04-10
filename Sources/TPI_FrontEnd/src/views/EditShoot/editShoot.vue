@@ -1,5 +1,11 @@
 <template>
   <div class="editShoot">
+    <div>
+      <button @click="finishShoot()"
+              v-if="!this.$store.getters.currentEditingShoot.finished"
+              data-target="modal1"
+              class="finishButton"><strong>Give UP !</strong></button>
+    </div>
     <pointsTable :arrows="arrows"></pointsTable>
     <div class="select">
       <select v-model="currentArrow"
@@ -16,12 +22,6 @@
     <div class="progress">
       <div class="determinate"
           :style="styleEndsIndication"></div>
-    </div>
-    <div>
-      <button @click="finishShoot()"
-              v-if="!this.$store.getters.currentEditingShoot.finished"
-              data-target="modal1"
-              class="finishButton"><strong>Give UP !</strong></button>
     </div>
     <div>
       <button v-if="!arrowComplete"
@@ -112,16 +112,14 @@ export default {
   border: none;
 }
 
-.nbEnd {
-  border-right: 1px solid gray;
-}
-
 .finishButton {
-  width: 100px;
-  height: 40px;
-  color: #35495E;
-  background-color: #41B883;
+  width: 100%;
+  height: 30px;
+  color: white;
+  background-color: #ef5350;
   border: none;
+  top: 0px;
+  position: relative;
 }
 
 .select {
