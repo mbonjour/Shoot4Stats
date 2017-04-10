@@ -5,7 +5,7 @@
       <p>You don't have any Shoots yet !</p>
       <p>Please go to <router-link to="/createShoot">Create a Shoot</router-link> or click the "plus" button to begin !!!</p>
     </div>
-    <shootSummary v-for="currentShoot in shoots" :key="currentShoot.id" :shoot="currentShoot"></shootSummary>
+    <shootItem v-for="currentShoot in shoots" :key="currentShoot.id" :shoot="currentShoot"></shootItem>
     <div class="fixed-action-btn toolbar">
       <a class="btn-floating btn-large" style="background-color: #41B883;">
         <i class="large material-icons">add</i>
@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import shootSummary from '../SharedComponents/shootSummary'
+import shootItem from '../SharedComponents/shootItem'
 export default {
-  components: { shootSummary },
+  components: { shootItem },
   name: 'dashboard',
   data () {
     return {
