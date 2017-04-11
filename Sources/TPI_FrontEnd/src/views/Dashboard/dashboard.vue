@@ -30,7 +30,7 @@ export default {
     }
   },
   created () {
-    this.$store.dispatch('setShoots')
+    this.$store.dispatch('loadShoots')
   }
 }
 </script>

@@ -47,6 +47,7 @@ module.exports = (props) => {
             }).then((shoot) => {
                 if (shoot) {
                     calculateSummarySpecifications(shoot, () => {
+                        let toto = mapShoot(shoot)
                         callback(null, mapShoot(shoot))
                     })
                 } else {

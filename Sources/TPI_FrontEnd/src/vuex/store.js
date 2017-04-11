@@ -17,7 +17,7 @@ export default new Vuex.Store({
       })
     },
     SET_CURRENT_EDITING_SHOOT (state, shootID) {
-      state.currentEditingShoot = null
+      state.currentEditingShoot = {}
       axios.get('/api/shoots/' + shootID).then((response) => {
         state.currentEditingShoot = response.data
       })
@@ -27,7 +27,8 @@ export default new Vuex.Store({
       })
     },
     ADD_END_CURRENT_EDITING_SHOOT (state, end) {
-      let temp = state.currentEditingShoot
+      // TODO : TROUVER SOLUCE PLUS PROPRE
+      let clone = JSON.parse(JSON.stringify(state.currentEditingShoot))
       state.currentEditingShoot.ends.push(end)
       state.currentEditingShoot.nb_ends += 1
       if (state.currentEditingShoot.nb_ends === state.currentEditingShoot.nb_total_ends) {
@@ -35,13 +36,12 @@ export default new Vuex.Store({
       }
       axios.post('/api/ends', end)
       .then((response) => {
+        state.currentEditingShoot = response.data
         EventBus.$emit('toast', 'end added')
-        console.log(response)
       })
       .catch((err) => {
-        EventBus.$emit('toast', err)
-        state.currentEditingShoot = temp
-        console.log(err)
+        EventBus.$emit('toast', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
+        state.currentEditingShoot = clone
       })
     },
     FINISH_EDITING_SHOOT (state) {
@@ -50,7 +50,7 @@ export default new Vuex.Store({
         state.currentEditingShoot.finished = true
       })
     },
-    SET_SHOOTS (state) {
+    LOAD_SHOOTS (state) {
       axios.get('/api/shoots/')
       .then((response) => {
         state.shoots = response.data
@@ -71,8 +71,8 @@ export default new Vuex.Store({
     finishCurrentEditingShoot ({commit}) {
       commit('FINISH_EDITING_SHOOT')
     },
-    setShoots ({commit}) {
-      commit('SET_SHOOTS')
+    loadShoots ({commit}) {
+      commit('LOAD_SHOOTS')
     }
   },
 

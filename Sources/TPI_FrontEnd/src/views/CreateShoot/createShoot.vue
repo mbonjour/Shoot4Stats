@@ -109,7 +109,6 @@ export default {
           Location: this.location
         })
         .then((response) => {
-          this.$store.dispatch('setShoot', response.data.id)
           this.$router.push({path: '/editShoot/' + response.data.id})
         })
         .catch((err) => {

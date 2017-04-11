@@ -37,8 +37,9 @@ export default {
   },
   mounted () {
     this.$events.$on('toast', (message) => {
+      // MMettre Toast error et Success
       /*eslint-disable*/
-      Materialize.toast(message, 5000)
+      Materialize.toast(message, 3000)
       /*eslint-enable*/
     })
     this.$http.get('/api/login/me')
