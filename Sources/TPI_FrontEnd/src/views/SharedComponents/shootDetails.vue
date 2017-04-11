@@ -7,10 +7,13 @@
     <div class="progress"><div class="determinate" :style="styleGoldHit"></div></div>
     Total des points : {{ this.$store.getters.currentDetailsShoot.total }} / {{ (this.$store.getters.currentDetailsShoot.nb_total_ends*this.$store.getters.currentDetailsShoot.nb_arrows_by_end)*10 }}</br>
     Average Arrow : {{ this.$store.getters.currentDetailsShoot.average_arrow }}</br>
+    <pointsTable :arrows="null" :shoot="this.$store.getters.currentDetailsShoot"></pointsTable>
   </div>
 </template>
 <script>
+import pointsTable from './tablePoints'
 export default {
+  components: {pointsTable},
   computed: {
     styleGoldHit () {
       return 'width: ' + this.$store.getters.currentDetailsShoot.gold_hit + '%'
