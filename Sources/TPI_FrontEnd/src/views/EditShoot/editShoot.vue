@@ -24,6 +24,7 @@
     </div>
     <div>
       <button v-if="!arrowComplete"
+              :disabled="disable"
               class="validateButton"
               @click="addArrow()"><strong>Add Arrow</strong></button>
       <button v-else
@@ -83,6 +84,13 @@ export default {
     }
   },
   computed: {
+    disable () {
+      if (this.currentArrow === '') {
+        return true
+      } else {
+        return false
+      }
+    },
     styleEndsIndication () {
       return 'width: ' + (this.$store.getters.currentEditingShoot.nb_ends / this.$store.getters.currentEditingShoot.nb_total_ends) * 100 + '%'
     }
@@ -99,6 +107,10 @@ export default {
   color: #35495E;
   background-color: #41B883;
   border: none;
+}
+.validateButton:disabled {
+  color: #35495E;
+  background-color: #dadada;
 }
 
 .redirectButton {
