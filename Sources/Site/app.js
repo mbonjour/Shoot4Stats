@@ -22,7 +22,7 @@ app.use(require('express-session')({
   resave: true,
   saveUninitialized: true
 }))
-// app.use(express.static(path.join(__dirname, 'client')))
+app.use(express.static(path.join(__dirname, 'client')))
 
 app.use(middlewares.passportFacebook.initialize())
 app.use(middlewares.passportFacebook.session())
@@ -31,7 +31,6 @@ app.use('/api/users', users)
 app.use('/api/shoots', shoots)
 app.use('/api/ends', ends)
 app.use('/api/login', auth)
-
 app.use((req, res, next) => {
   const err = new Error('Not Found')
   err.status = 404
