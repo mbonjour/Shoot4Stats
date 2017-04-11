@@ -10,8 +10,8 @@
           {{ total(end.arrows) }}
         </td>
       </tr>
-      <tr v-if="!shoot.finished" style="background-color: #cfc;">
-        <td class="nbEnd">x</td>
+      <tr v-if="!shoot.finished" class="currentEnd">
+        <td class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
         <td v-for="arrow in arrows">
           <arrowItem :pointValue="arrow.point"></arrowItem>
         </td>
@@ -46,23 +46,27 @@ export default {
 
 <style>
 tr:nth-child(odd) {
-  background-color: #dadada;
+  background-color: #fafafa;
 }
 
 table {
   width: 100%;
-  border: 1px solid gray;
+  border: 1px solid #dadada;
   text-align: center;
 }
 
 td,
 tr {
   text-align: center;
-  border-bottom: 1px solid gray;
-  border-top: 1px solid gray;
+  border-bottom: 1px solid #dadada;
+  border-top: 1px solid #dadada;
 }
 .nbEnd {
   width: 5%;
-  border-right: 1px solid gray;
+  border-right: 1px solid #dadada;
+}
+.currentEnd {
+  background-color: #efe;
+  border-bottom: 3px solid #afa;
 }
 </style>

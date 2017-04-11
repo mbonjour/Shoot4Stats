@@ -6,7 +6,7 @@
               class="finishButton"><strong>Give UP !</strong></button>
     </div>
     <pointsTable :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
-    <div class="select">
+    <div class="selectContainer">
       <select v-model="currentArrow"
               class="browser-default"
               v-if="!this.$store.getters.currentEditingShoot.finished">
@@ -133,7 +133,12 @@ export default {
   position: relative;
 }
 
-.select {
-  padding: 10px;
+.selectContainer {
+  padding-top: 5px;
+  width: 100%;
+}
+.selectContainer > select {
+  background-color: #efe;
+  border-bottom: 3px solid #afa;
 }
 </style>
