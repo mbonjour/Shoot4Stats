@@ -3,10 +3,9 @@
     <div>
       <button @click="finishShoot()"
               v-if="!this.$store.getters.currentEditingShoot.finished"
-              data-target="modal1"
               class="finishButton"><strong>Give UP !</strong></button>
     </div>
-    <pointsTable :arrows="arrows"></pointsTable>
+    <pointsTable :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
     <div class="select">
       <select v-model="currentArrow"
               class="browser-default"

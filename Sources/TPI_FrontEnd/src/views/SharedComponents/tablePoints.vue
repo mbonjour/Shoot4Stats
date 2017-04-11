@@ -1,7 +1,7 @@
 <template>
   <div class="pointsTable">
     <table>
-      <tr v-for="(end, index) in this.$store.getters.currentEditingShoot.ends">
+      <tr v-for="(end, index) in shoot.ends">
         <td class="nbEnd">{{ index + 1 }}</td>
         <td v-for="arrow in end.arrows">
           <arrowItem :pointValue="arrow.point"></arrowItem>
@@ -10,7 +10,7 @@
           {{ total(end.arrows) }}
         </td>
       </tr>
-      <tr v-if="!this.$store.getters.currentEditingShoot.finished" style="background-color: #cfc;">
+      <tr v-if="!shoot.finished" style="background-color: #cfc;">
         <td class="nbEnd">x</td>
         <td v-for="arrow in arrows">
           <arrowItem :pointValue="arrow.point"></arrowItem>
@@ -25,7 +25,7 @@ import arrowItem from '../SharedComponents/arrowItem'
 export default {
   name: 'pointsTable',
   components: { arrowItem },
-  props: ['arrows'],
+  props: ['arrows', 'shoot'],
   methods: {
     total (arrowsArray) {
       let result = 0
@@ -46,7 +46,7 @@ export default {
 
 <style>
 tr:nth-child(odd) {
-  background-color: #bdbdbd;
+  background-color: #dadada;
 }
 
 table {

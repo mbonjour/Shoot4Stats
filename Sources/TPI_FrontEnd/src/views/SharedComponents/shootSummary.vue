@@ -1,6 +1,6 @@
 <template>
   <div class="shootSummary">
-    <span>{{ shoot.nb_ends }}</span>
+    <span>Arrows : {{ shoot.nb_ends*shoot.nb_arrows_by_end }}/{{ shoot.nb_total_ends*shoot.nb_arrows_by_end }}</span>
     <span class="pushRight">{{ shoot.date }}</span>
   </div>
 </template>
