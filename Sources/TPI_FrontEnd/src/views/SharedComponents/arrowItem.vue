@@ -15,22 +15,22 @@ export default {
         case 11:
         case 10:
         case 9:
-          return 'border: 1px solid #ffee58; background-color: #ffee58;'
+          return 'border: 2px solid #ffb300; background-color: #fff176;'
         case 8:
         case 7:
-          return 'border: 1px solid #ef5350; background-color: #ef5350; color: #fafafa;'
+          return 'border: 2px solid #ef5350; background-color: #e57373; color: #fafafa;'
         case 6:
         case 5:
-          return 'border: 1px solid #2196f3; color: #fafafa; background-color: #2196f3;'
+          return 'border: 2px solid #2196f3; color: #fafafa; background-color: #64b5f6;'
         case 4:
         case 3:
-          return 'border: 1px solid #212121; color: #fafafa; background-color: #212121;'
+          return 'border: 2px solid #212121; color: #fafafa; background-color: #424242;'
         case 2:
         case 1:
         case 0:
-          return 'border: 1px solid gray; background-color: #fafafa;'
+          return 'border: 2px solid #eeeeee; background-color: #fafafa;'
         default:
-          return 'border: 1px solid green'
+          return 'border: 2px solid green'
       }
     },
     pointView () {

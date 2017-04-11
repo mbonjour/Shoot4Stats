@@ -101,7 +101,7 @@ export default {
 <style>
 .validateButton {
   width: 100%;
-  height: 70px;
+  height: 50px;
   position: fixed;
   bottom: 0px;
   color: #35495E;
@@ -115,7 +115,7 @@ export default {
 
 .redirectButton {
   width: 100%;
-  height: 70px;
+  height: 50px;
   position: fixed;
   bottom: 0px;
   color: #35495E;
