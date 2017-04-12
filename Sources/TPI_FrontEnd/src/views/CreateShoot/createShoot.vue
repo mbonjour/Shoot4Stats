@@ -26,6 +26,8 @@
             <label for="street">Street</label>
           </div>
         </div>
+        <div class="row">
+          <div class="col s12">
         <label>Type</label>
         <select v-model="type" class="browser-default">
           <option disabled value="">Choose your option</option>
@@ -33,6 +35,8 @@
           <option>outdoor</option>
           <option>indoor</option>
         </select>
+          </div>
+        </div>
         <div class="row">
           <!-- Materialize fais chier quand on rempli avec V-model -->
           <div class="input-field col s6">
@@ -125,9 +129,12 @@ export default {
 <style>
 .validateButton {
   width: 100%;
-  background-color: #41B883; 
+  height: 50px;
+  position: fixed;
+  bottom: 0px;
   color: #35495E;
-  text-align: center;
+  background-color: #41B883;
+  border: none;
   cursor: pointer;
 }
 </style>

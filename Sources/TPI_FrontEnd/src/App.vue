@@ -17,6 +17,7 @@
         </ul>
         <ul class="right">
           <li v-if="logged"><a href="/api/login/logout"><i class="material-icons">power_settings_new</i></a></li>
+          <li v-if="!logged"><a href="/api/login/facebook?url=/dashboard"><i class="material-icons">perm_identity<!--mode_edit--></i></a></li>
         </ul>
       </div>
     </nav>

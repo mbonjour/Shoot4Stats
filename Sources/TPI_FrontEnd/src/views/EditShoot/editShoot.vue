@@ -7,7 +7,7 @@
     </div>
     <pointsTable :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
       <select v-model="currentArrow"
-              class="browser-default"
+              class="browser-default selectPoint"
               v-if="!this.$store.getters.currentEditingShoot.finished">
         <option disabled
                 value="">Select here and hit add !</option>
@@ -130,7 +130,7 @@ export default {
   position: relative;
   cursor: pointer;
 }
-select {
+.selectPoint {
   width: 100%;
   position: fixed;
   bottom: 50px;
