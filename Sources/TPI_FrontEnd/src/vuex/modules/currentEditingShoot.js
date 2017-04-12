@@ -3,18 +3,22 @@ import axios from 'axios'
 
 export default {
   state: {
-    currentEditingShoot: []
+    currentEditingShoot: {}
   },
   mutations: {
     SET_CURRENT_EDITING_SHOOT (state, shootID) {
-      state.currentEditingShoot = {}
-      axios.get('/api/shoots/' + shootID).then((response) => {
-        state.currentEditingShoot = response.data
-      })
-      .catch((err) => {
-        EventBus.$emit('toastError', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
-        console.log(err)
-      })
+      // si shoot déja load pas besoin de req API
+      // eslint-disable-next-line
+      if (state.currentEditingShoot.id != shootID) {
+        state.currentEditingShoot = {}
+        axios.get('/api/shoots/' + shootID).then((response) => {
+          state.currentEditingShoot = response.data
+        })
+        .catch((err) => {
+          EventBus.$emit('toastError', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
+          console.log(err)
+        })
+      }
     },
     ADD_END_CURRENT_EDITING_SHOOT (state, end) {
       // TODO : TROUVER SOLUCE PLUS PROPRE
@@ -39,6 +43,9 @@ export default {
       .then((response) => {
         state.currentEditingShoot.finished = true
       })
+    },
+    CREATE_SHOOT (state, shootObj) {
+      state.currentEditingShoot = shootObj
     }
   },
   actions: {
@@ -50,6 +57,19 @@ export default {
     },
     addEnd ({ commit }, end) {
       commit('ADD_END_CURRENT_EDITING_SHOOT', end)
+    },
+    createShoot ({commit}, shootObj) {
+      return new Promise((resolve, reject) => {
+        axios.post('/api/shoots', shootObj)
+        .then((response) => {
+          commit('CREATE_SHOOT', response.data)
+          resolve(response.data.id)
+        })
+        .catch((err) => {
+          EventBus.$emit('toastError', 'Create Error : ' + err)
+          reject(err)
+        })
+      })
     }
   },
   getters: {

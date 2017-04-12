@@ -97,16 +97,8 @@ export default {
   },
   methods: {
     validateSend () {
-      let valide = true
       if (this.nb_Ends > 0 && this.nb_ArrowsByEnd > 0 && this.description && this.title) {
-        valide = true
-      } else {
-        this.$events.$emit('toastError', 'Une information est mal rentrée dans le formulaire')
-        valide = false
-      }
-      if (valide) {
-        // Voir pour passer avec VueX -->
-        this.$http.post('/api/shoots', {
+        this.$store.dispatch('createShoot', {
           title: this.title,
           description: this.description,
           nb_ends: this.nb_Ends,
@@ -114,13 +106,29 @@ export default {
           type: this.type,
           Location: this.location
         })
-        .then((response) => {
-          this.$router.push({path: '/editShoot/' + response.data.id})
+        .then((shootId) => {
+          this.$router.push({path: '/editShoot/' + shootId})
         })
         .catch((err) => {
-          this.$events.$emit('toastError', err + ' Veuillez contacter l\'admin si cela se reproduit')
           console.log(err)
         })
+        // this.$http.post('/api/shoots', {
+        //   title: this.title,
+        //   description: this.description,
+        //   nb_ends: this.nb_Ends,
+        //   nb_arrows_end: this.nb_ArrowsByEnd,
+        //   type: this.type,
+        //   Location: this.location
+        // })
+        // .then((response) => {
+        //   this.$router.push({path: '/editShoot/' + response.data.id})
+        // })
+        // .catch((err) => {
+        //   this.$events.$emit('toastError', err + ' Veuillez contacter l\'admin si cela se reproduit')
+        //   console.log(err)
+        // })
+      } else {
+        this.$events.$emit('toastError', 'Une information est mal rentrée dans le formulaire')
       }
     }
   }
