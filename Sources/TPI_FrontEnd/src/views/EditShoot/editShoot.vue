@@ -136,9 +136,11 @@ export default {
   bottom: 50px;
   height: 50px;
   background-color: #efe;
-  border-bottom: 3px solid #afa;
   text-align-last: center;
   text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  color: #41B883;
   padding: 0 0 0 20px;
 }
 </style>

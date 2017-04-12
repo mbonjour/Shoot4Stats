@@ -66,6 +66,6 @@ td, tr {
 }
 .currentEnd {
   background-color: #efe;
-  border-bottom: 3px solid #afa;
+  border-bottom: 3px solid #41B883;
 }
 </style>
