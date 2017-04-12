@@ -37,11 +37,11 @@
           <!-- Materialize fais chier quand on rempli avec V-model -->
           <div class="input-field col s6">
             <input v-model="nb_Ends" id="nb_Ends" type="number" class="validate">
-            <label for="nb_Ends">nb_Ends</label>
+            <label class="active" for="nb_Ends">nb_Ends</label>
           </div>
           <div class="input-field col s6">
             <input v-model="nb_ArrowsByEnd" id="nb_ArrowsByEnd" type="number" class="validate">
-            <label for="nb_ArrowsByEnd">nb_ArrowsByEnd</label>
+            <label class="active" for="nb_ArrowsByEnd">nb_ArrowsByEnd</label>
           </div>
         </div>
       </form>
