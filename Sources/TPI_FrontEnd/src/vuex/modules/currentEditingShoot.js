@@ -63,7 +63,7 @@ export default {
         axios.post('/api/shoots', shootObj)
         .then((response) => {
           commit('CREATE_SHOOT', response.data)
-          resolve(response.data.id)
+          resolve()
         })
         .catch((err) => {
           EventBus.$emit('toastError', 'Create Error : ' + err)

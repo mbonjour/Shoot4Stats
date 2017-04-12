@@ -106,8 +106,8 @@ export default {
           type: this.type,
           Location: this.location
         })
-        .then((shootId) => {
-          this.$router.push({path: '/editShoot/' + shootId})
+        .then(() => {
+          this.$router.push({path: '/editShoot/' + this.$store.getters.currentEditingShoot.id})
         })
         .catch((err) => {
           console.log(err)

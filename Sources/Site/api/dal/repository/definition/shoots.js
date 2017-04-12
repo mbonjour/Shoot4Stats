@@ -108,7 +108,9 @@ module.exports = (props) => {
                             callback(err, shoot) // TODO:Mapper
                         })
                     } else {
-                        callback(null, shoot.dataValues) // TODO:Mapper
+                      shoot.dataValues.ends = []
+                      shoot.dataValues.nb_ends = 0
+                      callback(null, shoot.dataValues) // TODO:Mapper
                     }
                 })
             })
