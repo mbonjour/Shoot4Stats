@@ -2,8 +2,10 @@
   <div class="card" :class="borderColor" @click="showDetailsOrEdit()">
     <div class="title">{{ shoot.title }}</div>
     <div class="desc">{{ shoot.description }}</div>
-    <shootSummary v-if="!showDetails" :shoot="shoot"></shootSummary>
-    <shootDetails v-if="showDetails" :shoot="shoot"></shootDetails>
+    <transition name="bounce" mode="out-in">
+      <shootSummary v-if="!showDetails" :shoot="shoot"></shootSummary>
+      <shootDetails v-else :shoot="shoot"></shootDetails>
+    </transition>
   </div>
 </template>
 
@@ -63,6 +65,7 @@ export default {
   font-weight: bold;
   background-color: #fdfdfd;
   margin: 2px;
+  padding: 5px;
 }
 .finished {
   border-left: 10px solid #41B883;
@@ -79,5 +82,40 @@ export default {
 .desc {
   border-bottom: 1px solid #dadada;
   margin: 2px;
+  padding: 5px;
+}
+.shootSummary {
+  padding: 5px;
+}
+.shootDetails {
+  padding: 5px;
+}
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-out .5s;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes bounce-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(0);
+  }
 }
 </style>
