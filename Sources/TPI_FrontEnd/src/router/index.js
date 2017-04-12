@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Vue from 'vue'
 import Router from 'vue-router'
-// import store
+import store from '../vuex/store'
 import routes from './routes'
 
 Vue.use(Router)
@@ -11,11 +11,11 @@ let router = new Router(routes)
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     loggedIn((user) => {
-      if (!user.logged) {
+      if (!store.getters.user.logged) {
         window.location.replace('/api/login/facebook?url=' + to.fullPath)
       } else {
         if (to.matched.some(record => record.meta.requiresAdmin)) {
-          if (!user.user.is_admin) {
+          if (!store.getters.user.user.is_admin) {
             window.location.replace('/#/')
           } else {
             next()
@@ -31,6 +31,7 @@ router.beforeEach((to, from, next) => {
 })
 
 let loggedIn = (next) => {
+  store.dispatch('updateUser')
   axios.get('/api/login/me').then((response) => {
     next(response.data)
   })
