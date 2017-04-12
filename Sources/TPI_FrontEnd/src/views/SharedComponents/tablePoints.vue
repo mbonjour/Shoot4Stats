@@ -54,9 +54,8 @@ table {
   border: 1px solid #dadada;
   text-align: center;
 }
-
-td,
-tr {
+td, tr {
+  padding: 10px 5px;
   text-align: center;
   border-bottom: 1px solid #dadada;
   border-top: 1px solid #dadada;

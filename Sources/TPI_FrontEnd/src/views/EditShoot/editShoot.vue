@@ -3,7 +3,7 @@
     <div>
       <button @click="finishShoot()"
               v-if="!this.$store.getters.currentEditingShoot.finished"
-              class="finishButton"><strong>Give UP !</strong></button>
+              class="finishButton">Give UP !</button>
     </div>
     <pointsTable :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
     <div class="selectContainer">
@@ -122,10 +122,12 @@ export default {
 
 .finishButton {
   width: 100%;
-  height: 30px;
-  color: white;
-  background-color: #ef5350;
+  height: 50px;
+  font-weight: bold;
+  color: #ef5350;
+  background-color: #fafafa;
   border: none;
+  border-bottom: 2px solid #ef5350;
   top: 0px;
   position: relative;
   cursor: pointer;

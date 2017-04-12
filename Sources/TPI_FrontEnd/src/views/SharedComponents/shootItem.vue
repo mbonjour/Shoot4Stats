@@ -65,13 +65,13 @@ export default {
   margin: 2px;
 }
 .finished {
-  border-left: 10px solid green;
+  border-left: 10px solid #41B883;
 }
 .notReallyFinished {
-  border-left: 10px solid yellow;
+  border-left: 10px solid #fff176;
 }
 .notFinished {
-  border-left: 10px solid red;
+  border-left: 10px solid #ef5350;
 }
 .pushRight {
   float: right;
