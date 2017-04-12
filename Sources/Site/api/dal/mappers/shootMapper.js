@@ -24,6 +24,7 @@ const mapper = {
         result.total = shoot.total
         result.tens = shoot.tens
         result.nines = shoot.nines
+        result.count = shoot.count
         result.ends = shoot.Ends.map(endMapper)
         return result
     }

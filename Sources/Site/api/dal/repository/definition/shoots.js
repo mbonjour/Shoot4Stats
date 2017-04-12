@@ -120,16 +120,19 @@ var calculateSummarySpecifications = (shoot, callback) => {
     var total = 0
     var nbNine = 0
     var nbTen = 0
-
+    var listCounts = []
+    var counts = {}
     shoot.Ends.forEach((end, index, array) => {
         end.Arrows.forEach((arrow, index, array) => {
+          counts[arrow.dataValues.point] = (counts[arrow.dataValues.point] || 0) + 1
           var currentArrowValue = arrow.dataValues.point > 10 ? 10 : arrow.dataValues.point
-            total += currentArrowValue
-            if (currentArrowValue == 9) {
-                nbNine++
-            } else if (currentArrowValue == 10) {
-                nbTen++
-            }
+          total += currentArrowValue
+          if (currentArrowValue == 9) {
+              nbNine++
+          } else if (currentArrowValue == 10) {
+              nbTen++
+          }
+          listCounts.push(counts)
         })
 
         if (index == array.length - 1) {
@@ -138,6 +141,7 @@ var calculateSummarySpecifications = (shoot, callback) => {
             shoot.goldHit = (nbNine + nbTen) / (array.length * shoot.dataValues.arrowsByEnd)
             shoot.tens = nbTen
             shoot.nines = nbNine
+            shoot.count = counts
         }
     })
     callback()
