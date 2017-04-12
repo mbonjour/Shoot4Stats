@@ -120,7 +120,6 @@ var calculateSummarySpecifications = (shoot, callback) => {
     var total = 0
     var nbNine = 0
     var nbTen = 0
-    var listCounts = []
     var counts = {}
     shoot.Ends.forEach((end, index, array) => {
         end.Arrows.forEach((arrow, index, array) => {
@@ -132,7 +131,6 @@ var calculateSummarySpecifications = (shoot, callback) => {
           } else if (currentArrowValue == 10) {
               nbTen++
           }
-          listCounts.push(counts)
         })
 
         if (index == array.length - 1) {

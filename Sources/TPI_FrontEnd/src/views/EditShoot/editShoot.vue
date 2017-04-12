@@ -18,10 +18,6 @@
       </select>
     </div>
     <p>You're at : {{ this.$store.getters.currentEditingShoot.nb_ends }}/{{ this.$store.getters.currentEditingShoot.nb_total_ends }} ends</p>
-    <div class="progress">
-      <div class="determinate"
-          :style="styleEndsIndication"></div>
-    </div>
     <div>
       <button v-if="!arrowComplete"
               :disabled="disable"
