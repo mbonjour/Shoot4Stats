@@ -11,11 +11,11 @@ let router = new Router(routes)
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     loggedIn((user) => {
-      if (!store.getters.user.logged) {
+      if (!user.logged) {
         window.location.replace('/api/login/facebook?url=' + to.fullPath)
       } else {
         if (to.matched.some(record => record.meta.requiresAdmin)) {
-          if (!store.getters.user.user.is_admin) {
+          if (!user.user.is_admin) {
             window.location.replace('/#/')
           } else {
             next()

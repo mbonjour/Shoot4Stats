@@ -46,11 +46,13 @@
         </div>
       </form>
       <!-- TODO: Boutton désactivé si pas tous les champs sont remplis -->
-      <button @click="validateSend()" class="btn waves-effect waves-light" style="background-color: #41B883; color: #35495E;" type="submit" name="action">
-        Submit
-        <i class="material-icons right" style="color: #35495E;">send</i>
-      </button>
     </div>
+    <button @click="validateSend()" class="validateButton">
+      <div>
+      <strong>Submit</strong>
+      <i class="material-icons tiny" style="color: #35495E;">send</i>
+      </div>
+    </button>
   </div>
 </template>
 
@@ -95,11 +97,11 @@ export default {
       if (this.nb_Ends > 0 && this.nb_ArrowsByEnd > 0 && this.description && this.title) {
         valide = true
       } else {
-        // Toast en fct de l'erreur
-        this.$events.$emit('toast', 'Une information est mal rentrée dans le formulaire')
+        this.$events.$emit('toastError', 'Une information est mal rentrée dans le formulaire')
         valide = false
       }
       if (valide) {
+        // Voir pour passer avec VueX -->
         this.$http.post('/api/shoots', {
           title: this.title,
           description: this.description,
@@ -112,7 +114,7 @@ export default {
           this.$router.push({path: '/editShoot/' + response.data.id})
         })
         .catch((err) => {
-          // Toast de l'erreur ?
+          this.$events.$emit('toastError', err + ' Veuillez contacter l\'admin si cela se reproduit')
           console.log(err)
         })
       }
@@ -120,3 +122,12 @@ export default {
   }
 }
 </script>
+<style>
+.validateButton {
+  width: 100%;
+  background-color: #41B883; 
+  color: #35495E;
+  text-align: center;
+  cursor: pointer;
+}
+</style>

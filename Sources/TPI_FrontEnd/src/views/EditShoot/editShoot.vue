@@ -17,7 +17,6 @@
         <option value="11">X</option>
       </select>
     </div>
-    <p>You're at : {{ this.$store.getters.currentEditingShoot.nb_ends }}/{{ this.$store.getters.currentEditingShoot.nb_total_ends }} ends</p>
     <div>
       <button v-if="!arrowComplete"
               :disabled="disable"
@@ -103,6 +102,7 @@ export default {
   color: #35495E;
   background-color: #41B883;
   border: none;
+  cursor: pointer;
 }
 .validateButton:disabled {
   color: #35495E;
@@ -117,6 +117,7 @@ export default {
   color: #35495E;
   background-color: #41B883;
   border: none;
+  cursor: pointer;
 }
 
 .finishButton {
@@ -127,14 +128,21 @@ export default {
   border: none;
   top: 0px;
   position: relative;
+  cursor: pointer;
 }
 
 .selectContainer {
   padding-top: 5px;
   width: 100%;
+  position: fixed;
+  bottom: 50px;
 }
 .selectContainer > select {
+  height: 50px;
   background-color: #efe;
   border-bottom: 3px solid #afa;
+  text-align-last: center;
+  text-align: center;
+  padding: 0 0 0 20px;
 }
 </style>
