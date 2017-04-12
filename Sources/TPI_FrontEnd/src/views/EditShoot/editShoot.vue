@@ -6,7 +6,6 @@
               class="finishButton">Give UP !</button>
     </div>
     <pointsTable :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
-    <div class="selectContainer">
       <select v-model="currentArrow"
               class="browser-default"
               v-if="!this.$store.getters.currentEditingShoot.finished">
@@ -16,7 +15,6 @@
         <option v-for="i in 10">{{ i }}</option>
         <option value="11">X</option>
       </select>
-    </div>
     <div>
       <button v-if="!arrowComplete"
               :disabled="disable"
@@ -93,7 +91,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .validateButton {
   width: 100%;
   height: 50px;
@@ -132,14 +130,10 @@ export default {
   position: relative;
   cursor: pointer;
 }
-
-.selectContainer {
-  padding-top: 5px;
+select {
   width: 100%;
   position: fixed;
   bottom: 50px;
-}
-.selectContainer > select {
   height: 50px;
   background-color: #efe;
   border-bottom: 3px solid #afa;

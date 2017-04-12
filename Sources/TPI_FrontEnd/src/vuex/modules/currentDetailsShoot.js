@@ -7,6 +7,7 @@ export default {
   },
   mutations: {
     SET_CURRENT_DETAILS_SHOOT (state, shootID) {
+      state.currentDetailsShoot = {}
       axios.get('/api/shoots/' + shootID).then((response) => {
         state.currentDetailsShoot = response.data
       })
