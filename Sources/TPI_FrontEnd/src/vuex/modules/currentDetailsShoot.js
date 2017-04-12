@@ -11,7 +11,7 @@ export default {
         state.currentDetailsShoot = response.data
       })
       .catch((err) => {
-        EventBus.$emit('toast', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
+        EventBus.$emit('toastError', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
         console.log(err)
       })
     }

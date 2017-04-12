@@ -12,7 +12,7 @@ export default {
         state.currentEditingShoot = response.data
       })
       .catch((err) => {
-        EventBus.$emit('toast', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
+        EventBus.$emit('toastError', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
         console.log(err)
       })
     },
@@ -27,10 +27,10 @@ export default {
       axios.post('/api/ends', end)
       .then((response) => {
         state.currentEditingShoot = response.data
-        EventBus.$emit('toast', 'end added')
+        EventBus.$emit('toastSuccess', 'You\'re at : ' + state.currentEditingShoot.nb_ends + '/' + state.currentEditingShoot.nb_total_ends + ' ends')
       })
       .catch((err) => {
-        EventBus.$emit('toast', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
+        EventBus.$emit('toastError', 'si l\'erreur réapparaît veuillez contacter le webmaster ' + err)
         state.currentEditingShoot = clone
       })
     },

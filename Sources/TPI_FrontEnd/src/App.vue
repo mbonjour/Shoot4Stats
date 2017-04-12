@@ -36,10 +36,14 @@ export default {
     }
   },
   mounted () {
-    this.$events.$on('toast', (message) => {
-      // MMettre Toast error et Success
+    this.$events.$on('toastError', (message) => {
       /*eslint-disable*/
-      Materialize.toast(message, 3000)
+      Materialize.toast(message, 5000, 'errorToast')
+      /*eslint-enable*/
+    })
+    this.$events.$on('toastSuccess', (message) => {
+      /*eslint-disable*/
+      Materialize.toast(message, 3000, 'successToast')
       /*eslint-enable*/
     })
     this.$http.get('/api/login/me')
@@ -66,5 +70,12 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
   opacity: 0
+}
+
+.successToast {
+  background-color: #41B883;
+}
+.errorToast {
+  background-color: #ef5350;
 }
 </style>
