@@ -92,6 +92,9 @@ export default {
 </script>
 
 <style scoped>
+.editShoot {
+  padding-bottom: 100px;
+}
 .validateButton {
   width: 100%;
   height: 50px;

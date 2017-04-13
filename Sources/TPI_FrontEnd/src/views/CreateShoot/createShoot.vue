@@ -5,13 +5,13 @@
         <div class="row">
           <div class="input-field col s12">
             <input v-model="title" id="shoot_title" type="text" class="validate">
-            <label for="shoot_title">Shoot Title</label>
+            <label for="shoot_title">Shoot Title*</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
             <textarea v-model="description" id="description" class="materialize-textarea"></textarea>
-            <label for="description">Description</label>
+            <label for="description">Description*</label>
           </div>
         </div>
         <div class="row">
@@ -28,7 +28,7 @@
         </div>
         <div class="row">
           <div class="col s12">
-        <label>Type</label>
+        <label>Type*</label>
         <select v-model="type" class="browser-default">
           <option disabled value="">Choose your option</option>
           <option>training</option>
@@ -41,20 +41,19 @@
           <!-- Materialize fais chier quand on rempli avec V-model -->
           <div class="input-field col s6">
             <input v-model="nb_Ends" id="nb_Ends" type="number" class="validate">
-            <label class="active" for="nb_Ends">nb_Ends</label>
+            <label class="active" for="nb_Ends">nb_Ends*</label>
           </div>
           <div class="input-field col s6">
             <input v-model="nb_ArrowsByEnd" id="nb_ArrowsByEnd" type="number" class="validate">
-            <label class="active" for="nb_ArrowsByEnd">nb_ArrowsByEnd</label>
+            <label class="active" for="nb_ArrowsByEnd">nb_ArrowsByEnd*</label>
           </div>
         </div>
       </form>
       <!-- TODO: Boutton désactivé si pas tous les champs sont remplis -->
     </div>
-    <button @click="validateSend()" class="validateButton">
+    <button v-if="valide" @click="validateSend()" class="validateButton">
       <div>
-      <strong>Submit</strong>
-      <i class="material-icons tiny" style="color: #35495E;">send</i>
+        <strong>Submit</strong>
       </div>
     </button>
   </div>
@@ -92,6 +91,15 @@ export default {
       } else if (val === 'outdoor') {
         this.nb_Ends = 12
         this.nb_ArrowsByEnd = 6
+      }
+    }
+  },
+  computed: {
+    valide () {
+      if (this.nb_Ends > 0 && this.nb_ArrowsByEnd > 0 && this.description && this.title) {
+        return true
+      } else {
+        return false
       }
     }
   },
