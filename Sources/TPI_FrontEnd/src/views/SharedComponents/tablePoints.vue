@@ -1,6 +1,6 @@
 <template>
   <div class="pointsTable">
-    <table v-if="shoot.ends.length !== 0">
+    <table v-if="shoot.ends.length !== 0 || arrows.length !== 0">
       <tr v-for="(end, index) in shoot.ends">
         <td class="nbEnd">{{ index + 1 }}</td>
         <td v-for="arrow in end.arrows">

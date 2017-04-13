@@ -136,8 +136,8 @@ export default {
 <style>
 .pastille {
   border-radius: 50%;
-  width: 20px;
-  height:20px;
+  width: 15px;
+  height: 15px;
   display: inline-block;
 }
 .jaune {
