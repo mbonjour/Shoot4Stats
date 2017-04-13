@@ -9,6 +9,11 @@
     <!-- <canvas id="myChart" width="200" height="200">
     </canvas> -->
     <chart :chartData="datacollection" :options="options" class="small"></chart>
+    <div class="pastille jaune"></div><span class="legend"> : X, 10 or 9</span></br>
+    <div class="pastille rouge"></div><span class="legend"> : 8 or 7</span></br>
+    <div class="pastille bleu"></div><span class="legend"> : 6 or 5</span></br>
+    <div class="pastille noir"></div><span class="legend"> : 4 or 3</span></br>
+    <div class="pastille blanc"></div><span class="legend"> : M, 1 or 2</span></br>
     <!--<table>
       <tr>
         <td>
@@ -78,7 +83,7 @@ export default {
         },
         tooltipTemplate: '<%= label %> - <%= value %>',
         legend: {
-          display: true,
+          display: false,
           labels: {
             fontSize: 14,
             usePointStyle: true
@@ -129,6 +134,32 @@ export default {
 </script>
 
 <style>
+.pastille {
+  border-radius: 50%;
+  width: 20px;
+  height:20px;
+  display: inline-block;
+}
+.jaune {
+  border: 2px solid #ffb300;
+  background-color: #fff176;
+}
+.rouge {
+  border: 2px solid #ef5350;
+  background-color: #e57373;
+}
+.bleu {
+  border: 2px solid #2196f3;
+  background-color: #64b5f6;
+}
+.noir {
+  border: 2px solid #212121;
+  background-color: #424242;
+}
+.blanc {
+  border: 2px solid #eeeeee;
+  background-color: #fafafa;
+}
 .small {
     max-width: 500px;
   }

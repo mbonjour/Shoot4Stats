@@ -2,7 +2,7 @@
   <div class="card" :class="borderColor" @click="showDetailsOrEdit()">
     <div class="title">{{ shoot.title }}</div>
     <div class="desc">{{ shoot.description }}</div>
-    <transition name="bounce" mode="out-in">
+    <transition name="slide-fade" mode="out-in">
       <shootSummary v-if="!showDetails" :shoot="shoot"></shootSummary>
       <shootDetails v-else :shoot="shoot"></shootDetails>
     </transition>
@@ -95,32 +95,15 @@ export default {
   padding: 5px;
   padding-top: 10px;
 }
-.bounce-enter-active {
-  animation: bounce-in .5s;
+.slide-fade-enter-active {
+  transition: all .2s ease;
 }
-.bounce-leave-active {
-  animation: bounce-out .5s;
+.slide-fade-leave-active {
+  transition: all .4s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.25);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@keyframes bounce-out {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.25);
-  }
-  100% {
-    transform: scale(0);
-  }
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for <2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>
