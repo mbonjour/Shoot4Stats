@@ -17,7 +17,6 @@
 .home {
   padding: 10px;
   padding-right: 0px;
-  height: 100%;
 }
 .loginBtn {
   position: fixed;

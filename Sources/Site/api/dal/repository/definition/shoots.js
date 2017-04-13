@@ -2,6 +2,7 @@
 module.exports = (props) => {
     const mapShoots = require('../../mappers/shootMapper').map
     const mapShoot = require('../../mappers/shootMapper').mapWithArrows
+    const mapNewShoot = require('../../mappers/shootMapper').mapNew
 
     return {
         get: (idUser, callback) => {
@@ -108,9 +109,8 @@ module.exports = (props) => {
                             callback(err, shoot) // TODO:Mapper
                         })
                     } else {
-                      shoot.dataValues.ends = []
-                      shoot.dataValues.nb_ends = 0
-                      callback(null, shoot.dataValues) // TODO:Mapper
+                      shoot.dataValues.Ends = []
+                      callback(null, mapNewShoot(shoot.dataValues)) // TODO:Mapper
                     }
                 })
             })

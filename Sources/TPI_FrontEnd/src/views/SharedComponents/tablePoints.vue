@@ -6,7 +6,7 @@
         <td v-for="arrow in end.arrows">
           <arrowItem :pointValue="arrow.point"></arrowItem>
         </td>
-        <td>
+        <td class="endTotal">
           {{ total(end.arrows) }}
         </td>
       </tr>
@@ -67,5 +67,8 @@ td, tr {
 .currentEnd {
   background-color: #efe;
   border-bottom: 3px solid #41B883;
+}
+.endTotal {
+  border-left: 1px solid #41B883;
 }
 </style>

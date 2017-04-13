@@ -1,8 +1,8 @@
 <template>
   <div class="dashboard">
     <!-- <span v-if="shoots">Go create a Shoot !</span>  Vérifier qu'il y aie des Shoots  -->
-    <div v-if="this.$store.getters.shoots.length === 0">
-      <p>You don't have any Shoots yet !</p>
+    <div v-if="this.$store.getters.shoots.length === 0" class="createShoot">
+      <h3>You don't have any Shoots yet !</h3>
       <p>Please go to <router-link to="/createShoot">Create a Shoot</router-link> or click the "plus" button to begin !!!</p>
     </div>
     <shootItem v-for="currentShoot in this.$store.getters.shoots" :key="currentShoot.id" :shoot="currentShoot"></shootItem>
@@ -34,3 +34,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.createShoot {
+  padding: 10px;
+}
+</style>

@@ -14,7 +14,7 @@ const mapper = {
             nb_ends: shoot.Ends.length,
             nb_total_ends: shoot.totalEnds,
             nb_arrows_by_end: shoot.arrowsByEnd,
-            finished: shoot.finished,
+            finished: shoot.finished
         }
     },
     mapWithArrows: (shoot) => {
@@ -27,6 +27,20 @@ const mapper = {
         result.count = shoot.count
         result.ends = shoot.Ends.map(endMapper)
         return result
+    },
+    mapNew: (shoot) => {
+      return {
+        id: shoot.id,
+        title: shoot.title,
+        description: shoot.description,
+        date: moment.utc(shoot.date.toISOString().slice(0, -1)).fromNow(),
+        Location: locationMapper.map(shoot.Location),
+        nb_ends: shoot.Ends.length,
+        ends: shoot.Ends,
+        nb_total_ends: shoot.totalEnds,
+        nb_arrows_by_end: shoot.arrowsByEnd,
+        finished: shoot.finished
+      }
     }
 }
 module.exports = mapper
