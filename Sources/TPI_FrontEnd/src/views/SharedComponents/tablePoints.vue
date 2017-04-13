@@ -2,12 +2,20 @@
   <div class="pointsTable">
     <table v-if="shoot.ends.length !== 0 || arrows.length !== 0">
       <tr v-for="(end, index) in shoot.ends">
-        <td class="nbEnd">{{ index + 1 }}</td>
-        <td v-for="arrow in end.arrows">
+        <td :rowspan="computedRowSpan" class="nbEnd">{{ index + 1 }}</td>
+        <td v-if="!multipleLines" v-for="arrow in end.arrows">
+          <arrowItem :pointValue="arrow.point"></arrowItem>
+        </td >
+        <td v-else v-for="arrow in firstPart">
           <arrowItem :pointValue="arrow.point"></arrowItem>
         </td>
-        <td class="endTotal">
+        <td :rowspan="computedRowSpan" class="endTotal">
           {{ total(end.arrows) }}
+        </td>
+      </tr>
+      <tr v-if="multipleLines">
+        <td v-for="arrow in secondPart">
+          <arrowItem :pointValue="arrow.point"></arrowItem>
         </td>
       </tr>
       <tr v-if="!shoot.finished" class="currentEnd">
@@ -30,6 +38,11 @@ export default {
   name: 'pointsTable',
   components: { arrowItem },
   props: ['arrows', 'shoot'],
+  data () {
+    return {
+      multipleLines: false
+    }
+  },
   methods: {
     total (arrowsArray) {
       let result = 0
@@ -43,6 +56,22 @@ export default {
         result += currentArrow
       })
       return result
+    }
+  },
+  computed: {
+    computedRowSpan () {
+      if (this.shoot.nb_arrows_by_end > 6) {
+        this.multipleLines = true
+        return 2
+      } else {
+        return 1
+      }
+    },
+    firstPart () {
+
+    },
+    secondPart () {
+
     }
   }
 }
