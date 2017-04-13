@@ -1,7 +1,7 @@
 <template>
   <div class="shootDetails">
-    Tens : {{ this.$store.getters.currentDetailsShoot.tens }}</br>
-    Nines: {{ this.$store.getters.currentDetailsShoot.nines }}</br>
+    Tens (with X's) : {{ this.$store.getters.currentDetailsShoot.tens }}</br>
+    Nines : {{ this.$store.getters.currentDetailsShoot.nines }}</br>
     Gold Hitting percentage : {{ this.$store.getters.currentDetailsShoot.gold_hit.toFixed(2) }}%</br>
     Total des points : {{ this.$store.getters.currentDetailsShoot.total }} / {{ (this.$store.getters.currentDetailsShoot.nb_total_ends*this.$store.getters.currentDetailsShoot.nb_arrows_by_end)*10 }}</br>
     Average Arrow : {{ this.$store.getters.currentDetailsShoot.average_arrow.toFixed(2) }}</br>
@@ -64,13 +64,26 @@
 </template>
 <script>
 import pointsTable from './tablePoints'
-import Chart from './chart.js'
+import Chart from './Charts/chart.js'
 export default {
   components: { pointsTable, Chart },
   data () {
     return {
       datacollection: null,
       options: {
+        tooltipEvents: [],
+        showTooltips: true,
+        onAnimationComplete: () => {
+          this.showTooltip(this.segments, true)
+        },
+        tooltipTemplate: '<%= label %> - <%= value %>',
+        legend: {
+          display: true,
+          labels: {
+            fontSize: 14,
+            usePointStyle: true
+          }
+        },
         animation: {
           animateScale: true
         },
@@ -104,6 +117,9 @@ export default {
           ],
           backgroundColor: [
             '#fafafa', '#fafafa', '#fafafa', '#424242', '#424242', '#64b5f6', '#64b5f6', '#e57373', '#e57373', '#fff176', '#fff176', '#fff176'
+          ],
+          borderColor: [
+            '#eeeeee', '#eeeeee', '#eeeeee', '#212121', '#212121', '#2196f3', '#2196f3', '#ef5350', '#ef5350', '#ffb300', '#ffb300', '#ffb300'
           ]
         }]
       }
