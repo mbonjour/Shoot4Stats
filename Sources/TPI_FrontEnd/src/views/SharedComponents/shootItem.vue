@@ -66,6 +66,7 @@ export default {
   background-color: #fdfdfd;
   margin: 2px;
   padding: 5px;
+  padding-bottom: 10px;
 }
 .finished {
   border-left: 10px solid #41B883;
@@ -82,13 +83,17 @@ export default {
 .desc {
   border-bottom: 1px solid #dadada;
   margin: 2px;
-  padding: 5px;
+  padding-left: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .shootSummary {
   padding: 5px;
+  padding-top: 10px;
 }
 .shootDetails {
   padding: 5px;
+  padding-top: 10px;
 }
 .bounce-enter-active {
   animation: bounce-in .5s;

@@ -140,9 +140,13 @@ export default {
   height: 50px;
   position: fixed;
   bottom: 0px;
+  left: 0px;
   color: #35495E;
   background-color: #41B883;
   border: none;
   cursor: pointer;
+}
+select.browser-default {
+  padding-left: 0px;
 }
 </style>

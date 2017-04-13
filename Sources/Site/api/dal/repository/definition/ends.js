@@ -31,6 +31,7 @@ module.exports = (props) => {
                 props.store.repositories.shoots.finishShoot(shoot.id, (err, created) => {})
               }
               Promise.all(endObj.arrows.map((arrow) => {
+                //problème lors de la création, apparemment pas dans l'ordre envoyé certaines fois...
                 return props.store.models.Arrow.create({
                   point: arrow.point,
                   fkEnd: end.id
