@@ -1,5 +1,5 @@
 <template>
-  <div class="arrowItem":style="color">
+  <div class="arrowItem" :class="classItem">
     {{ pointView }}
   </div>
 </template>
@@ -9,26 +9,26 @@ export default {
   name: 'arrowItem',
   props: ['pointValue'],
   computed: {
-    color () {
+    classItem () {
       switch (this.pointValue) {
         // TODO : Modif classe au lieu de style
         case 11:
         case 10:
         case 9:
-          return 'border: 2px solid #ffb300; background-color: #fff176;'
+          return 'yellowItem'
         case 8:
         case 7:
-          return 'border: 2px solid #ef5350; background-color: #e57373; color: #fafafa;'
+          return 'redItem'
         case 6:
         case 5:
-          return 'border: 2px solid #2196f3; color: #fafafa; background-color: #64b5f6;'
+          return 'blueItem'
         case 4:
         case 3:
-          return 'border: 2px solid #212121; color: #fafafa; background-color: #424242;'
+          return 'blackItem'
         case 2:
         case 1:
         case 0:
-          return 'border: 2px solid #eeeeee; background-color: #fafafa;'
+          return 'whiteItem'
         default:
           return 'border: 2px solid green'
       }
@@ -56,5 +56,35 @@ export default {
   border-radius: 3px;
   width: 30px;
   height: 30px;
+}
+.yellowItem {
+  border: 2px solid #ffb300;
+  background-color: #fff176;
+  color: #ff8300;
+  font-weight: bold;
+}
+.redItem {
+  border: 2px solid #ef5350;
+  background-color: #e57373;
+  color: #fafafa;
+  font-weight: bold;
+}
+.blueItem {
+  border: 2px solid #2196f3;
+  color: #fafafa;
+  background-color: #64b5f6;
+  font-weight: bold;
+}
+.blackItem {
+  border: 2px solid #212121;
+  color: #fafafa;
+  background-color: #424242;
+  font-weight: bold;
+}
+.whiteItem {
+  border: 2px solid #eeeeee;
+  background-color: #fafafa;
+  color: #aeaeae;
+  font-weight: bold;
 }
 </style>

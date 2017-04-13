@@ -79,4 +79,7 @@ export default {
 .errorToast {
   background-color: #ef5350;
 }
+h3 {
+  color: #41B883;
+}
 </style>

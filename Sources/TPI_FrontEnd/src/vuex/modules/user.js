@@ -5,15 +5,22 @@ export default {
     user: {}
   },
   mutations: {
-    UPDATE_USER (state) {
-      axios.get('/api/login/me').then((response) => {
-        state.user = response.data
-      })
+    UPDATE_USER (state, user) {
+      state.user = user
     }
   },
   actions: {
-    updateUser ({ commit }) {
-      commit('UPDATE_USER')
+    updateUser ({commit}) {
+      return new Promise((resolve, reject) => {
+        axios.post('/api/login/me')
+        .then((response) => {
+          commit('UPDATE_USER', response.data)
+          resolve(response.data)
+        })
+        .catch((err) => {
+          reject(err)
+        })
+      })
     }
   },
   getters: {

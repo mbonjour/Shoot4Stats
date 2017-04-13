@@ -40,18 +40,18 @@
         <div class="row">
           <!-- Materialize fais chier quand on rempli avec V-model -->
           <div class="input-field col s6">
-            <input v-model="nb_Ends" id="nb_Ends" type="number" class="validate">
+            <input :disabled="typeFixed" v-model="nb_Ends" id="nb_Ends" type="number" class="validate"  min="0" max="50" >
             <label class="active" for="nb_Ends">nb_Ends*</label>
           </div>
           <div class="input-field col s6">
-            <input v-model="nb_ArrowsByEnd" id="nb_ArrowsByEnd" type="number" class="validate">
+            <input :disabled="typeFixed" v-model="nb_ArrowsByEnd" id="nb_ArrowsByEnd" type="number" min="0" max="18" class="validate">
             <label class="active" for="nb_ArrowsByEnd">nb_ArrowsByEnd*</label>
           </div>
         </div>
       </form>
       <!-- TODO: Boutton désactivé si pas tous les champs sont remplis -->
     </div>
-    <button v-if="valide" @click="validateSend()" class="validateButton">
+    <button @click="validateSend()" class="validateButton" :disabled="!valide">
       <div>
         <strong>Submit</strong>
       </div>
@@ -64,6 +64,7 @@ export default {
   name: 'createShoot',
   data () {
     return {
+      typeFixed: false,
       description: null,
       title: null,
       location: {
@@ -88,15 +89,19 @@ export default {
       if (val === 'indoor') {
         this.nb_Ends = 20
         this.nb_ArrowsByEnd = 3
+        this.typeFixed = true
       } else if (val === 'outdoor') {
         this.nb_Ends = 12
         this.nb_ArrowsByEnd = 6
+        this.typeFixed = true
+      } else {
+        this.typeFixed = false
       }
     }
   },
   computed: {
     valide () {
-      if (this.nb_Ends > 0 && this.nb_ArrowsByEnd > 0 && this.description && this.title) {
+      if (this.nb_Ends > 0 && this.nb_Ends <= 50 && this.nb_ArrowsByEnd > 0 && this.nb_ArrowsByEnd <= 18 && this.description && this.title) {
         return true
       } else {
         return false
@@ -153,6 +158,10 @@ export default {
   background-color: #41B883;
   border: none;
   cursor: pointer;
+}
+.validateButton:disabled {
+  color: #35495E;
+  background-color: #dadada;
 }
 select.browser-default {
   padding-left: 0px;

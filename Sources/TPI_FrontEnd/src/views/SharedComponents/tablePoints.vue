@@ -1,6 +1,6 @@
 <template>
   <div class="pointsTable">
-    <table>
+    <table v-if="shoot.ends.length !== 0">
       <tr v-for="(end, index) in shoot.ends">
         <td class="nbEnd">{{ index + 1 }}</td>
         <td v-for="arrow in end.arrows">
@@ -17,6 +17,10 @@
         </td>
       </tr>
     </table>
+    <div v-else style="padding: 10px;">
+      <h3>Begin to shoot !</h3> 
+      Selct your points With the selection box and add them !
+    </div>
   </div>
 </template>
 
