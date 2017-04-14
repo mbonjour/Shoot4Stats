@@ -44,7 +44,7 @@
             <label class="active" for="nb_Ends">nb_Ends*</label>
           </div>
           <div class="input-field col s6">
-            <input :disabled="typeFixed" v-model="nb_ArrowsByEnd" id="nb_ArrowsByEnd" type="number" min="0" max="18" class="validate">
+            <input :disabled="typeFixed" v-model="nb_ArrowsByEnd" id="nb_ArrowsByEnd" type="number" min="0" max="12" class="validate">
             <label class="active" for="nb_ArrowsByEnd">nb_ArrowsByEnd*</label>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default {
   },
   computed: {
     valide () {
-      if (this.nb_Ends > 0 && this.nb_Ends <= 50 && this.nb_ArrowsByEnd > 0 && this.nb_ArrowsByEnd <= 18 && this.description && this.title) {
+      if (this.nb_Ends > 0 && this.nb_Ends <= 50 && this.nb_ArrowsByEnd > 0 && this.nb_ArrowsByEnd <= 12 && this.description && this.title) {
         return true
       } else {
         return false

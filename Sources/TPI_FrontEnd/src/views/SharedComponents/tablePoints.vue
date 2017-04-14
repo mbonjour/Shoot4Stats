@@ -1,33 +1,43 @@
 <template>
   <div class="pointsTable">
     <table v-if="shoot.ends.length !== 0 || arrows.length !== 0">
-      <tr v-for="(end, index) in shoot.ends">
-        <td :rowspan="computedRowSpan" class="nbEnd">{{ index + 1 }}</td>
-        <td v-if="!multipleLines" v-for="arrow in end.arrows">
-          <arrowItem :pointValue="arrow.point"></arrowItem>
-        </td >
-        <td v-else v-for="arrow in firstPart">
-          <arrowItem :pointValue="arrow.point"></arrowItem>
-        </td>
-        <td :rowspan="computedRowSpan" class="endTotal">
-          {{ total(end.arrows) }}
-        </td>
-      </tr>
-      <tr v-if="multipleLines">
-        <td v-for="arrow in secondPart">
-          <arrowItem :pointValue="arrow.point"></arrowItem>
-        </td>
-      </tr>
+      <div v-for="(end, index) in shoot.ends">
+        <tr>
+          <td :rowspan="computedRowSpan" class="nbEnd">{{index + 1}}</td>
+          <td v-if="!multipleLines" v-for="arrow in end.arrows">
+            <arrowItem :pointValue="arrow.point"></arrowItem>
+          </td >
+          <td v-for="arrow in firstPart(end.arrows)">
+            <arrowItem :pointValue="arrow.point"></arrowItem>
+          </td>
+          <td :rowspan="computedRowSpan" class="endTotal">
+            {{total(end.arrows)}}
+          </td>
+        </tr>
+        <tr v-if="multipleLines">
+          <td v-for="arrow in secondPart(end.arrows)">
+            <arrowItem :pointValue="arrow.point"></arrowItem>
+          </td>
+        </tr>
+      </div>
       <tr v-if="!shoot.finished" class="currentEnd">
-        <td class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
-        <td v-for="arrow in arrows">
+        <td :rowspan="computedRowSpan" class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
+        <td v-if="!multipleLines" v-for="arrow in arrows">
+          <arrowItem :pointValue="arrow.point"></arrowItem>
+        </td>
+        <td v-if="multipleLines" v-for="arrow in firstPart(arrows)">
+          <arrowItem :pointValue="arrow.point"></arrowItem>
+        </td>
+      </tr>
+      <tr v-if="multipleLines && !shoot.finished" class="currentEnd">
+        <td v-for="arrow in secondPart(arrows)">
           <arrowItem :pointValue="arrow.point"></arrowItem>
         </td>
       </tr>
     </table>
     <div v-else style="padding: 10px;">
       <h3>Begin to shoot !</h3> 
-      Selct your points With the selection box and add them !
+      Selct your points with the selection box and add them !
     </div>
   </div>
 </template>
@@ -40,7 +50,8 @@ export default {
   props: ['arrows', 'shoot'],
   data () {
     return {
-      multipleLines: false
+      multipleLines: false,
+      currentEnd: []
     }
   },
   methods: {
@@ -56,6 +67,26 @@ export default {
         result += currentArrow
       })
       return result
+    },
+    firstPart (arrowsArray) {
+      let result = []
+      for (let i = 0; i < (arrowsArray.length / 2); i++) {
+        if (arrowsArray[i]) {
+          result.push(arrowsArray[i])
+        }
+      }
+      console.log(result)
+      return result
+    },
+    secondPart (arrowsArray) {
+      let result = []
+      for (let i = (arrowsArray.length / 2); i < arrowsArray.length; i++) {
+        if (arrowsArray[i]) {
+          result.push(arrowsArray[i])
+        }
+      }
+      console.log(result)
+      return result
     }
   },
   computed: {
@@ -66,12 +97,6 @@ export default {
       } else {
         return 1
       }
-    },
-    firstPart () {
-
-    },
-    secondPart () {
-
     }
   }
 }
@@ -103,5 +128,6 @@ td, tr {
 }
 .endTotal {
   border-left: 1px solid #41B883;
+  width: 15%;
 }
 </style>
