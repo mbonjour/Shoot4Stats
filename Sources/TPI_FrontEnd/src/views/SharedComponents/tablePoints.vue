@@ -20,20 +20,22 @@
           </td>
         </tr>
       </div>
-      <tr v-if="!shoot.finished" class="currentEnd">
-        <td :rowspan="computedRowSpan" class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
-        <td v-if="!multipleLines" v-for="arrow in arrows">
-          <arrowItem :pointValue="arrow.point"></arrowItem>
-        </td>
-        <td v-if="multipleLines" v-for="arrow in firstPart(arrows)">
-          <arrowItem :pointValue="arrow.point"></arrowItem>
-        </td>
-      </tr>
-      <tr v-if="multipleLines && !shoot.finished" class="currentEnd">
-        <td v-for="arrow in secondPart(arrows)">
-          <arrowItem :pointValue="arrow.point"></arrowItem>
-        </td>
-      </tr>
+      <div>
+        <tr v-if="!shoot.finished" class="currentEnd">
+          <td :rowspan="computedRowSpan" class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
+          <td v-if="!multipleLines" v-for="arrow in arrows">
+            <arrowItem :pointValue="arrow.point"></arrowItem>
+          </td>
+          <td v-if="multipleLines" v-for="arrow in firstPart(arrows)" class="removeCurrentEnd">
+            <arrowItem :pointValue="arrow.point"></arrowItem>
+          </td>
+        </tr>
+        <tr v-if="multipleLines && !shoot.finished" class="currentEnd">
+          <td v-for="arrow in secondPart(arrows)">
+            <arrowItem :pointValue="arrow.point"></arrowItem>
+          </td>
+        </tr>
+      </div>
     </table>
     <div v-else style="padding: 10px;">
       <h3>Begin to shoot !</h3> 
@@ -129,5 +131,8 @@ td, tr {
 .endTotal {
   border-left: 1px solid #41B883;
   width: 15%;
+}
+.removeCurrentEnd {
+  border: none;
 }
 </style>
