@@ -107,18 +107,18 @@ export default {
         ],
         datasets: [{
           data: [
-            this.$store.getters.currentDetailsShoot.count[0],
-            this.$store.getters.currentDetailsShoot.count[1],
-            this.$store.getters.currentDetailsShoot.count[2],
-            this.$store.getters.currentDetailsShoot.count[3],
-            this.$store.getters.currentDetailsShoot.count[4],
-            this.$store.getters.currentDetailsShoot.count[5],
-            this.$store.getters.currentDetailsShoot.count[6],
-            this.$store.getters.currentDetailsShoot.count[7],
-            this.$store.getters.currentDetailsShoot.count[8],
-            this.$store.getters.currentDetailsShoot.count[9],
-            this.$store.getters.currentDetailsShoot.count[10],
-            this.$store.getters.currentDetailsShoot.count[11]
+            this.$store.getters.currentDetailsShoot.count[0] || 0,
+            this.$store.getters.currentDetailsShoot.count[1] || 0,
+            this.$store.getters.currentDetailsShoot.count[2] || 0,
+            this.$store.getters.currentDetailsShoot.count[3] || 0,
+            this.$store.getters.currentDetailsShoot.count[4] || 0,
+            this.$store.getters.currentDetailsShoot.count[5] || 0,
+            this.$store.getters.currentDetailsShoot.count[6] || 0,
+            this.$store.getters.currentDetailsShoot.count[7] || 0,
+            this.$store.getters.currentDetailsShoot.count[8] || 0,
+            this.$store.getters.currentDetailsShoot.count[9] || 0,
+            this.$store.getters.currentDetailsShoot.count[10] || 0,
+            this.$store.getters.currentDetailsShoot.count[11] || 0
           ],
           backgroundColor: [
             '#fafafa', '#fafafa', '#fafafa', '#424242', '#424242', '#64b5f6', '#64b5f6', '#e57373', '#e57373', '#fff176', '#fff176', '#fff176'
