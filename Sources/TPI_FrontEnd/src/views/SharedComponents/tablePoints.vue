@@ -7,7 +7,7 @@
           <td v-if="!multipleLines" v-for="arrow in end.arrows">
             <arrowItem :pointValue="arrow.point"></arrowItem>
           </td >
-          <td v-for="arrow in firstPart(end.arrows)">
+          <td v-if="multipleLines" v-for="arrow in firstPart(end.arrows)">
             <arrowItem :pointValue="arrow.point"></arrowItem>
           </td>
           <td :rowspan="computedRowSpan" class="endTotal">
@@ -72,22 +72,20 @@ export default {
     },
     firstPart (arrowsArray) {
       let result = []
-      for (let i = 0; i < (arrowsArray.length / 2); i++) {
+      for (let i = 0; i < Math.round((arrowsArray.length / 2)); i++) {
         if (arrowsArray[i]) {
           result.push(arrowsArray[i])
         }
       }
-      console.log(result)
       return result
     },
     secondPart (arrowsArray) {
       let result = []
-      for (let i = (arrowsArray.length / 2); i < arrowsArray.length; i++) {
+      for (let i = Math.round((arrowsArray.length / 2)); i < arrowsArray.length; i++) {
         if (arrowsArray[i]) {
           result.push(arrowsArray[i])
         }
       }
-      console.log(result)
       return result
     }
   },
@@ -97,6 +95,7 @@ export default {
         this.multipleLines = true
         return 2
       } else {
+        this.multipleLines = false
         return 1
       }
     }
