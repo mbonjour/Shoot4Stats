@@ -6,15 +6,7 @@
               class="finishButton">Give UP !</button>
     </div>
     <pointsTable :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
-      <select v-model="currentArrow"
-              class="browser-default selectPoint"
-              v-if="!this.$store.getters.currentEditingShoot.finished">
-        <option disabled
-                value="">Select here and hit add !</option>
-        <option value="0">M</option>
-        <option v-for="i in 10">{{ i }}</option>
-        <option value="11">X</option>
-      </select>
+    <the-selector v-if="!this.$store.getters.currentEditingShoot.finished" v-model="currentArrow"></the-selector>
     <div>
       <button v-if="!arrowComplete"
               :disabled="disable"
@@ -32,9 +24,10 @@
 
 <script>
 import pointsTable from '../SharedComponents/tablePoints'
+import theSelector from '../SharedComponents/theSelector'
 export default {
   name: 'editShoot',
-  components: { pointsTable },
+  components: { pointsTable, theSelector },
   data () {
     return {
       shoot: null,
@@ -136,7 +129,7 @@ export default {
   position: relative;
   cursor: pointer;
 }
-.selectPoint {
+.theSelector {
   width: 100%;
   position: fixed;
   bottom: 50px;
