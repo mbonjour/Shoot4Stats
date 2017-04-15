@@ -86,7 +86,7 @@ export default {
   position: fixed;
   bottom: 50px;
   background-color: #fafafa;
-  border-bottom: 3px solid #41B883;
+  border: 3px solid #41B883;
 }
 .selected {
   border: 2px solid #41B883;

@@ -5,7 +5,11 @@
               v-if="!this.$store.getters.currentEditingShoot.finished"
               class="finishButton">Give UP !</button>
     </div>
-    <pointsTable :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
+    <pointsTable v-if="this.$store.getters.currentEditingShoot.ends.length !== 0 || arrows.length !== 0" :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
+    <div v-else style="padding: 10px;">
+      <h3>Begin to shoot !</h3> 
+      <p>Selct your points with the selection box and add them !</p>
+    </div>
     <the-selector v-if="!this.$store.getters.currentEditingShoot.finished" v-model="currentArrow"></the-selector>
     <div>
       <button v-if="!arrowComplete"
@@ -86,7 +90,7 @@ export default {
 
 <style scoped>
 .editShoot {
-  padding-bottom: 155px;
+  padding-bottom: 160px;
 }
 .pointsTable {
   width: 100%;
