@@ -129,17 +129,4 @@ export default {
   position: relative;
   cursor: pointer;
 }
-.theSelector {
-  width: 100%;
-  position: fixed;
-  bottom: 50px;
-  height: 50px;
-  background-color: #efe;
-  text-align-last: center;
-  text-align: center;
-  font-weight: bold;
-  font-size: larger;
-  color: #41B883;
-  padding: 0 0 0 20px;
-}
 </style>

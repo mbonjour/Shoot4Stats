@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="theSelector">
     <select :value="currentArrow"
             ref="arrow"
             class="browser-default selectPoint"
@@ -29,3 +29,19 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.selectPoint {
+  width: 100%;
+  position: fixed;
+  bottom: 50px;
+  height: 50px;
+  background-color: #efe;
+  text-align-last: center;
+  text-align: center;
+  font-weight: bold;
+  font-size: larger;
+  color: #41B883;
+  padding: 0 0 0 20px;
+}
+</style>
