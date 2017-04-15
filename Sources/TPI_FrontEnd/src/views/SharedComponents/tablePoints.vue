@@ -1,7 +1,7 @@
 <template>
   <div class="pointsTable">
     <table v-if="shoot.ends.length !== 0 || arrows.length !== 0">
-      <div v-for="(end, index) in shoot.ends">
+      <div v-for="(end, index) in shoot.ends" class="endContainer">
         <tr>
           <td :rowspan="computedRowSpan" class="nbEnd">{{index + 1}}</td>
           <td v-if="!multipleLines" v-for="arrow in end.arrows">
@@ -26,7 +26,7 @@
           <td v-if="!multipleLines" v-for="arrow in arrows">
             <arrowItem :pointValue="arrow.point"></arrowItem>
           </td>
-          <td v-if="multipleLines" v-for="arrow in firstPart(arrows)" class="removeCurrentEnd">
+          <td v-if="multipleLines" v-for="arrow in firstPart(arrows)">
             <arrowItem :pointValue="arrow.point"></arrowItem>
           </td>
         </tr>
@@ -113,6 +113,9 @@ table {
   border: 1px solid #dadada;
   text-align: center;
 }
+tr {
+  width: 100%;
+}
 td, tr {
   padding: 10px 5px;
   text-align: center;
@@ -129,9 +132,13 @@ td, tr {
 }
 .endTotal {
   border-left: 1px solid #41B883;
-  width: 15%;
+  width: 20%;
 }
 .removeCurrentEnd {
   border: none;
+}
+.endContainer {
+  width: 100%;
+  display: inherit;
 }
 </style>

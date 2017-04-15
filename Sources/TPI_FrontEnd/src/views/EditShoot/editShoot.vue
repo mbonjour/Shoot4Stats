@@ -95,6 +95,9 @@ export default {
 .editShoot {
   padding-bottom: 100px;
 }
+.pointsTable {
+  width: 100%;
+}
 .validateButton {
   width: 100%;
   height: 50px;
