@@ -86,7 +86,7 @@ export default {
 
 <style scoped>
 .editShoot {
-  padding-bottom: 100px;
+  padding-bottom: 152px;
 }
 .pointsTable {
   width: 100%;
