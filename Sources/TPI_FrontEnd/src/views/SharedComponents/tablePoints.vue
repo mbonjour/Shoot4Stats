@@ -20,13 +20,13 @@
           </td>
         </tr>
       </div>
-      <div>
-        <tr v-if="!shoot.finished" class="currentEnd">
+      <div class="endContainer">
+        <tr v-if="!shoot.finished" class="currentEnd" style="width: 100%;">
           <td :rowspan="computedRowSpan" class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
           <td v-if="!multipleLines" v-for="arrow in arrows">
             <arrowItem :pointValue="arrow.point"></arrowItem>
           </td>
-          <td v-if="multipleLines" v-for="arrow in firstPart(arrows)">
+          <td v-if="multipleLines" v-for="arrow in firstPart(arrows)"  class="removeCurrentEnd">
             <arrowItem :pointValue="arrow.point"></arrowItem>
           </td>
         </tr>
@@ -112,9 +112,6 @@ table {
   width: 100%;
   border: 1px solid #dadada;
   text-align: center;
-}
-tr {
-  width: 100%;
 }
 td, tr {
   padding: 10px 5px;
