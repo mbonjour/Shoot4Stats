@@ -2,13 +2,13 @@
   <div class="editShoot">
     <div>
       <button @click="finishShoot()"
-              v-if="!this.$store.getters.currentEditingShoot.finished"
+              v-if="!this.$store.getters.currentEditingShoot.finished && tableIsVisible"
               class="finishButton">Give UP !</button>
     </div>
-    <pointsTable v-if="this.$store.getters.currentEditingShoot.ends.length !== 0 || arrows.length !== 0" :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
+    <pointsTable v-if="tableIsVisible" :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
     <div v-else style="padding: 10px;">
       <h3>Begin to shoot !</h3> 
-      <p>Selct your points with the selection box and add them !</p>
+      <p>Select your points with the selection box and add them !</p>
     </div>
     <the-selector v-if="!this.$store.getters.currentEditingShoot.finished" v-model="currentArrow"></the-selector>
     <div>
@@ -83,6 +83,13 @@ export default {
     },
     styleEndsIndication () {
       return 'width: ' + (this.$store.getters.currentEditingShoot.nb_ends / this.$store.getters.currentEditingShoot.nb_total_ends) * 100 + '%'
+    },
+    tableIsVisible () {
+      if (this.$store.getters.currentEditingShoot.ends.length !== 0 || this.arrows.length !== 0) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }

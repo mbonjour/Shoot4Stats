@@ -6,72 +6,20 @@
     Total des points : {{ this.$store.getters.currentDetailsShoot.total }} / {{ (this.$store.getters.currentDetailsShoot.nb_total_ends*this.$store.getters.currentDetailsShoot.nb_arrows_by_end)*10 }}</br>
     Average Arrow : {{ this.$store.getters.currentDetailsShoot.average_arrow.toFixed(2) }}</br>
     <!-- <pointsTable :shoot="this.$store.getters.currentDetailsShoot"></pointsTable> -->
-    <!-- <canvas id="myChart" width="200" height="200">
-    </canvas> -->
     <chart :chartData="datacollection" :options="options" class="small"></chart>
     <div class="pastille jaune"></div><span class="legend"> : X, 10 or 9</span></br>
     <div class="pastille rouge"></div><span class="legend"> : 8 or 7</span></br>
     <div class="pastille bleu"></div><span class="legend"> : 6 or 5</span></br>
     <div class="pastille noir"></div><span class="legend"> : 4 or 3</span></br>
-    <div class="pastille blanc"></div><span class="legend"> : M, 1 or 2</span></br>
-    <!--<table>
-      <tr>
-        <td>
-          M
-        </td>
-        <td v-for="i in 10">
-          {{ i }}
-        </td>
-        <td>
-          X
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[0] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[1] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[2] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[3] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[4] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[5] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[6] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[7] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[8] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[9] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[10] || 0 }}
-        </td>
-        <td>
-          {{ this.$store.getters.currentDetailsShoot.count[11] || 0 }}
-        </td>
-      </tr>
-    </table>-->
+    <div class="pastille blanc"></div><span class="legend"> : M, 1 or 2</span>
   </div>
 </template>
+
 <script>
-import pointsTable from './tablePoints'
+// import pointsTable from './tablePoints'
 import Chart from './Charts/chart.js'
 export default {
-  components: { pointsTable, Chart },
+  components: { Chart },
   data () {
     return {
       datacollection: null,

@@ -1,15 +1,5 @@
 <template>
   <div class="theSelector">
-    <!--<select :value="currentArrow"
-            ref="arrow"
-            class="browser-default selectPoint"
-            @input="updateValue()">
-      <option disabled
-              value="">Select here and hit add !</option>
-      <option value="0">M</option>
-      <option v-for="i in 10">{{ i }}</option>
-      <option value="11">X</option>
-    </select>-->
     <table class="selectPoint">
       <tr>
         <td :class="isSelected('0')" @click="updateValue('0')">

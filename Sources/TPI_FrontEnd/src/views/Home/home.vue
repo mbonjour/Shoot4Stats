@@ -3,7 +3,8 @@
     <h3>
       Welcome to Shoot4Stats !!!
     </h3>
-    <p>This platform allow you to save your Shoots and have some interestings stats about them !</p>
+    <p>This platform allow you to save your Shoots and have some interestings stats about them !</br>
+    But first login with Facebook !</p>
     <a href="/api/login/facebook?url=/dashboard">
       <button class="loginBtn">
         Login with Facebook
