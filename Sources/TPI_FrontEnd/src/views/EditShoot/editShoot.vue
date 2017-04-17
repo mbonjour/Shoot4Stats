@@ -2,7 +2,7 @@
   <div class="editShoot">
     <div>
       <button @click="finishShoot()"
-              v-if="!this.$store.getters.currentEditingShoot.finished && tableIsVisible"
+              v-if="!this.$store.getters.currentEditingShoot.finished && this.$store.getters.currentEditingShoot.ends.length !== 0"
               class="finishButton">Give UP !</button>
     </div>
     <pointsTable v-if="tableIsVisible" :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>

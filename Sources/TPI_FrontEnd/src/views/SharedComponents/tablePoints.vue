@@ -116,7 +116,7 @@ td, tr {
   border-top: 1px solid #dadada;
 }
 .nbEnd {
-  width: 7%;
+  width: 5%;
   border-right: 1px solid #dadada;
 }
 .currentEnd {
