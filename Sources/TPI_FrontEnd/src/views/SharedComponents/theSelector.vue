@@ -47,6 +47,7 @@
 
 <script>
 import ArrowItem from './arrowItem'
+
 export default {
   name: 'theSelector',
   components: {ArrowItem},

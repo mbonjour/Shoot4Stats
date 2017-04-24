@@ -43,6 +43,7 @@
 
 <script>
 import arrowItem from '../SharedComponents/arrowItem'
+
 export default {
   name: 'pointsTable',
   components: { arrowItem },
