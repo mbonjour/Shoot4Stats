@@ -47,6 +47,8 @@ export default {
       Materialize.toast(message, 3000, 'successToast')
       /*eslint-enable*/
     })
+
+    // SN: Please use Vuex
     this.$http.get('/api/login/me')
     .then((response) => {
       this.logged = response.data.logged

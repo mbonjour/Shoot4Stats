@@ -12,7 +12,7 @@ export default {
   actions: {
     updateUser ({commit}) {
       return new Promise((resolve, reject) => {
-        axios.post('/api/login/me')
+        axios.get('/api/login/me')
         .then((response) => {
           commit('UPDATE_USER', response.data)
           resolve(response.data)

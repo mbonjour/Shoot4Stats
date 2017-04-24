@@ -1,6 +1,6 @@
 <template>
   <div class="shootSummary">
-    <span>Arrows : {{ shoot.nb_ends*shoot.nb_arrows_by_end }}/{{ shoot.nb_total_ends*shoot.nb_arrows_by_end }}</span>
+    <span>Arrows : {{ shootedArrows }}/{{ totalArrows }}</span>
     <span class="pushRight">{{ shoot.date }}</span>
   </div>
 </template>
@@ -8,7 +8,15 @@
 <script>
 export default {
   name: 'shootSummary',
-  props: ['shoot']
+  props: ['shoot'],
+  computed: {
+    shootedArrows () {
+      return this.shoot.nb_ends * this.shoot.nb_arrows_by_end
+    },
+    totalArrows () {
+      return this.shoot.nb_total_ends * this.shoot.nb_arrows_by_end
+    }
+  }
 }
 </script>
 

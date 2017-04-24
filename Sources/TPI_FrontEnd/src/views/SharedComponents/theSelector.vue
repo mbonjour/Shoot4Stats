@@ -2,6 +2,7 @@
   <div class="theSelector">
     <table class="selectPoint">
       <tr>
+      <!-- replace by v-for with materilize grid -->
         <td :class="isSelected('0')" @click="updateValue('0')">
           <arrow-item :pointValue="0"></arrow-item>
         </td>

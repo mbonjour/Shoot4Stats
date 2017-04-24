@@ -1,7 +1,4 @@
-import {
-  Doughnut,
-  mixins
-} from 'vue-chartjs'
+import { Doughnut, mixins } from 'vue-chartjs'
 
 export default Doughnut.extend({
   mixins: [mixins.reactiveProp],

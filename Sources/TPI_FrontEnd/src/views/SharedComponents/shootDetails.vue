@@ -1,23 +1,30 @@
 <template>
-  <div class="shootDetails">
-    Tens (with X's) : {{ this.$store.getters.currentDetailsShoot.tens }}</br>
-    Nines : {{ this.$store.getters.currentDetailsShoot.nines }}</br>
-    Gold Hitting percentage : {{ this.$store.getters.currentDetailsShoot.gold_hit.toFixed(2) }}%</br>
-    Total des points : {{ this.$store.getters.currentDetailsShoot.total }} / {{ (this.$store.getters.currentDetailsShoot.nb_total_ends*this.$store.getters.currentDetailsShoot.nb_arrows_by_end)*10 }}</br>
-    Average Arrow : {{ this.$store.getters.currentDetailsShoot.average_arrow.toFixed(2) }}</br>
-    <!-- <pointsTable :shoot="this.$store.getters.currentDetailsShoot"></pointsTable> -->
+  <div>
+    <ul class="collection with-header">
+      <li class="collection-header"><h4>Shoot details:</h4></li>
+      <li class="collection-item">Tens (with X's) : {{ currentDetailsShoot.tens }}</li>
+      <li class="collection-item">Nines : {{ currentDetailsShoot.nines }}</li>
+      <li class="collection-item">Gold Hitting percentage : {{ currentDetailsShoot.gold_hit | twoDecimals }}%</li>
+      <li class="collection-item">Total des points : {{ currentDetailsShoot.total }} / {{ maxPoint }}</li>
+      <li class="collection-item">Average Arrow : {{ currentDetailsShoot.average_arrow | twoDecimals }}</li>
+    </ul>
+
     <chart :chartData="datacollection" :options="options" class="small"></chart>
-    <div class="pastille jaune"></div><span class="legend"> : X, 10 or 9</span></br>
-    <div class="pastille rouge"></div><span class="legend"> : 8 or 7</span></br>
-    <div class="pastille bleu"></div><span class="legend"> : 6 or 5</span></br>
-    <div class="pastille noir"></div><span class="legend"> : 4 or 3</span></br>
-    <div class="pastille blanc"></div><span class="legend"> : M, 1 or 2</span>
+
+    <div class="row">
+      <div class="yellowItem col s2">X, 10 or 9</div> <!-- SN: Should be a component (like arrowPill) wrapping the style, because here we get the style from arrowItem -->
+      <div class="redItem col s2">8 or 7</div>
+      <div class="blueItem col s2">6 or 5</div>
+      <div class="blackItem col s2">4 or 3</div>
+      <div class="whiteItem col s2">M, 1 or 2</div>
+    </div>
   </div>
 </template>
 
 <script>
-// import pointsTable from './tablePoints'
 import Chart from './Charts/chart.js'
+import { mapGetters } from 'vuex'
+
 export default {
   components: { Chart },
   data () {
@@ -47,6 +54,19 @@ export default {
   mounted () {
     this.fetchData()
   },
+  computed: {
+    ...mapGetters(['currentDetailsShoot']),
+    maxPoint () {
+      return (this.currentDetailsShoot.nb_total_ends * this.currentDetailsShoot.nb_arrows_by_end * 10)
+    }
+  },
+  filters: {
+    twoDecimals (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.toFixed(2)
+    }
+  },
   methods: {
     fetchData () {
       this.datacollection = {
@@ -55,18 +75,18 @@ export default {
         ],
         datasets: [{
           data: [
-            this.$store.getters.currentDetailsShoot.count[0] || 0,
-            this.$store.getters.currentDetailsShoot.count[1] || 0,
-            this.$store.getters.currentDetailsShoot.count[2] || 0,
-            this.$store.getters.currentDetailsShoot.count[3] || 0,
-            this.$store.getters.currentDetailsShoot.count[4] || 0,
-            this.$store.getters.currentDetailsShoot.count[5] || 0,
-            this.$store.getters.currentDetailsShoot.count[6] || 0,
-            this.$store.getters.currentDetailsShoot.count[7] || 0,
-            this.$store.getters.currentDetailsShoot.count[8] || 0,
-            this.$store.getters.currentDetailsShoot.count[9] || 0,
-            this.$store.getters.currentDetailsShoot.count[10] || 0,
-            this.$store.getters.currentDetailsShoot.count[11] || 0
+            this.currentDetailsShoot.count[0] || 0, // SN: Adapt name to be explcit and maybe manage undefined value in api or vuex
+            this.currentDetailsShoot.count[1] || 0,
+            this.currentDetailsShoot.count[2] || 0,
+            this.currentDetailsShoot.count[3] || 0,
+            this.currentDetailsShoot.count[4] || 0,
+            this.currentDetailsShoot.count[5] || 0,
+            this.currentDetailsShoot.count[6] || 0,
+            this.currentDetailsShoot.count[7] || 0,
+            this.currentDetailsShoot.count[8] || 0,
+            this.currentDetailsShoot.count[9] || 0,
+            this.currentDetailsShoot.count[10] || 0,
+            this.currentDetailsShoot.count[11] || 0
           ],
           backgroundColor: [
             '#fafafa', '#fafafa', '#fafafa', '#424242', '#424242', '#64b5f6', '#64b5f6', '#e57373', '#e57373', '#fff176', '#fff176', '#fff176'
@@ -82,32 +102,6 @@ export default {
 </script>
 
 <style>
-.pastille {
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  display: inline-block;
-}
-.jaune {
-  border: 2px solid #ffb300;
-  background-color: #fff176;
-}
-.rouge {
-  border: 2px solid #ef5350;
-  background-color: #e57373;
-}
-.bleu {
-  border: 2px solid #2196f3;
-  background-color: #64b5f6;
-}
-.noir {
-  border: 2px solid #212121;
-  background-color: #424242;
-}
-.blanc {
-  border: 2px solid #eeeeee;
-  background-color: #fafafa;
-}
 .small {
     max-width: 500px;
   }

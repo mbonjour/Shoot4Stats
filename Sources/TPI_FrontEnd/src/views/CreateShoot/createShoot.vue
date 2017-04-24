@@ -1,5 +1,5 @@
 <template>
-  <div class="createShoot">
+  <div>
     <div class="row">
       <form class="col s12">
         <div class="row">
@@ -19,7 +19,7 @@
             <input v-model="location.latitude" id="city" type="text" class="validate">
             <label for="city">City</label>
           </div>
-        </div>  
+        </div>
         <div class="row">
           <div class="input-field col s12">
             <input v-model="location.longitude" id="street" type="text" class="validate">
@@ -49,9 +49,8 @@
           </div>
         </div>
       </form>
-      <!-- TODO: Boutton désactivé si pas tous les champs sont remplis -->
     </div>
-    <button @click="validateSend()" class="validateButton" :disabled="!valide">
+    <button @click="validateSend()" class="validateButton" :disabled="!isShootValid">
       <div>
         <strong>Submit</strong>
       </div>
@@ -100,17 +99,25 @@ export default {
     }
   },
   computed: {
-    valide () {
-      if (this.nb_Ends > 0 && this.nb_Ends <= 50 && this.nb_ArrowsByEnd > 0 && this.nb_ArrowsByEnd <= 12 && this.description && this.title) {
-        return true
-      } else {
-        return false
-      }
+    isShootValid () {
+      return (this.isNbEndsValid && this.isNbArrowByEndValid && this.isDescriptionValid && this.isTitleValid)
+    },
+    isNbEndsValid () {
+      return this.nb_Ends > 0 && this.nb_Ends <= 50
+    },
+    isNbArrowByEndValid () {
+      return this.nb_ArrowsByEnd > 0 && this.nb_ArrowsByEnd <= 12
+    },
+    isDescriptionValid () {
+      return this.description && this.description.length < 200 // SN: To check if it works
+    },
+    isTitleValid () {
+      return this.title && this.title.length < 45 // SN: Check value in api model Shoot
     }
   },
   methods: {
     validateSend () {
-      if (this.nb_Ends > 0 && this.nb_ArrowsByEnd > 0 && this.description && this.title) {
+      if (this.isShootValid) {
         this.$store.dispatch('createShoot', {
           title: this.title,
           description: this.description,
@@ -120,26 +127,12 @@ export default {
           Location: this.location
         })
         .then(() => {
+          // SN: maybe should be replaced by a watch on the state of currentEditingShoot (not sure)
           this.$router.push({path: '/editShoot/' + this.$store.getters.currentEditingShoot.id})
         })
         .catch((err) => {
           console.log(err)
         })
-        // this.$http.post('/api/shoots', {
-        //   title: this.title,
-        //   description: this.description,
-        //   nb_ends: this.nb_Ends,
-        //   nb_arrows_end: this.nb_ArrowsByEnd,
-        //   type: this.type,
-        //   Location: this.location
-        // })
-        // .then((response) => {
-        //   this.$router.push({path: '/editShoot/' + response.data.id})
-        // })
-        // .catch((err) => {
-        //   this.$events.$emit('toastError', err + ' Veuillez contacter l\'admin si cela se reproduit')
-        //   console.log(err)
-        // })
       } else {
         this.$events.$emit('toastError', 'Une information est mal rentrée dans le formulaire')
       }

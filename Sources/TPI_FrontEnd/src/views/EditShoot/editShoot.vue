@@ -1,13 +1,13 @@
 <template>
   <div class="editShoot">
     <div>
-      <button @click="finishShoot()"
+      <button @click="finishShoot"
               v-if="!this.$store.getters.currentEditingShoot.finished && this.$store.getters.currentEditingShoot.ends.length !== 0"
               class="finishButton">Give UP !</button>
     </div>
     <pointsTable v-if="tableIsVisible" :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
     <div v-else style="padding: 10px;">
-      <h3>Begin to shoot !</h3> 
+      <h3>Begin to shoot !</h3>
       <p>Select your points with the selection box and add them !</p>
     </div>
     <the-selector v-if="!this.$store.getters.currentEditingShoot.finished" v-model="currentArrow"></the-selector>
@@ -15,13 +15,13 @@
       <button v-if="!arrowComplete"
               :disabled="disable"
               class="validateButton"
-              @click="addArrow()"><strong>Add Arrow</strong></button>
+              @click="addArrow"><strong>Add Arrow</strong></button>
       <button v-else
               class="validateButton"
-              @click="validateSend()">Add End</button>
+              @click="validateSend">Add End</button>
       <button v-if="this.$store.getters.currentEditingShoot.finished"
               class="redirectButton"
-              @click="redirect()">Go to Dashboard (Shoot Finished)</button>
+              @click="redirect">Go to Dashboard (Shoot Finished)</button>
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@
 <script>
 import pointsTable from '../SharedComponents/tablePoints'
 import theSelector from '../SharedComponents/theSelector'
+
 export default {
   name: 'editShoot',
   components: { pointsTable, theSelector },

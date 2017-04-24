@@ -11,7 +11,7 @@ module.exports = (props) => {
                     id: user.provider + '_' + user.id,
                     isAdmin: false,
                     lastname: user.name.familyName,
-                    email: user.emails[0].value,
+                    email: user.emails[0] ? user.emails[0].value || 'nomail@yopmail.com',
                     firstname: user.name.givenName
                 }
             }).spread((findUser, created) => {

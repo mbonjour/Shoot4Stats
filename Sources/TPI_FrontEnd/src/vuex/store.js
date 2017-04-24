@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import currentEditingShootModule from './modules/currentEditingShoot'
-import currentDetailsShootModule from './modules/currentDetailsShoot'
-import shootsModule from './modules/shoots'
-import userModule from './modules/user'
+import currentEditingShoot from './modules/currentEditingShoot'
+import currentDetailsShoot from './modules/currentDetailsShoot'
+import shoots from './modules/shoots'
+import user from './modules/user'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    currentEditingShoot: currentEditingShootModule,
-    currentDetailsShoot: currentDetailsShootModule,
-    shoots: shootsModule,
-    user: userModule
+    currentEditingShoot,
+    currentDetailsShoot,
+    shoots,
+    user
   }
 })

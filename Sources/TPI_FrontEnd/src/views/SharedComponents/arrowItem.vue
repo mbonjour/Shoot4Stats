@@ -11,7 +11,6 @@ export default {
   computed: {
     classItem () {
       switch (this.pointValue) {
-        // TODO : Modif classe au lieu de style
         case 11:
         case 10:
         case 9:
@@ -48,7 +47,7 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
 .arrowItem {
   line-height: 30px;
   margin: auto;

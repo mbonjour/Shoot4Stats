@@ -8,6 +8,7 @@ import axios from 'axios'
 import store from './vuex/store'
 import { EventBus } from './helpers/event-bus.js'
 
+// SN: Object.defineProperty(...)
 Vue.prototype.$http = axios
 Vue.prototype.$events = EventBus
 Vue.config.productionTip = false
