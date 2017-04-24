@@ -22,8 +22,8 @@
       </div>
       <div class="endContainer">
         <tr v-if="!shoot.finished" class="currentEnd" style="width: 100%;">
-          <td v-if="currentEnd" :rowspan="computedRowSpan" class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
-          <td v-else :rowspan="computedRowSpan" class="nbEnd">Select your Points !</td>
+          <td v-if="arrows.length !== 0" :rowspan="computedRowSpan" class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
+          <td v-else :rowspan="computedRowSpan" class="nbEnd--empty">Select your Points !</td>
           <td v-if="!multipleLines" v-for="arrow in arrows">
             <arrowItem :pointValue="arrow.point"></arrowItem>
           </td>
@@ -49,8 +49,7 @@ export default {
   props: ['arrows', 'shoot'],
   data () {
     return {
-      multipleLines: false,
-      currentEnd: []
+      multipleLines: false
     }
   },
   methods: {
@@ -115,6 +114,11 @@ td, tr {
 .nbEnd {
   width: 7%;
   border-right: 1px solid #41B883;
+}
+.nbEnd--empty {
+  color: #41B883;
+  font-weight: bold;
+  font-size: larger;
 }
 .currentEnd {
   background-color: #efe;

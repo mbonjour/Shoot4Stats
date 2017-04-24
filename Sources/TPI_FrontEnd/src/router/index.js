@@ -1,4 +1,3 @@
-import axios from 'axios'
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../vuex/store'
@@ -31,9 +30,8 @@ router.beforeEach((to, from, next) => {
 })
 
 let loggedIn = (next) => {
-  store.dispatch('updateUser')
-  axios.get('/api/login/me').then((response) => {
-    next(response.data)
+  store.dispatch('updateUser').then((user) => {
+    next(user)
   })
 }
 

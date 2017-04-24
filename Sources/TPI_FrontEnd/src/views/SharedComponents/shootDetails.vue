@@ -1,11 +1,11 @@
 <template>
   <div class="shootDetails">
     <div id="conteneurFlex">
-      <div class="legend">Tens (with X's) : {{ this.$store.getters.currentDetailsShoot.tens }}</div>
-      <div class="legend">Nines : {{ this.$store.getters.currentDetailsShoot.nines }}</div>
-      <div class="legend">Gold Hitting percentage : {{ this.$store.getters.currentDetailsShoot.gold_hit.toFixed(2) }}%</div>
-      <div class="legend">Total des points : {{ this.$store.getters.currentDetailsShoot.total }} / {{ (this.$store.getters.currentDetailsShoot.nb_total_ends*this.$store.getters.currentDetailsShoot.nb_arrows_by_end)*10 }}</div>
-      <div class="legend">Average Arrow : {{ this.$store.getters.currentDetailsShoot.average_arrow.toFixed(2) }}</div>
+      <div class="legend">Tens (with X's) : {{ this.currentDetailsShoot.tens }}</div>
+      <div class="legend">Nines : {{ this.currentDetailsShoot.nines }}</div>
+      <div class="legend">Gold Hitting percentage : {{ this.currentDetailsShoot.gold_hit.toFixed(2) }}%</div>
+      <div class="legend">Total des points : {{ this.currentDetailsShoot.total }} / {{ maxPoint }}</div>
+      <div class="legend">Average Arrow : {{ this.currentDetailsShoot.average_arrow.toFixed(2) }}</div>
     </div>
     <!-- <pointsTable :shoot="this.$store.getters.currentDetailsShoot"></pointsTable> -->
     <chart :chartData="datacollection" :options="options" class="smallCentered"></chart>
@@ -20,8 +20,9 @@
 </template>
 
 <script>
-// import pointsTable from './tablePoints'
 import Chart from './Charts/chart.js'
+import { mapGetters } from 'vuex'
+
 export default {
   components: { Chart },
   data () {
@@ -48,6 +49,19 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters(['currentDetailsShoot']),
+    maxPoint () {
+      return (this.currentDetailsShoot.nb_total_ends * this.currentDetailsShoot.nb_arrows_by_end * 10)
+    }
+  },
+  filters: {
+    twoDecimals (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.toFixed(2)
+    }
+  },
   mounted () {
     this.fetchData()
   },
@@ -59,18 +73,18 @@ export default {
         ],
         datasets: [{
           data: [
-            this.$store.getters.currentDetailsShoot.count[0] || 0,
-            this.$store.getters.currentDetailsShoot.count[1] || 0,
-            this.$store.getters.currentDetailsShoot.count[2] || 0,
-            this.$store.getters.currentDetailsShoot.count[3] || 0,
-            this.$store.getters.currentDetailsShoot.count[4] || 0,
-            this.$store.getters.currentDetailsShoot.count[5] || 0,
-            this.$store.getters.currentDetailsShoot.count[6] || 0,
-            this.$store.getters.currentDetailsShoot.count[7] || 0,
-            this.$store.getters.currentDetailsShoot.count[8] || 0,
-            this.$store.getters.currentDetailsShoot.count[9] || 0,
-            this.$store.getters.currentDetailsShoot.count[10] || 0,
-            this.$store.getters.currentDetailsShoot.count[11] || 0
+            this.currentDetailsShoot.count[0] || 0,
+            this.currentDetailsShoot.count[1] || 0,
+            this.currentDetailsShoot.count[2] || 0,
+            this.currentDetailsShoot.count[3] || 0,
+            this.currentDetailsShoot.count[4] || 0,
+            this.currentDetailsShoot.count[5] || 0,
+            this.currentDetailsShoot.count[6] || 0,
+            this.currentDetailsShoot.count[7] || 0,
+            this.currentDetailsShoot.count[8] || 0,
+            this.currentDetailsShoot.count[9] || 0,
+            this.currentDetailsShoot.count[10] || 0,
+            this.currentDetailsShoot.count[11] || 0
           ],
           backgroundColor: [
             '#fafafa', '#fafafa', '#fafafa', '#424242', '#424242', '#64b5f6', '#64b5f6', '#e57373', '#e57373', '#fff176', '#fff176', '#fff176'

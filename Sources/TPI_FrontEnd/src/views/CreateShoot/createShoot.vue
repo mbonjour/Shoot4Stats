@@ -1,5 +1,5 @@
 <template>
-  <div class="createShoot">
+  <div>
     <div class="row">
       <form class="col s12">
         <div class="row">
@@ -51,7 +51,7 @@
       </form>
       <!-- TODO: Boutton désactivé si pas tous les champs sont remplis -->
     </div>
-    <button @click="validateSend()" class="validateButton" :disabled="!valide">
+    <button @click="validateSend()" class="validateButton" :disabled="!isShootValid">
       <div>
         <strong>Submit</strong>
       </div>
@@ -101,13 +101,25 @@ export default {
     }
   },
   computed: {
-    valide () {
-      return this.nb_Ends > 0 && this.nb_Ends <= 50 && this.nb_ArrowsByEnd > 0 && this.nb_ArrowsByEnd <= 12 && this.description && this.title
+    isShootValid () {
+      return (this.isNbEndsValid && this.isNbArrowByEndValid && this.isDescriptionValid && this.isTitleValid)
+    },
+    isNbEndsValid () {
+      return this.nb_Ends > 0 && this.nb_Ends <= 50
+    },
+    isNbArrowByEndValid () {
+      return this.nb_ArrowsByEnd > 0 && this.nb_ArrowsByEnd <= 12
+    },
+    isDescriptionValid () {
+      return this.description && this.description.length < 200 // SN: To check if it works
+    },
+    isTitleValid () {
+      return this.title && this.title.length < 45 // SN: Check value in api model Shoot
     }
   },
   methods: {
     validateSend () {
-      if (this.nb_Ends > 0 && this.nb_ArrowsByEnd > 0 && this.description && this.title) {
+      if (this.isShootValid) {
         this.$store.dispatch('createShoot', {
           title: this.title,
           description: this.description,

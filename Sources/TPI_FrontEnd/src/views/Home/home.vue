@@ -6,7 +6,7 @@
     <p>This platform allow you to save your Shoots and have some interestings stats about them !</br>
     But first login with Facebook !</p>
     <a href="/api/login/facebook?url=/dashboard">
-      <button class="loginBtn">
+      <button class="home__loginBtn">
         Login with Facebook
       </button>
     </a>
@@ -14,12 +14,12 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 .home {
   padding: 10px;
   padding-right: 0px;
 }
-.loginBtn {
+.home__loginBtn {
   position: fixed;
   height: 50px;
   bottom: 0px;

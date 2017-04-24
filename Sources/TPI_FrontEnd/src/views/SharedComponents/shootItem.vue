@@ -12,6 +12,7 @@
 <script>
 import shootSummary from './shootSummary'
 import shootDetails from './shootDetails'
+
 export default {
   components: {shootSummary, shootDetails},
   props: ['shoot'],
@@ -42,15 +43,17 @@ export default {
   },
   computed: {
     borderColor () {
+      let result = ''
       if (this.shoot.finished) {
         if (this.shoot.nb_ends < this.shoot.nb_total_ends) {
-          return 'notReallyFinished'
+          result = 'notReallyFinished'
         } else {
-          return 'finished'
+          result = 'finished'
         }
       } else {
-        return 'notFinished'
+        result = 'notFinished'
       }
+      return result + ' col s12 m3'
     }
   }
 }
@@ -59,8 +62,8 @@ export default {
 <style>
 .card {
   padding: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: 5px;
+  margin-top: 15px; 
 }
 .title {
   border-bottom: 1px solid #fafafa;
@@ -70,13 +73,22 @@ export default {
   padding-bottom: 10px;
 }
 .finished {
-  border-left: 8px solid #41B883;
+  border-left: 5px solid #41b883;
+  border-top: 1px solid #41b883;
+  border-bottom: 1px solid #41b883;
+  border-right: 1px solid #41b883;
 }
 .notReallyFinished {
-  border-left: 8px solid #fff176;
+  border-left: 5px solid #fff176;
+  border-top: 1px solid #fff176;
+  border-bottom: 1px solid #fff176;
+  border-right: 1px solid #fff176;
 }
 .notFinished {
-  border-left: 8px solid #ef5350;
+  border-left: 5px solid #ef5350;
+  border-top: 1px solid #ef5350;
+  border-bottom: 1px solid #ef5350;
+  border-right: 1px solid #ef5350;
 }
 .pushRight {
   float: right;

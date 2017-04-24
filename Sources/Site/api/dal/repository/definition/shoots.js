@@ -1,7 +1,7 @@
 'use strict'
 module.exports = (props) => {
     const mapShoots = require('../../mappers/shootMapper').map
-    const mapShoot = require('../../mappers/shootMapper').mapWithArrows
+    const mapShootWithArrows = require('../../mappers/shootMapper').mapWithArrows
     const mapNewShoot = require('../../mappers/shootMapper').mapNew
 
     return {
@@ -48,8 +48,8 @@ module.exports = (props) => {
             }).then((shoot) => {
                 if (shoot) {
                     calculateSummarySpecifications(shoot, () => {
-                        let toto = mapShoot(shoot)
-                        callback(null, mapShoot(shoot))
+                        let toto = mapShootWithArrows(shoot)
+                        callback(null, mapShootWithArrows(shoot))
                     })
                 } else {
                     callback({
@@ -73,7 +73,6 @@ module.exports = (props) => {
                 })
                 .then((shoot) => {
                     // Check if record exists in db
-                    // TODO 
                     if (shoot) {
                         shoot.updateAttributes({
                                 finished: true

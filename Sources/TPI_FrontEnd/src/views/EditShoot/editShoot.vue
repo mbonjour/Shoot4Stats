@@ -2,12 +2,12 @@
   <div class="editShoot">
     <div>
       <button @click="finishShoot()"
-              v-if="!this.$store.getters.currentEditingShoot.finished && this.$store.getters.currentEditingShoot.ends.length !== 0"
+              v-if="isShootEmpty"
               class="finishButton">Give UP !</button>
     </div>
     <pointsTable v-if="tableIsVisible" :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
     <div v-else style="padding: 10px;">
-      <h3>Begin to shoot !</h3> 
+      <h3>Begin to shoot !</h3>
       <p>Select your points with the selection box and add them !</p>
     </div>
     <the-selector v-if="!this.$store.getters.currentEditingShoot.finished" v-model="currentArrow"></the-selector>
@@ -29,6 +29,7 @@
 <script>
 import pointsTable from '../SharedComponents/tablePoints'
 import theSelector from '../SharedComponents/theSelector'
+
 export default {
   name: 'editShoot',
   components: { pointsTable, theSelector },
@@ -90,6 +91,9 @@ export default {
       } else {
         return false
       }
+    },
+    isShootEmpty () {
+      return !this.$store.getters.currentEditingShoot.finished && this.$store.getters.currentEditingShoot.ends.length !== 0
     }
   }
 }
