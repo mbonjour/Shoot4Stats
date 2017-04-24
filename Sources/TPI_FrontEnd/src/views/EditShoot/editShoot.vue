@@ -2,7 +2,7 @@
   <div class="editShoot">
     <div>
       <button @click="finishShoot()"
-              v-if="!this.$store.getters.currentEditingShoot.finished && this.$store.getters.currentEditingShoot.ends.length !== 0"
+              v-if="giveButtonVisible"
               class="finishButton">Give UP !</button>
     </div>
     <pointsTable v-if="tableIsVisible" :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
@@ -87,6 +87,11 @@ export default {
     },
     tableIsVisible () {
       return this.$store.getters.currentEditingShoot.ends.length !== 0 || this.arrows.length !== 0
+    },
+    giveButtonVisible () {
+      console.log(!this.$store.getters.currentEditingShoot.finished + ' finished')
+      console.log(this.$store.getters.currentEditingShoot.nb_ends > 0 + ' nb_ends')
+      return !this.$store.getters.currentEditingShoot.finished && this.$store.getters.currentEditingShoot.nb_ends > 0
     }
   }
 }

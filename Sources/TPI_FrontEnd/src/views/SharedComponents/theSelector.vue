@@ -43,11 +43,18 @@
       </tr>
     </table>
   </div>
+  <!--$
+  à voir !!! :
+  <div class="theSelector row">
+    <div v-for="i in 12" :class="'col s2' + isSelected(i--)" @click="updateValue(i--)">
+      <arrow-item :pointValue="i--"></arrow-item>
+    </div>
+  </div>
+  -->
 </template>
 
 <script>
 import ArrowItem from './arrowItem'
-
 export default {
   name: 'theSelector',
   components: {ArrowItem},
