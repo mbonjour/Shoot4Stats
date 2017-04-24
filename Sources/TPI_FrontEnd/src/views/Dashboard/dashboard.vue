@@ -5,7 +5,9 @@
       <h3>You don't have any Shoots yet !</h3>
       <p>Please go to <router-link to="/createShoot">Create a Shoot</router-link> or click the "plus" button to begin !!!</p>
     </div>
-    <shootItem v-for="currentShoot in shoots" :key="currentShoot.id" :shoot="currentShoot"></shootItem>
+    <div class="row">
+      <shootItem v-for="currentShoot in shoots" :key="currentShoot.id" :shoot="currentShoot"></shootItem>
+    </div>
     <div class="fixed-action-btn toolbar">
       <a class="btn-floating btn-large" style="background-color: #41B883;">
         <i class="large material-icons">add</i>

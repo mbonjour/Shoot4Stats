@@ -60,6 +60,9 @@ export default {
 </script>
 
 <style>
+.row {
+  padding: 5px;
+}
 .card {
   padding: 5px;
   margin: 5px;
