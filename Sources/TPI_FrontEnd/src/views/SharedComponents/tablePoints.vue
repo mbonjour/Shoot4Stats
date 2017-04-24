@@ -1,6 +1,6 @@
 <template>
   <div class="pointsTable">
-    <table>
+    <table class="stripped">
       <div v-for="(end, index) in shoot.ends" class="endContainer">
         <tr>
           <td :rowspan="computedRowSpan" class="nbEnd">{{index + 1}}</td>
@@ -22,11 +22,12 @@
       </div>
       <div class="endContainer">
         <tr v-if="!shoot.finished" class="currentEnd" style="width: 100%;">
-          <td :rowspan="computedRowSpan" class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
+          <td v-if="currentEnd" :rowspan="computedRowSpan" class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
+          <td v-else :rowspan="computedRowSpan" class="nbEnd">Select your Points !</td>
           <td v-if="!multipleLines" v-for="arrow in arrows">
             <arrowItem :pointValue="arrow.point"></arrowItem>
           </td>
-          <td v-if="multipleLines" v-for="arrow in firstPart(arrows)"  class="removeCurrentEnd">
+          <td v-if=" multipleLines" v-for="arrow in firstPart(arrows)"  class="removeCurrentEnd">
             <arrowItem :pointValue="arrow.point"></arrowItem>
           </td>
         </tr>
@@ -100,10 +101,6 @@ export default {
 </script>
 
 <style>
-tr:nth-child(odd) {
-  background-color: #fafafa;
-}
-
 table {
   width: 100%;
   border: 1px solid #dadada;
@@ -117,7 +114,7 @@ td, tr {
 }
 .nbEnd {
   width: 7%;
-  border-right: 1px solid #dadada;
+  border-right: 1px solid #41B883;
 }
 .currentEnd {
   background-color: #efe;

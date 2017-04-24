@@ -4,13 +4,13 @@
       <form class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <input v-model="title" id="shoot_title" type="text" class="validate">
+            <input v-model="title" id="shoot_title" type="text" class="validate" data-length="40">
             <label for="shoot_title">Shoot Title*</label>
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <textarea v-model="description" id="description" class="materialize-textarea"></textarea>
+            <textarea v-model="description" id="description" class="materialize-textarea" data-length="500"></textarea>
             <label for="description">Description*</label>
           </div>
         </div>
@@ -82,6 +82,7 @@ export default {
   mounted () {
     /* eslint-disable */
     $('#description').trigger('autoresize')
+    $('input#shoot_title, textarea#description').characterCounter()
     /* eslint-enable */
   },
   watch: {
@@ -101,11 +102,7 @@ export default {
   },
   computed: {
     valide () {
-      if (this.nb_Ends > 0 && this.nb_Ends <= 50 && this.nb_ArrowsByEnd > 0 && this.nb_ArrowsByEnd <= 12 && this.description && this.title) {
-        return true
-      } else {
-        return false
-      }
+      return this.nb_Ends > 0 && this.nb_Ends <= 50 && this.nb_ArrowsByEnd > 0 && this.nb_ArrowsByEnd <= 12 && this.description && this.title
     }
   },
   methods: {
@@ -125,21 +122,6 @@ export default {
         .catch((err) => {
           console.log(err)
         })
-        // this.$http.post('/api/shoots', {
-        //   title: this.title,
-        //   description: this.description,
-        //   nb_ends: this.nb_Ends,
-        //   nb_arrows_end: this.nb_ArrowsByEnd,
-        //   type: this.type,
-        //   Location: this.location
-        // })
-        // .then((response) => {
-        //   this.$router.push({path: '/editShoot/' + response.data.id})
-        // })
-        // .catch((err) => {
-        //   this.$events.$emit('toastError', err + ' Veuillez contacter l\'admin si cela se reproduit')
-        //   console.log(err)
-        // })
       } else {
         this.$events.$emit('toastError', 'Une information est mal rentrée dans le formulaire')
       }
