@@ -102,20 +102,6 @@ export default {
 .pointsTable {
   width: 100%;
 }
-.validateButton {
-  width: 100%;
-  height: 50px;
-  position: fixed;
-  bottom: 0px;
-  color: #35495E;
-  background-color: #41B883;
-  border: none;
-  cursor: pointer;
-}
-.validateButton:disabled {
-  color: #35495E;
-  background-color: #dadada;
-}
 
 .redirectButton {
   width: 100%;

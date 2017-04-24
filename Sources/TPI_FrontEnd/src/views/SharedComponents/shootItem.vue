@@ -59,33 +59,36 @@ export default {
 <style>
 .card {
   padding: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .title {
-  border-bottom: 1px solid #dadada;
+  border-bottom: 1px solid #fafafa;
   font-weight: bold;
-  background-color: #fdfdfd;
   margin: 2px;
   padding: 5px;
   padding-bottom: 10px;
 }
 .finished {
-  border-left: 10px solid #41B883;
+  border-left: 8px solid #41B883;
 }
 .notReallyFinished {
-  border-left: 10px solid #fff176;
+  border-left: 8px solid #fff176;
 }
 .notFinished {
-  border-left: 10px solid #ef5350;
+  border-left: 8px solid #ef5350;
 }
 .pushRight {
   float: right;
 }
 .desc {
-  border-bottom: 1px solid #dadada;
+  border-bottom: 1px solid #fafafa;
   margin: 2px;
   padding-left: 5px;
+  padding-right: 2px;
   padding-top: 10px;
   padding-bottom: 10px;
+  text-align: justify;
 }
 .shootSummary {
   padding: 5px;
@@ -99,7 +102,7 @@ export default {
   transition: all .2s ease;
 }
 .slide-fade-leave-active {
-  transition: all .4s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active for <2.1.8 */ {

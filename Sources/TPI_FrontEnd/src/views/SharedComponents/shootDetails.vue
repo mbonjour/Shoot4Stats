@@ -1,17 +1,21 @@
 <template>
   <div class="shootDetails">
-    Tens (with X's) : {{ this.$store.getters.currentDetailsShoot.tens }}</br>
-    Nines : {{ this.$store.getters.currentDetailsShoot.nines }}</br>
-    Gold Hitting percentage : {{ this.$store.getters.currentDetailsShoot.gold_hit.toFixed(2) }}%</br>
-    Total des points : {{ this.$store.getters.currentDetailsShoot.total }} / {{ (this.$store.getters.currentDetailsShoot.nb_total_ends*this.$store.getters.currentDetailsShoot.nb_arrows_by_end)*10 }}</br>
-    Average Arrow : {{ this.$store.getters.currentDetailsShoot.average_arrow.toFixed(2) }}</br>
+    <div id="conteneurFlex">
+      <div class="legend">Tens (with X's) : {{ this.$store.getters.currentDetailsShoot.tens }}</div>
+      <div class="legend">Nines : {{ this.$store.getters.currentDetailsShoot.nines }}</div>
+      <div class="legend">Gold Hitting percentage : {{ this.$store.getters.currentDetailsShoot.gold_hit.toFixed(2) }}%</div>
+      <div class="legend">Total des points : {{ this.$store.getters.currentDetailsShoot.total }} / {{ (this.$store.getters.currentDetailsShoot.nb_total_ends*this.$store.getters.currentDetailsShoot.nb_arrows_by_end)*10 }}</div>
+      <div class="legend">Average Arrow : {{ this.$store.getters.currentDetailsShoot.average_arrow.toFixed(2) }}</div>
+    </div>
     <!-- <pointsTable :shoot="this.$store.getters.currentDetailsShoot"></pointsTable> -->
-    <chart :chartData="datacollection" :options="options" class="small"></chart>
-    <div class="pastille jaune"></div><span class="legend"> : X, 10 or 9</span></br>
-    <div class="pastille rouge"></div><span class="legend"> : 8 or 7</span></br>
-    <div class="pastille bleu"></div><span class="legend"> : 6 or 5</span></br>
-    <div class="pastille noir"></div><span class="legend"> : 4 or 3</span></br>
-    <div class="pastille blanc"></div><span class="legend"> : M, 1 or 2</span>
+    <chart :chartData="datacollection" :options="options" class="smallCentered"></chart>
+    <div id="conteneurFlex">
+      <div class="legend"><div class="pastille jaune"></div>  X, 10 or 9</div>
+      <div class="legend"><div class="pastille rouge"></div>  8 or 7</div>
+      <div class="legend"><div class="pastille bleu"></div>  6 or 5</div>
+      <div class="legend"><div class="pastille noir"></div>  4 or 3</div>
+      <div class="legend"><div class="pastille blanc"></div>  M, 1 or 2</div>
+    </div>
   </div>
 </template>
 
@@ -82,6 +86,15 @@ export default {
 </script>
 
 <style>
+#conteneurFlex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.legend {
+  margin: 5px;
+  padding: 5px;
+}
 .pastille {
   border-radius: 50%;
   width: 15px;
@@ -108,7 +121,8 @@ export default {
   border: 2px solid #eeeeee;
   background-color: #fafafa;
 }
-.small {
+.smallCentered {
     max-width: 500px;
-  }
+    margin:auto;
+}
 </style>
