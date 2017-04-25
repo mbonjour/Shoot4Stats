@@ -12,11 +12,11 @@
     </div>
     <the-selector v-if="!this.$store.getters.currentEditingShoot.finished" v-model="currentArrow"></the-selector>
     <div>
-      <button v-if="!arrowComplete"
+      <button v-if="!arrowComplete && !this.$store.getters.currentEditingShoot.finished"
               :disabled="disable"
               class="validateButton"
               @click="addArrow()"><strong>Add Arrow</strong></button>
-      <button v-else
+      <button v-if="arrowComplete && !this.$store.getters.currentEditingShoot.finished"
               class="validateButton"
               @click="validateSend()">Add End</button>
       <button v-if="this.$store.getters.currentEditingShoot.finished"
@@ -37,7 +37,6 @@ export default {
     return {
       shoot: null,
       arrows: [],
-      arrowComplete: false,
       currentArrow: ''
     }
   },
@@ -49,16 +48,12 @@ export default {
         arrows: this.arrows
       })
       this.arrows = []
-      this.arrowComplete = false
     },
     addArrow () {
       this.arrows.push({ point: parseInt(this.currentArrow) })
       this.arrows = this.arrows.sort((a, b) => {
         return b.point - a.point
       })
-      if (this.arrows.length >= this.$store.getters.currentEditingShoot.nb_arrows_by_end - 1) {
-        this.arrowComplete = true
-      }
     },
     redirect () {
       this.$router.push({ path: '/dashboard' })
@@ -89,9 +84,10 @@ export default {
       return this.$store.getters.currentEditingShoot.ends.length !== 0 || this.arrows.length !== 0
     },
     giveButtonVisible () {
-      console.log(!this.$store.getters.currentEditingShoot.finished + ' finished')
-      console.log(this.$store.getters.currentEditingShoot.nb_ends > 0 + ' nb_ends')
       return !this.$store.getters.currentEditingShoot.finished && this.$store.getters.currentEditingShoot.nb_ends > 0
+    },
+    arrowComplete () {
+      return this.arrows.length >= this.$store.getters.currentEditingShoot.nb_arrows_by_end - 1
     }
   }
 }
