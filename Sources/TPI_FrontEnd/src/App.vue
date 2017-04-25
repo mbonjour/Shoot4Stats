@@ -3,9 +3,9 @@
   <div id="app">
     <nav style="background-color: #35495E;">
       <div class="nav-wrapper">
-        <a class="brand-logo">Shoot4Stats</a>
+        <router-link to="/dashboard" class="brand-logo center">Shoot4Stats</router-link>
         <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
+        <ul class="left hide-on-med-and-down">
           <li v-if="!user.logged"><router-link to="/">Home</router-link></li>
           <li v-if="user.logged"><router-link to="/dashboard">Home</router-link></li>
           <li v-if="isAdmin"><router-link to="/administration">Users (admins only)</router-link></li>

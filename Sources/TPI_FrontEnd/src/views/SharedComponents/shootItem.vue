@@ -66,7 +66,8 @@ export default {
 .card {
   padding: 5px;
   margin: 5px;
-  margin-top: 15px; 
+  margin-top: 15px;
+  cursor: pointer;
 }
 .title {
   border-bottom: 1px solid #fafafa;
@@ -76,22 +77,16 @@ export default {
   padding-bottom: 10px;
 }
 .finished {
+  border: 1px solid #41b883;
   border-left: 5px solid #41b883;
-  border-top: 1px solid #41b883;
-  border-bottom: 1px solid #41b883;
-  border-right: 1px solid #41b883;
 }
 .notReallyFinished {
+  border: 1px solid #fff176;
   border-left: 5px solid #fff176;
-  border-top: 1px solid #fff176;
-  border-bottom: 1px solid #fff176;
-  border-right: 1px solid #fff176;
 }
 .notFinished {
+  border: 1px solid #ef5350;
   border-left: 5px solid #ef5350;
-  border-top: 1px solid #ef5350;
-  border-bottom: 1px solid #ef5350;
-  border-right: 1px solid #ef5350;
 }
 .pushRight {
   float: right;
@@ -114,14 +109,14 @@ export default {
   padding-top: 10px;
 }
 .slide-fade-enter-active {
-  transition: all .2s ease;
+  transition: all .3s ease;
 }
 .slide-fade-leave-active {
-  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active for <2.1.8 */ {
-  transform: translateX(10px);
+  transform: translateX(100px);
   opacity: 0;
 }
 </style>

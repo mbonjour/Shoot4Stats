@@ -25,7 +25,9 @@
           <td v-if="arrows.length !== 0" :rowspan="computedRowSpan" class="nbEnd">{{ shoot.nb_ends + 1 }}</td>
           <td v-else :rowspan="computedRowSpan" class="nbEnd--empty">Select your Points !</td>
           <td v-if="!multipleLines" v-for="arrow in arrows">
-            <arrowItem :pointValue="arrow.point"></arrowItem>
+            <transition name="bounce" mode="out-in">
+              <arrowItem :pointValue="arrow.point"></arrowItem>
+            </transition>
           </td>
           <td v-if=" multipleLines" v-for="arrow in firstPart(arrows)"  class="removeCurrentEnd">
             <arrowItem :pointValue="arrow.point"></arrowItem>

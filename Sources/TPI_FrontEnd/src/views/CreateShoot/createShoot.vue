@@ -41,11 +41,11 @@
           <!-- Materialize fais chier quand on rempli avec V-model -->
           <div class="input-field col s6">
             <input :disabled="typeFixed" v-model="nb_Ends" id="nb_Ends" type="number" class="validate"  min="1" max="50" >
-            <label class="active" for="nb_Ends">Number of Ends*</label>
+            <label class="active" for="nb_Ends">Number of Ends*<span v-if="type === 'training'"> (max.50)</span></label>
           </div>
           <div class="input-field col s6">
             <input :disabled="typeFixed" v-model="nb_ArrowsByEnd" id="nb_ArrowsByEnd" type="number" min="1" max="12" class="validate">
-            <label class="active" for="nb_ArrowsByEnd">Number of Arrows By End*</label>
+            <label class="active" for="nb_ArrowsByEnd">Number of Arrows By End*<span v-if="type === 'training'"> (2 - 12)</span></label>
           </div>
         </div>
       </form>
