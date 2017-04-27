@@ -5,7 +5,7 @@
               v-if="giveButtonVisible"
               class="finishButton">Give UP !</button>
     </div>
-    <pointsTable v-if="tableIsVisible" :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></pointsTable>
+    <points-table v-if="tableIsVisible" :arrows="arrows" :shoot="this.$store.getters.currentEditingShoot"></points-table>
     <div v-else style="padding: 10px;">
       <h3>Begin to shoot !</h3>
       <p>Select your points with the selection box and add them !</p>
