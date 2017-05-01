@@ -1,7 +1,13 @@
 <template>
-  <div class="card" :class="borderColor" @click="showDetailsOrEdit()">
-    <div class="title">{{ shoot.title }}</div>
-    <div class="desc">{{ shoot.description }}</div>
+  <div class="card" :class="borderColor">
+    <div class="title">
+      <span @click.prevent="showDetailsOrEdit()">{{ shoot.title }}</span>
+      <span @click.prevent="showDetailsOrEdit()" class="pushRight">
+        <i v-if="!showDetails" class="material-icons" style="color: #cacaca;">{{ state }}</i>
+        <i v-else class="material-icons" style="color: #cacaca;">close</i>
+      </span>
+    </div>
+    <div class="desc" @click.prevent="showDetailsOrEdit()">{{ shoot.description }}</div>
     <transition name="slide-fade" mode="out-in">
       <shootSummary v-if="!showDetails" :shoot="shoot"></shootSummary>
       <shootDetails v-else :shoot="shoot"></shootDetails>
@@ -27,8 +33,10 @@ export default {
         if (!this.showDetails) {
           this.$store.dispatch('setDetailsShoot', this.shoot.id)
           this.$events.$emit('anotherDetails', this.shoot.id)
+          this.showDetails = !this.showDetails
+        } else {
+          this.showDetails = !this.showDetails
         }
-        this.showDetails = !this.showDetails
       } else {
         this.$router.push({ path: '/editShoot/' + this.shoot.id })
       }
@@ -54,6 +62,9 @@ export default {
         result = 'notFinished'
       }
       return result + ' col s12 m3'
+    },
+    state () {
+      return this.shoot.finished ? 'info' : 'edit'
     }
   }
 }
