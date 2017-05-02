@@ -1,7 +1,8 @@
-import { Doughnut, mixins } from 'vue-chartjs'
-
-export default Doughnut.extend({
-  mixins: [mixins.reactiveProp],
+<script>
+/* eslint-disable */
+export default ({
+  extends: VueChartJs.Doughnut,
+  mixins: [VueChartJs.mixins.reactiveProp],
   props: ['chartData', 'options'],
   mounted () {
     this.$nextTick(() => {
@@ -9,3 +10,4 @@ export default Doughnut.extend({
     })
   }
 })
+</script>

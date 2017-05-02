@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Chart from './Charts/chart.js'
+import Chart from './Charts/chart'
 import { mapGetters } from 'vuex'
 
 export default {

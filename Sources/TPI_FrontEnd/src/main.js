@@ -9,8 +9,8 @@ import store from './vuex/store'
 import { EventBus } from './helpers/event-bus.js'
 
 // SN: Object.defineProperty(...)
-Vue.prototype.$http = axios
-Vue.prototype.$events = EventBus
+Object.defineProperty(Vue.prototype, '$http', { value: axios })
+Object.defineProperty(Vue.prototype, '$events', { value: EventBus })
 Vue.config.productionTip = false
 
 Vue.use(Vuex)
