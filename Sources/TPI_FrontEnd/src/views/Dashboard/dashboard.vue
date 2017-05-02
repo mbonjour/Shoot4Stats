@@ -45,7 +45,6 @@ export default {
       setTimeout(() => {
         let currentCount = this.count
         for (this.count; this.count < currentCount + 10; this.count++) {
-          console.log(this.shoots[this.count])
           if (this.shoots[this.count]) {
             this.list.push(this.shoots[this.count])
           } else {

@@ -49,7 +49,6 @@
           </div>
         </div>
       </form>
-      <!-- TODO: Boutton désactivé si pas tous les champs sont remplis -->
     </div>
     <button @click="validateSend()" class="validateButton" :disabled="!isShootValid">
       <div>
