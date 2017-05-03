@@ -23,7 +23,7 @@ module.exports = (props) => {
               }
               return prev
             }, true)) {
-            // itéerer chaque Arrow pour vérif de validation (0 - 11)
+            // itérer chaque Arrow pour vérif de validation (0 - 11)
             props.store.models.End.create({
               fkShoot: shoot.id
             }).then((end) => {
@@ -31,7 +31,7 @@ module.exports = (props) => {
                 props.store.repositories.shoots.finishShoot(shoot.id, (err, created) => {})
               }
               Promise.all(endObj.arrows.map((arrow) => {
-                //problème lors de la création, apparemment pas dans l'ordre envoyé certaines fois...
+                // Problème lors de la création, apparemment pas dans l'ordre envoyé certaines fois...
                 return props.store.models.Arrow.create({
                   point: arrow.point,
                   fkEnd: end.id
@@ -47,7 +47,6 @@ module.exports = (props) => {
                   status: 500 //TODO: Voir status correct
                 }, null)
               })
-              //callback(null, )
             }).catch((err) => {
               console.log(err)
               callback({

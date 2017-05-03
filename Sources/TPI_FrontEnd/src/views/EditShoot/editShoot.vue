@@ -17,6 +17,7 @@
               class="validateButton"
               @click="addArrow()"><strong>Add Arrow</strong></button>
       <button v-if="arrowComplete && !this.$store.getters.currentEditingShoot.finished"
+              :disabled="disable"
               class="validateButton"
               @click="validateSend()">Add End</button>
       <button v-if="this.$store.getters.currentEditingShoot.finished"

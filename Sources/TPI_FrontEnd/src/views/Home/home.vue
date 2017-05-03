@@ -27,7 +27,7 @@
   width: 100%;
   border: none;
   text-align: center;
-  color: #FFF;
-  background-color: #35495E;
+  color: #35495E;
+  background-color: #41B883;
 }
 </style>

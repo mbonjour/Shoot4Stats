@@ -53,7 +53,7 @@ export default {
           }
         }
         this.$refs.infiniteLoading.$emit('$InfiniteLoading:loaded')
-      }, 1000)
+      }, 500)
     }
   },
   created () {
