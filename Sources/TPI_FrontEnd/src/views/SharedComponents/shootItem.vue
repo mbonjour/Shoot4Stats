@@ -3,7 +3,7 @@
     <div class="title">
       <span @click.prevent="showDetailsOrEdit()">{{ shoot.title }}</span>
       <span @click.prevent="showDetailsOrEdit()" class="pushRight">
-        <i v-if="!showDetails" class="material-icons" style="color: #cacaca;">{{ state }}</i>
+        <i v-if="!showDetails" class="material-icons">{{ state }}</i>
         <i v-else class="material-icons" style="color: #cacaca;">close</i>
       </span>
     </div>

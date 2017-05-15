@@ -15,7 +15,7 @@
     </div>
     <div class="fixed-action-btn toolbar">
       <a class="btn-floating btn-large" style="background-color: #41B883;">
-        <i class="large material-icons">add</i>
+        <i class="large material-icons" style=" color: #35495E;">add</i>
       </a>
       <ul>
         <li class="waves-effect waves-light"><router-link to="/createShoot/training">training</router-link></li>
