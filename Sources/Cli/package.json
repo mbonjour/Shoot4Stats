@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "mysql": "^2.13.0",
-    "sequelize": "^3.30.1"
+    "sequelize": "^6.3.5"
   }
 }
